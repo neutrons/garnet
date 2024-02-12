@@ -1,4 +1,4 @@
-name: mypythonapp
+name: garnet
 channels:
   - conda-forge
 dependencies:
