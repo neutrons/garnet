@@ -1,39 +1,87 @@
-# python_project_template
-This repository is a template repository for Python projects under neutrons.
-After you create a new repository using this repo as template, please follow the following steps to adjust it for the new project.
+### Getting started
 
-1. Adjust the branch protection rules for the new repo. By default, we should protect the `main` (stable), `qa` (release candidate), and `next` (development) branches.
+Create conda environment
+`conda env create -f environment.yml`
 
-    1.1 Go to the `Settings` tab of the new repo.
+Activate garnet environment
+`conda activate garnet`
 
-    1.2 Click on `Branches` on the left side.
+Install in editable mode for developlment
+`python -m pip install -e .`
 
-    1.3 Click on `Add rule` button.
+Run the GUI
+`python src/garnet.py`
 
-    1.4 Follow the instructions from Github.
+# The Single Crystal *GARNET* project
+Single Crystal Graphical Advanced Reduction Neutron Event Toolkit
 
-2. Change the License if MIT license is not suitable for you project. For more information about licenses, please refer to [Choose an open source license](https://choosealicense.com/).
+Garnets are a group of minerals with high symmetry cubic crystal system with space group *Ia-3d* (#230). 
+Although they come in many colors, the word comes from a 14th-century Middle English word that has the meaning *dark red* due to the color of many naturally occuring silicate minerals.
+Some rare-earth synthetic garnets has recently served as a useful calibration standard used across several beamlines.
 
-3. Update the envrionment dependency file `environment.yml`, which contain both runtime and development dependencies. For more information about conda environment file, please refer to [Conda environment file](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-file-manually).
+The goal of this project is to combine several amorphous tools from many of the instruments into a user-friendly environment for data reduction.
+The scope of this project only covers reduction post-data collection.
 
-    3.1 We strongly recommended using a single `environment.yml` file to manage all the dependencies, including the runtime and development dependencies.
-    3.2 Please add comments to the `environment.yml` file to explain the dependencies.
-    3.3 Please prune the dependencies to the minimum when possible, we would like the solver to figure out the dependency tree for us.
+Future development may incorporate live data reduction or analysis, but that is not the focus in this effort.
 
+Scope of covered instruments
+- TOPAZ
+- MANDI
+- CORELLI
+- DEMAND
+- WAND2
+- SNAP
 
-4. Adjust pre-commit configuration file, `.pre-commit-config.yaml` to enable/disable the hooks you need. For more information about pre-commit, please refer to [pre-commit](https://pre-commit.com/).
+The garnet tool will allow users to select single crystal diffraction data from one (minimally white beam) or more (minimally monochromatic beam) orientations, and transform it into a meaningful form.
+There exists essential steps of a single crystal data reduction.
+These include:
+- UB matrix determination and refinement for data reduction and experiment planning
+- Peak integration and corrections for structure refinement
+- Reciprocal space reconstruction for visualization and analysis
+- Order parameter tracking and event filtering analysis
 
-5. Having code coverage, `codecov.yaml` is **strongly recommended**, please refer to [Code coverage](https://coverage.readthedocs.io/en/coverage-5.5/) for more information.
+Data processing will be based on Mantid and use PyQt5 for the application.
 
-6. Adjust the demo Github action yaml files for CI/CD. For more information about Github action, please refer to [Github action](https://docs.github.com/en/actions).
+This project will be broken down into phases, milestones, or components
+- [Milestone 0: Deployment](https://github.com/users/zjmorgan/projects/1?pane=issue&itemId=38115185)
+- [Milestone 1: UB-matrix determination and refinement](https://github.com/users/zjmorgan/projects/1?pane=issue&itemId=38115119)
 
-7. Adjust the conda recipe, `conda-recipe/meta.yaml` to provide the meta information for the conda package. For more information about conda recipe, please refer to [Conda build](https://docs.conda.io/projects/conda-build/en/latest/).
+### UB determination
+1. Load data
+2. Apply calibration
+3. Convert to Q-space
+4. Find strong peaks
+5. Integrate peaks
+6. Find intitial UB
+7. Transform UB
+8. Optimize UB
+9. Plan experiment
+10. Setup auto-reduction
+11. Launch reduction workflow
 
-8. Adjust `pyproject.toml` to match your project. For more information about `pyproject.toml`, please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
+### Peak integration 
+1. Load data
+2. Apply calibration
+3. Convert to Q-space
+4. Predict peak positions
+5. Integrate peaks
+6. Combine peaks from all runs
+7. Apply spectrum, efficiency, and absorption corrections
+8. Save HKL lists
 
-    8.1 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
-    8.2 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
-
-9. Adjust `__main__.py` if the software need to have a module level entrance. For pure Python library, please delete `__main__.py`.
-
-10. Clear the content of this file and add your own README.md as the project README file. We recommend putting badges of the project status at the top of the README file. For more information about badges, please refer to [shields.io](https://shields.io/).
+### Order parameter tracking
+1. Load data
+2. Apply calibration
+3. Define detector region of interest near a peak
+4. Filter events by log value
+5. Convert to target dimension
+6. Fit peak intensity
+7. Plot intensity vs log value 
+   
+### Reciprocal space reconstruction
+1. Load data
+2. Apply calibration
+3. Convert to Q-space
+4. Normalize with vanadium
+5. Apply symmetry operators
+6. Subtract background
