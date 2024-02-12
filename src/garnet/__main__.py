@@ -5,7 +5,7 @@ This can be invoked using
 
 .. code-block:: sh
 
-   python -m packagenamepy <configfile>
+   python -m garnet <configfile>
 """
 import sys
 
