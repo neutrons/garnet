@@ -1,16 +1,16 @@
 [project]
-name = "examplepyapp"
-description = "Example Python repo for neutrons"
+name = "garnet"
+description = "The Single Crystal Graphical Advanced Reduction Neutron Event Toolkit Project"
 dynamic = ["version"]
 requires-python = ">=3.10"
 dependencies = [
   "python",
   # list all runtime dependencies here
 ]
-license = { text = "MIT" }
+license = { text = "GPL-3.0" }
 
 [project.urls]
-homepage = "https://github.com/neutrons/python_project_template/"  # if no homepage, use repo url
+homepage = "https://github.com/neutrons/garnet/"
 
 [build-system]
 requires = [
@@ -37,7 +37,7 @@ dirty = "{version}+d{build_date:%Y%m%d}"
 distance-dirty = "{next_version}.dev{distance}+d{build_date:%Y%m%d%H%M}"
 
 [tool.versioningit.write]
-file = "src/packagenamepy/_version.py"
+file = "src/garnet/_version.py"
 
 [tool.setuptools.packages.find]
 where = ["src"]
