@@ -3,39 +3,39 @@ channels:
   - conda-forge
   - mantid/label/nightly
   - oncat
+  - defaults
 dependencies:
-  # -- Runtime dependencies
-  # base: list all base dependencies here
-  - python>=3.8  # please specify the mimimum version of python here
-  - versioningit
-  # compute: list all compute dependencies here
+  # base
+  - python=3.10
+  - setuptools
+  # runtime
+  - mantidworkbench
   - numpy
   - pandas
-  # plot: list all plot dependencies here, if applicable
+  # plot
   - matplotlib
-  # jupyter: list all jupyter dependencies here, if applicable
+  # jupyter
   - jupyterlab
   - ipympl
-  # -- Development dependencies
-  # utils:
+  # -- Dev dependencies
+  # utils
   - pre-commit
-  # pacakge building:
+  # packaging
+  - check-wheel-contents
   - boa
-  - conda-build < 4  # conda-build 24.x has a bug, missing update_index from conda_build.index
+  - conda-build
   - conda-verify
   - python-build
-  # test: list all test dependencies here
+  - versioningit
+  - libmambapy=1.4.2  # auto-selected libarchive=3.6.2 depends on this version
+  # test
   - pytest
   - pytest-qt
   - pytest-cov
   - pytest-xdist
+  - pytest-runner
   # --------------------------------------------------
   # add additional sections such as Qt, etc. if needed
-  - boa
-  - mantidworkbench 
-  - check-wheel-contents
-  - pylint=2.17.3
-  - setuptools
   - sphinx
   - sphinx-rtd-theme
   - pyoncat
@@ -43,7 +43,3 @@ dependencies:
   - libstdcxx-ng
   # --------------------------------------------------
   # if pakcages are not available on conda, list them here
-  - pip
-  - pip:
-    - bm3d-streak-removal # example
-    - pytest-playwright
