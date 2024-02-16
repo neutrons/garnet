@@ -9,6 +9,9 @@ license = { text = "GPL-3.0" }
 [project.urls]
 homepage = "https://github.com/neutrons/garnet/"
 
+[project.scripts]
+garnet = "garnet.__main__:main"
+
 [build-system]
 requires = ["setuptools", "wheel", "toml", "versioningit"]
 build-backend = "setuptools.build_meta"
