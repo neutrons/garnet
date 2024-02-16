@@ -44,7 +44,7 @@ testpaths = ["tests"]
 python_files = ["test*.py"]
 norecursedirs = [".git", "tmp*", "_tmp*", "__pycache__", "*dataset*", "*data_set*"]
 markers = [
-    "mymarker: example markers goes here"
+    "datarepo: example markers goes here"
 ]
 
 [tool.ruff]
