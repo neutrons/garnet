@@ -1,8 +1,6 @@
 name: garnet
 channels:
   - conda-forge
-  - mantid/label/nightly
-  - oncat
 dependencies:
   # -- Runtime dependencies
   # base: list all base dependencies here
@@ -26,21 +24,10 @@ dependencies:
   - python-build
   # test: list all test dependencies here
   - pytest
-  - pytest-qt
   - pytest-cov
   - pytest-xdist
   # --------------------------------------------------
   # add additional sections such as Qt, etc. if needed
-  - boa
-  - mantidworkbench 
-  - check-wheel-contents
-  - pylint=2.17.3
-  - setuptools
-  - sphinx
-  - sphinx-rtd-theme
-  - pyoncat
-  - gtk3
-  - libstdcxx-ng
   # --------------------------------------------------
   # if pakcages are not available on conda, list them here
   - pip

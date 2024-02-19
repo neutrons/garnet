@@ -4,6 +4,7 @@ description = "The Single Crystal Graphical Advanced Reduction Neutron Event Too
 dynamic = ["version"]
 requires-python = ">=3.10"
 dependencies = [
+  "python",
   # list all runtime dependencies here
 ]
 license = { text = "GPL-3.0" }
@@ -44,9 +45,6 @@ exclude = ["tests*", "scripts*", "docs*", "notebooks*"]
 
 [tool.setuptools.package-data]
 "*" = ["*.yml","*.yaml","*.ini"]
-
-[project.gui-scripts]
-garnet = "garnet.garnet:gui"
 
 [tool.pytest.ini_options]
 pythonpath = [
