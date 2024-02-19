@@ -3,7 +3,7 @@ import os
 from qtpy.QtWidgets import QWidget
 
 
-class HomePresenter:  # pylint: disable=too-many-public-methods
+class HomePresenter:
     """Home presenter"""
 
     def __init__(self, view, model):

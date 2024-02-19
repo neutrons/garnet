@@ -2,7 +2,7 @@
 from qtpy.QtWidgets import QWidget, QHBoxLayout, QErrorMessage, QMessageBox, QLabel
 
 
-class Home(QWidget):  # pylint: disable=too-many-public-methods
+class Home(QWidget): 
     """Home widget"""
 
     def __init__(self, parent=None):

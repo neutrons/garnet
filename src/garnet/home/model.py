@@ -9,7 +9,7 @@ from mantid.kernel import Logger
 logger = Logger("GARNET")
 
 
-class HomeModel:  # pylint: disable=too-many-public-methods
+class HomeModel:
     """Home model"""
 
     def __init__(self):
