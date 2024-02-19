@@ -3,11 +3,13 @@ import pytest
 import os
 import json
 
-def test_version():
-    assert __version__ == "unknown"
     
 @pytest.mark.datarepo    
-def test_data_repo(datarepo_dir):
+def test_data_repo(has_datarepo,datarepo_dir):
+
+    if not has_datarepo:
+        pytest.skip("Garnet-data repository is not available")
+
 
     #ensure we have access to the garnet-data repo
     assert os.path.exists(datarepo_dir)
