@@ -1,9 +1,9 @@
-"""PyQt widget for the main tab"""
+"""PyQt widget for the home tab"""
 from qtpy.QtWidgets import QWidget, QHBoxLayout, QErrorMessage, QMessageBox
 
 
-class Main(QWidget):  # pylint: disable=too-many-public-methods
-    """Main widget"""
+class Home(QWidget):  # pylint: disable=too-many-public-methods
+    """Home widget"""
 
     def __init__(self, parent=None):
         super().__init__(parent)

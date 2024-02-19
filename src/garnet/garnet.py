@@ -14,9 +14,8 @@ set_matplotlib_backend()
 # make sure the algorithms have been loaded so they are available to the AlgorithmManager
 import mantid.simpleapi  # noqa: F401, E402 pylint: disable=unused-import, wrong-import-position
 
-from garnet.configuration import Configuration  # noqa: E402 pylint: disable=wrong-import-position
 from garnet.version import __version__  # noqa: E402 pylint: disable=wrong-import-position
-from garnet.views.mainwindow import MainWindow  # noqa: E402 pylint: disable=wrong-import-position
+from garnet.mainwindow import MainWindow  # noqa: E402 pylint: disable=wrong-import-position
 
 logger = Logger("PACKAGENAME")
 
@@ -34,18 +33,7 @@ class Garnet(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         logger.information(f"GARNET version: {__version__}")
-        config = Configuration()
         
-        if not config.is_valid():
-            msg = (
-                "Error with configuration settings!",
-                f"Check and update your file: {config.config_file_path}",
-                "with the latest settings found here:",
-                f"{config.template_file_path} and start the application again.",
-            )
-
-            print(" ".join(msg))
-            sys.exit(-1)
         self.setWindowTitle(f"GARNET - {__version__}")
         self.main_window = MainWindow(self)
         self.setCentralWidget(self.main_window)

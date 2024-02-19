@@ -1,10 +1,10 @@
-"""Presenter for the Main tab"""
+"""Presenter for the Home tab"""
 import os
 from qtpy.QtWidgets import QWidget
 
 
-class MainPresenter:  # pylint: disable=too-many-public-methods
-    """Main presenter"""
+class HomePresenter:  # pylint: disable=too-many-public-methods
+    """Home presenter"""
 
     def __init__(self, view, model):
         self._view = view
