@@ -1,4 +1,3 @@
-from garnet import __version__
 import pytest
 import os
 import json
