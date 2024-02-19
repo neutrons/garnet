@@ -4,9 +4,9 @@ Main Qt window
 
 from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget, QTabWidget, QPushButton
 
-from garnet.home.home_view import Home
-from garnet.home.home_model import HomeModel
-from garnet.home.home_presenter import HomePresenter
+from garnet.home.view import Home
+from garnet.home.model import HomeModel
+from garnet.home.presenter import HomePresenter
 
 
 class MainWindow(QWidget):
