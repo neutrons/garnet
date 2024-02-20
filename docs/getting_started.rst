@@ -65,6 +65,7 @@ To update the changes for the data-repo. Run:
 - git submodule update --init --recursive
 
 No need to commit changes in this reposotiry. If a message appears to stage the garnet-data repository in this one, just run the above command.
+More information of git-lfs can be found here https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data .
 
 Notes. 
 
@@ -72,3 +73,32 @@ Tests that use the garnet-data repository, will need to be configured additional
 
 Additionally, the marker `datarepo` is used to skip tests that required garnet-repo to be present (`if not has_datarepo`), in case garnet-repo has not been configured.
 
+Instructions for CIS Testing:
+-Checkout to the PR by following the Pull-Request instructions:
+.. code-block:: sh
+
+conda activate <garnet_environment>
+cd /path/to/my/local/garnet/repo/
+git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
+git switch pr<PULL_REQUEST_NUMBER>
+python -m pytest <item_to_test>
+
+or
+
+garnet
+
+in case there is specific Mantid build in another conda environment, garnet can be installed there:
+
+.. code-block:: sh
+
+conda activate <mantid_environment>
+cd /path/to/my/local/garnet/repo/
+git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
+git switch pr<PULL_REQUEST_NUMBER>
+python -m pip install -e .
+
+python -m pytest <item_to_test>
+
+or
+
+garnet
