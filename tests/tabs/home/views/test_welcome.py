@@ -16,6 +16,7 @@ def test_welcome_label(qtbot):
 
     garnet.close()
 
+
 def test_mainwindow(qtbot):
     """Test that the application starts successfully"""
     garnet = Garnet()
