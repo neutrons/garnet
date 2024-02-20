@@ -1,4 +1,4 @@
-# Tests for Page
+# Tests for every Page
 
 Tests are organized into folders for every page:
 * home
@@ -7,7 +7,7 @@ Tests are organized into folders for every page:
 * recp_space
 * ub_peak_find
 
-In every feature tab directory the tests are furtherd arranged in MVP-basedfilesystem structure:
+In every page-tab directory the tests are furtherd arranged in MVP-based filesystem structure:
 * models
 * views
 * presenter
