@@ -19,13 +19,13 @@ You can provide a manual test in a code block using:
 
 ```bash
 cd /path/to/my/local/garnet/repo/
-git fetch origin merge-requests/<MERGE_REQUEST_NUMBER>/head:mr<MERGE_REQUEST_NUMBER>
-git switch mr<MERGE_REQUEST_NUMBER>
+git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
+git switch pr<PULL_REQUEST_NUMBER>
 conda activate <garnet_environment>
 python -m pytest <item_to_test>
 ```
 <!--
-In the above code snippet, substitute `<MERGE_REQUEST_NUMBER>` for the actual merge request number. Also substitute
+In the above code snippet, substitute `<PULL_REQUEST_NUMBER>` for the actual merge request number. Also substitute
 `<garnet_environment>` with the name of the conda environment you use for development. It is critical that
 you have installed the repo in this conda environment in editable mode with `pip install -e .` or `conda develop .`
 Substitute `<item_to_test>` with the path to the file or directory of your test. If you have multiple tests in multiple locations, please list them.
