@@ -1,12 +1,12 @@
-# Description of Changes:
+## Description of Changes:
 <!-- Add a description here-->
 
 
-# Related Items
+## Related Items
 <!-- Links to related issues or pull requests -->
 <!-- Links to IBM EWM items if aplicable -->
 
-# To Test:
+## To Test:
 
 <!-- Instructions for testing.
 There should be sufficient instructions for someone unfamiliar with the application to test.
@@ -31,7 +31,7 @@ you have installed the repo in this conda environment in editable mode with `pip
 Substitute `<item_to_test>` with the path to the file or directory of your test. If you have multiple tests in multiple locations, please list them.
 -->
 
-# Check list for the pull request
+## Check list for the pull request
 - [ ] I have read the [CONTRIBUTING]
 - [ ] I have read the [CODE_OF_CONDUCT]
 - [ ] I have added tests for my changes
@@ -39,7 +39,7 @@ Substitute `<item_to_test>` with the path to the file or directory of your test.
 
 ---
 
-# Check list for the reviewer
+## Check list for the reviewer
 - [ ] I have read the [CONTRIBUTING]
 - [ ] I have verified the proposed changes
 - [ ] best software practices
@@ -49,6 +49,3 @@ Substitute `<item_to_test>` with the path to the file or directory of your test.
 - [ ] All the tests are passing
 - [ ] The documentation is up to date
 - [ ] code comments added when explaining intent
-
-# Manual test for the reviewer
-<!-- Instructions for testing here. -->
