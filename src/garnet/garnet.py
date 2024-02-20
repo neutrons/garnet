@@ -33,7 +33,7 @@ class Garnet(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         logger.information(f"GARNET version: {__version__}")
-        
+
         self.setWindowTitle(f"GARNET - {__version__}")
         self.main_window = MainWindow(self)
         self.setCentralWidget(self.main_window)

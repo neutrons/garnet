@@ -11,4 +11,3 @@ In every page-tab directory the tests are furtherd arranged in MVP-based filesys
 * models
 * views
 * presenter
-

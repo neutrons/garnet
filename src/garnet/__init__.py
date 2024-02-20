@@ -9,6 +9,7 @@ try:
 except ImportError:
     __version__ = "unknown"
 
+
 def Garnet():  # pylint: disable=invalid-name
     """This is needed for backward compatibility because mantid workbench does "from garnet import Garnet" """
     from .garnet import Garnet as garnet  # pylint: disable=import-outside-toplevel
