@@ -1,4 +1,4 @@
-### Tests for Page
+# Tests for Page
 
 Tests are organized into folders for every page:
 * home
