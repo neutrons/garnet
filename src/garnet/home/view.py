@@ -2,7 +2,7 @@
 from qtpy.QtWidgets import QWidget, QHBoxLayout, QLabel
 
 
-class HomeView(QWidget): 
+class HomeView(QWidget):
     """Home widget"""
 
     def __init__(self, parent=None):
@@ -10,10 +10,8 @@ class HomeView(QWidget):
 
         self.label_welcome = QLabel(self)
         self.label_welcome.setText("Welcome to GARNET")
-        
-        
+
         layout = QHBoxLayout()
         layout.addWidget(self.label_welcome)
 
-        
         self.setLayout(layout)

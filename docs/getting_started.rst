@@ -39,7 +39,7 @@ If it has been a while, once can update using
 Testing
 ```````````````````
 The project contains testing infrastructure in the tests/ folder:
-- data/ : It contains the test data. Small data files can be included in this directory. Forl large data files, there is a subfolder garner-data 
+- data/ : It contains the test data. Small data files can be included in this directory. Forl large data files, there is a subfolder garner-data
  that is connected to a gitlfs data repo in gitlab as a submodule: https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data
 - tabs/ : Tests are organized into folders for every page:
     * home/
@@ -67,9 +67,9 @@ To update the changes for the data-repo. Run:
 No need to commit changes in this reposotiry. If a message appears to stage the garnet-data repository in this one, just run the above command.
 More information of git-lfs can be found here https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data .
 
-Notes. 
+Notes.
 
-Tests that use the garnet-data repository, will need to be configured additionally for github runners. 
+Tests that use the garnet-data repository, will need to be configured additionally for github runners.
 
 Additionally, the marker `datarepo` is used to skip tests that required garnet-repo to be present (`if not has_datarepo`), in case garnet-repo has not been configured.
 

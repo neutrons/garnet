@@ -2,7 +2,7 @@
 Main Qt window
 """
 
-from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget, QTabWidget, QPushButton
+from qtpy.QtWidgets import QVBoxLayout, QWidget, QTabWidget
 
 from garnet.home.view import HomeView
 from garnet.home.model import HomeModel
@@ -23,7 +23,6 @@ class MainWindow(QWidget):
         home_model = HomeModel()
         self.home_presenter = HomePresenter(home_view, home_model)
         self.tabs.addTab(home_view, "Home")
-        
 
         ### Set tab layout
         layout = QVBoxLayout()
@@ -33,5 +32,3 @@ class MainWindow(QWidget):
 
         # register child widgets to make testing easier
         self.home = home_view
-
-
