@@ -16,7 +16,7 @@ def test_data_repo(has_datarepo, datarepo_dir):
     assert os.path.exists(test_file)
 
     # ensure we can read the contents of the file
-    test_file_data = open(test_file)
+    test_data = open(test_file)
     with open(test_file, "r") as f:
         test_data = json.load(f)
 

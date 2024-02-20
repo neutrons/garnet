@@ -39,15 +39,6 @@ If it has been a while, once can update using
 Testing
 ```````````````````
 The project contains testing infrastructure in the tests/ folder:
-<<<<<<< HEAD
-    * data/ : It contains the test data. Small data files can be included in this directory. For large data files, there is a subfolder garner-data that is connected to a gitlfs data repo in gitlab as a submodule: https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data
-    * tabs/ : Tests are organized into folders for every page:
-        * home/
-        * order_param/
-        * peak_integr/
-        * recp_space/
-        * ub_peak_find/
-=======
 - data/ : It contains the test data. Small data files can be included in this directory. Forl large data files, there is a subfolder garner-data
  that is connected to a gitlfs data repo in gitlab as a submodule: https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data
 - tabs/ : Tests are organized into folders for every page:
@@ -56,7 +47,6 @@ The project contains testing infrastructure in the tests/ folder:
     * peak_integr/
     * recp_space/
     * ub_peak_find/
->>>>>>> 597b7a8cf9f6803cad5c3ff7503cc6959d8d310c
 
         In every page-tab directory the tests are furtherd arranged in MVP-based filesystem structure:
             * models/
@@ -72,14 +62,23 @@ How to setup the garnet-data repository locally
 
 Open a terminal and go to garnet repository root folder. Run:
 
-<<<<<<< HEAD
-=======
-- git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
+.. code-block:: sh
+
+    # add submodule
+    git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
+
+    # initialize submodules
+    git submodule update --init --recursive
 
 To update the changes for the data-repo. Run:
-- git submodule update --init --recursive
 
-No need to commit changes in this reposotiry. If a message appears to stage the garnet-data repository in this one, just run the above command.
+.. code-block:: sh
+
+    # retrieve latest changes of the repository
+    git submodule update --remote --merge
+
+
+No need to commit changes in this repository.
 More information of git-lfs can be found here https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data .
 
 Notes.
@@ -90,7 +89,7 @@ Additionally, the marker `datarepo` is used to skip tests that required garnet-r
 
 Instructions for CIS Testing:
 -Checkout to the PR by following the Pull-Request instructions:
->>>>>>> 597b7a8cf9f6803cad5c3ff7503cc6959d8d310c
+
 .. code-block:: sh
 
     git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
@@ -103,14 +102,14 @@ To update the changes for the data-repo. Run:
 
 No need to commit changes in this reposotiry. If a message appears to stage the garnet-data repository in this one, just run the above command.
 
-More information on git-lfs can be found here: 
+More information on git-lfs can be found here:
 
 .. code-block:: sh
 
     https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data
 
 
-Tests that use the garnet-data repository, will need to be configured for github runners (TBD). 
+Tests that use the garnet-data repository, will need to be configured for github runners (TBD).
 
 Additionally, the marker `datarepo` is used to skip tests that require garnet-repo to be present (`if not has_datarepo`).
 
@@ -133,7 +132,6 @@ in case there is specific Mantid build in another conda environment, garnet can 
 
 .. code-block:: sh
 
-<<<<<<< HEAD
     conda activate <mantid_environment>
     cd /path/to/my/local/garnet/repo/
     git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
@@ -143,16 +141,3 @@ in case there is specific Mantid build in another conda environment, garnet can 
     python -m pytest <item_to_test>
     #and/or start garnet
     garnet
-=======
-conda activate <mantid_environment>
-cd /path/to/my/local/garnet/repo/
-git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
-git switch pr<PULL_REQUEST_NUMBER>
-python -m pip install -e .
-
-python -m pytest <item_to_test>
-
-or
-
-garnet
->>>>>>> 597b7a8cf9f6803cad5c3ff7503cc6959d8d310c
