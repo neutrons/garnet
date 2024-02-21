@@ -8,6 +8,7 @@ def test_welcome_label(qtbot: pytest.fixture):
     # initialization
     garnet = Garnet()
     garnet.show()
+    qtbot.addWidget(garnet)
     qtbot.waitUntil(garnet.show, timeout=5000)
 
     # check there is a landing tab
@@ -15,15 +16,11 @@ def test_welcome_label(qtbot: pytest.fixture):
     assert tabs.currentWidget().__class__.__name__ == "HomeView"
     assert tabs.currentWidget().label_welcome.text() == "Welcome to GARNET"
 
-    garnet.close()
-
 
 def test_mainwindow(qtbot: pytest.fixture):
     """Test that the application starts successfully"""
     garnet = Garnet()
+    qtbot.addWidget(garnet)
     garnet.show()
-    qtbot.waitUntil(garnet.show, timeout=5000)
     assert garnet.isVisible()
     assert garnet.windowTitle() == f"GARNET - {__version__}"
-
-    garnet.close()
