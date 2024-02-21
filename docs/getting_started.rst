@@ -48,10 +48,10 @@ The project contains testing infrastructure in the tests/ folder:
     * recp_space/
     * ub_peak_find/
 
-        In every page-tab directory the tests are furtherd arranged in MVP-based filesystem structure:
-            * models/
-            * views/
-            * presenter/
+    In every page-tab directory the tests are furtherd arranged in MVP-based filesystem structure:
+        * models/
+        * views/
+        * presenter/
 
     * utility/ : It contains tests for code elements that are shared among pages and belong to the corresponding file folder (utility/).
     * workflows/ : It contains tests with code that span among pages to test full reduction workflows.
