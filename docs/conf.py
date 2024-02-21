@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath("../src"))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Project Name"
-copyright = "Copyright 2024"
+copyright = "Copyright 2024"  # pylint: disable=W0622, C0103
 author = "Author Name"
 
 # The short X.Y version
@@ -59,7 +59,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"  # "sphinx_rtd_theme", please add corresponding package to environment.yml if you want to use it
+html_theme = (
+    "alabaster"  # "sphinx_rtd_theme", please add corresponding package to environment.yml if you want to use it
+)
 autosummary_generate = True
 
 # Napoleon settings

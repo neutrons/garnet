@@ -4,8 +4,6 @@
 from mantid.kernel import Logger
 
 
-
-
 logger = Logger("GARNET")
 
 
@@ -14,4 +12,3 @@ class HomeModel:
 
     def __init__(self):
         return
-
