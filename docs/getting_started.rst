@@ -71,7 +71,7 @@ To update the changes for the data-repo. Run:
 
      git submodule update --init --recursive
 
-No need to commit changes in this reposotiry. If a message appears to stage the garnet-data repository in this one, just run the above command.
+No need to commit changes in this repository. If a message appears to stage the garnet-data repository in this one, just run the above command.
 
 More information on git-lfs can be found here:
 
@@ -99,11 +99,13 @@ Checkout to the PR by following the Pull-Request instructions:
     #and/or start garnet
     garnet
 
-in case there is specific Mantid build in another conda environment, garnet can be installed in that environment:
+in case there is specific Mantid build and /or version in another conda environment, garnet can be installed in that environment:
 
 .. code-block:: sh
 
     conda activate <mantid_environment>
+    #in case of a mantid build, else skip
+    ./bin/AddPythonPath.py 
     cd /path/to/my/local/garnet/repo/
     git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
     git switch pr<PULL_REQUEST_NUMBER>
