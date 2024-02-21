@@ -105,7 +105,7 @@ in case there is specific Mantid build and /or version in another conda environm
 
     conda activate <mantid_environment>
     #in case of a mantid build, else skip
-    ./bin/AddPythonPath.py 
+    ./bin/AddPythonPath.py
     cd /path/to/my/local/garnet/repo/
     git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
     git switch pr<PULL_REQUEST_NUMBER>

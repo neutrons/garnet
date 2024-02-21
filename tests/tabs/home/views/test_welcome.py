@@ -15,7 +15,6 @@ def test_welcome_label(qtbot):
     assert tabs.currentWidget().label_welcome.text() == "Welcome to GARNET"
 
 
-
 def test_mainwindow(qtbot):
     """Test that the application starts successfully"""
     garnet = Garnet()
@@ -23,4 +22,3 @@ def test_mainwindow(qtbot):
     garnet.show()
     assert garnet.isVisible()
     assert garnet.windowTitle() == f"GARNET - {__version__}"
-
