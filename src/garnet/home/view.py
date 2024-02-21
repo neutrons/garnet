@@ -1,11 +1,14 @@
 """PyQt widget for the home tab"""
-from qtpy.QtWidgets import QWidget, QHBoxLayout, QLabel
+from typing import Any
+
+from qtpy.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 
 class HomeView(QWidget):
     """Home widget"""
 
-    def __init__(self, parent=None):
+    def __init__(self: Any, parent: QWidget = None) -> None:
+        """Initialize the home widget"""
         super().__init__(parent)
 
         self.label_welcome = QLabel(self)

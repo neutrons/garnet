@@ -54,10 +54,9 @@ line-length = 119
 # https://beta.ruff.rs/docs/rules/
 # suggestions: BLE blind exceptions, I sorts imports
 # Full pylint PL = PLC, PLE, PLR (~500 issues), PLW. Enable most
-select = ["A", "ARG", "E", "F", "PLC", "PLE", "PLW"]
-ignore = ["A002", "A003", # shadowing python built-ins
-          "ARG001", "ARG002", # unused argument
-          "E402", # import not at the top of the file
-	  "E712", # comparison to false
-          "E741", # ambiguous variable name
-]
+select = ["A", "ARG", "E", "F", "W", "PL", "C90", "I", "N", "D", "UP032", "ANN", "ASYNC",
+ "S303", "S307", "S308", "BLE", "B015", "B021", "PIE", "T20", "SIM", "PT"]
+ignore = ["D203", # conflict with D211
+          "D213", # conflict with D212
+          "D400", "D415", "ANN201", # Unnecessary
+          ]

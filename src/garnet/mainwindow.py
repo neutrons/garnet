@@ -1,18 +1,19 @@
-"""
-Main Qt window
-"""
+"""Main Qt window for the application"""
 
-from qtpy.QtWidgets import QVBoxLayout, QWidget, QTabWidget
+from typing import Any
 
-from garnet.home.view import HomeView
+from qtpy.QtWidgets import QTabWidget, QVBoxLayout, QWidget
+
 from garnet.home.model import HomeModel
 from garnet.home.presenter import HomePresenter
+from garnet.home.view import HomeView
 
 
 class MainWindow(QWidget):
     """Main widget"""
 
-    def __init__(self, parent=None):
+    def __init__(self: Any, parent: QWidget = None) -> None:
+        """Initialize the main window"""
         super().__init__(parent)
 
         ### Create tabs here ###

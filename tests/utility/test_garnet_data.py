@@ -1,11 +1,14 @@
-import pytest
-import os
+"""Test for garnet-data repository access"""
+
 import json
+import os
+
+import pytest
 
 
-@pytest.mark.datarepo
-def test_data_repo(has_datarepo, datarepo_dir):
-    """test for garnet-data"""
+@pytest.mark.datarepo()
+def test_data_repo(has_datarepo: bool, datarepo_dir: str):
+    """Test for garnet-data"""
     if not has_datarepo:
         pytest.skip("Garnet-data repository is not available")
 
@@ -17,7 +20,6 @@ def test_data_repo(has_datarepo, datarepo_dir):
     assert os.path.exists(test_file)
 
     # ensure we can read the contents of the file
-    test_data = open(test_file)
     with open(test_file, "r") as f:
         test_data = json.load(f)
 

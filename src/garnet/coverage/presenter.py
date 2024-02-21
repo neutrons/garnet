@@ -1,0 +1,1 @@
+"""Presenter for coverage data."""
