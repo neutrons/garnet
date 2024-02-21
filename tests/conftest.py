@@ -1,12 +1,13 @@
-import pytest
+"""pytest config"""
 import os
+import pytest
 
 
 @pytest.fixture(scope="session")
 def has_datarepo():
     """Fixture that returns True if the datarepo_dir is available"""
-    root_data = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "garnet-data")
-    return os.path.exists(root_data)
+    readme_data = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "garnet-data", "README.md")
+    return os.path.exists(readme_data)
 
 
 @pytest.fixture(scope="session")

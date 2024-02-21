@@ -5,6 +5,7 @@ import json
 
 @pytest.mark.datarepo
 def test_data_repo(has_datarepo, datarepo_dir):
+    """test for garnet-data"""
     if not has_datarepo:
         pytest.skip("Garnet-data repository is not available")
 
