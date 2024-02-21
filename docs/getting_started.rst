@@ -39,18 +39,18 @@ If it has been a while, once can update using
 Testing
 ```````````````````
 The project contains testing infrastructure in the tests/ folder:
-* data/ : It contains the test data. Small data files can be included in this directory. Forl large data files, there is a subfolder garner-data that is connected to a gitlfs data repo in gitlab as a submodule: https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data
-* tabs/ : Tests are organized into folders for every page:
-    * home/
-    * order_param/
-    * peak_integr/
-    * recp_space/
-    * ub_peak_find/
+    * data/ : It contains the test data. Small data files can be included in this directory. Forl large data files, there is a subfolder garner-data that is connected to a gitlfs data repo in gitlab as a submodule: https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data
+    * tabs/ : Tests are organized into folders for every page:
+        * home/
+        * order_param/
+        * peak_integr/
+        * recp_space/
+        * ub_peak_find/
 
-    In every page-tab directory the tests are furtherd arranged in MVP-based filesystem structure:
-        * models/
-        * views/
-        * presenter/
+        In every page-tab directory the tests are furtherd arranged in MVP-based filesystem structure:
+            * models/
+            * views/
+            * presenter/
 
     * utility/ : It contains tests for code elements that are shared among pages and belong to the corresponding file folder (utility/).
     * workflows/ : It contains tests with code that span among pages to test full reduction workflows.
