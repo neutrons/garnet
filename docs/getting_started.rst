@@ -63,34 +63,6 @@ Open a terminal and go to garnet repository root folder. Run:
 
 .. code-block:: sh
 
-    # add submodule
-    git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
-
-    # initialize submodules
-    git submodule update --init --recursive
-
-To update the changes for the data-repo. Run:
-
-.. code-block:: sh
-
-    # retrieve latest changes of the repository
-    git submodule update --remote --merge
-
-
-No need to commit changes in this repository.
-More information of git-lfs can be found here https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data .
-
-Notes.
-
-Tests that use the garnet-data repository, will need to be configured additionally for github runners.
-
-Additionally, the marker `datarepo` is used to skip tests that required garnet-repo to be present (`if not has_datarepo`), in case garnet-repo has not been configured.
-
-Instructions for CIS Testing:
--Checkout to the PR by following the Pull-Request instructions:
-
-.. code-block:: sh
-
     git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
 
 To update the changes for the data-repo. Run:
@@ -127,7 +99,7 @@ Checkout to the PR by following the Pull-Request instructions:
     #and/or start garnet
     garnet
 
-in case there is specific Mantid build in another conda environment, garnet can be installed there:
+in case there is specific Mantid build in another conda environment, garnet can be installed in that environment:
 
 .. code-block:: sh
 
