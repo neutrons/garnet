@@ -1,9 +1,11 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""Configuration file for the Sphinx documentation builder.
+
+For the full list of built-in configuration values, see the documentation:
+https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""
 import os
 import sys
+
 import versioningit
 
 sys.path.insert(0, os.path.abspath("../src"))
@@ -12,7 +14,7 @@ sys.path.insert(0, os.path.abspath("../src"))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Project Name"
-copyright = "Copyright 2024"  # pylint: disable=W0622, C0103
+copyright = "Copyright 2024"  # noqa A001
 author = "Author Name"
 
 # The short X.Y version

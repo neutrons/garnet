@@ -36,8 +36,32 @@ If it has been a while, once can update using
     conda env update --file environment.yml --prune
 
 
+Contributing
+````````````
+pre-commit can be installed using the following command:
+
+.. code-block:: sh
+
+    pre-commit install
+
+You should only need to do this once. pre-commit will now run on every commit.
+
+If you want to run it manually, you can run the following command to run pre-commit on all staged changes:
+
+.. code-block:: sh
+
+    pre-commit
+
+To run pre-commit on all files in the repository, run the following command:
+
+.. code-block:: sh
+
+    pre-commit run --all
+
+
 Testing
-```````````````````
+```````
+
 The project contains testing infrastructure in the tests/ folder:
     * data/ : It contains the test data. Small data files can be included in this directory. Forl large data files, there is a subfolder garner-data that is connected to a gitlfs data repo in gitlab as a submodule: https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data
     * tabs/ : Tests are organized into folders for every page:
@@ -57,21 +81,34 @@ The project contains testing infrastructure in the tests/ folder:
 
 
 How to setup the garnet-data repository locally
-```````````````````
+`````````````````````````````````````````````````
 
 Open a terminal and go to garnet repository root folder. Run:
 
 .. code-block:: sh
 
-    git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
+     git submodule update --init --recursive
+     git submodule update --remote
 
-To update the changes for the data-repo. Run:
+This will clone the garnet-data repository in the garnet repository root folder. If for some reason the `.gitmodule` file is not present, you can add the submodule manually:
 
 .. code-block:: sh
 
-     git submodule update --init --recursive
+    git submodule add https://code.ornl.gov/sns-hfir-scse/infrastructure/test-data/garnet-data tests/data/garnet-data
 
-No need to commit changes in this repository. If a message appears to stage the garnet-data repository in this one, just run the above command.
+To update to the latest commit for the data-repo. Run:
+
+.. code-block:: sh
+
+     git submodule update --remote
+
+If the hash for the garnet-data repository has changed and you want to update the hash in the garnet repository, run:
+
+.. code-block:: sh
+
+        git add tests/data/garnet-data
+        git commit -m "Update garnet-data to latest commit"
+        git push
 
 More information on git-lfs can be found here:
 

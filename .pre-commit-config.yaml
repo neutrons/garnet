@@ -1,3 +1,4 @@
+exclude: '(tests/data/garnet-data|scripts)/.*'
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.5.0

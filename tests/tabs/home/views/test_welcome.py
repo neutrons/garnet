@@ -1,13 +1,15 @@
+"""Test the welcome tab"""
+import pytest
 from garnet import Garnet, __version__
 
 
-def test_welcome_label(qtbot):
+def test_welcome_label(qtbot: pytest.fixture):
     """Test starting the app"""
-
     # initialization
     garnet = Garnet()
-    qtbot.addWidget(garnet)
     garnet.show()
+    qtbot.addWidget(garnet)
+    qtbot.waitUntil(garnet.show, timeout=5000)
 
     # check there is a landing tab
     tabs = garnet.main_window.tabs
@@ -15,7 +17,7 @@ def test_welcome_label(qtbot):
     assert tabs.currentWidget().label_welcome.text() == "Welcome to GARNET"
 
 
-def test_mainwindow(qtbot):
+def test_mainwindow(qtbot: pytest.fixture):
     """Test that the application starts successfully"""
     garnet = Garnet()
     qtbot.addWidget(garnet)
