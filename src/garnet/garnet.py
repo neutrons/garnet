@@ -20,7 +20,11 @@ logger = Logger("PACKAGENAME")
 
 
 class Garnet(QMainWindow):
-    """Main GARNET window"""
+    """Main GARNET window
+
+    :param QMainWindow: The main window
+    :type QMainWindow: QMainWindow
+    """
 
     __instance = None
 
