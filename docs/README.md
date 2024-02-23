@@ -74,7 +74,7 @@ If you encounter any errors or warnings please fix them when building the docs b
 
 ## Documentation Location
 
-https://garnet.readthedocs.io/en/latest/
+https://garnet-neutrons.readthedocs.io/en/latest/
 
 
 
