@@ -17,3 +17,6 @@ sphinx:
 
 conda:
   environment: environment.yml
+
+submodules:
+  exclude: all
