@@ -5,7 +5,11 @@ from qtpy.QtWidgets import QHBoxLayout, QLabel, QWidget
 
 
 class HomeView(QWidget):
-    """Home widget"""
+    """Home widget
+
+    :param QWidget: The main widget
+    :type QWidget: QWidget
+    """
 
     def __init__(self: Any, parent: QWidget = None) -> None:
         """Initialize the home widget"""

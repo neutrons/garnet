@@ -1,18 +1,8 @@
-### Getting started
+.. Purpose: The root document of the project, which serves as welcome page and contains the root
+.. of the "table of contents tree" (or toctree).
 
-Create conda environment
-`conda env create -f environment.yml`
-
-Activate garnet environment
-`conda activate garnet`
-
-Install in editable mode for developlment
-`python -m pip install -e .`
-
-Run the GUI
-`python src/garnet.py`
-
-# The Single Crystal *GARNET* project
+The Single Crystal **GARNET** project documentation
+===================================================
 Single Crystal Graphical Advanced Reduction Neutron Event Toolkit
 
 Garnets are a group of minerals with high symmetry cubic crystal system with space group *Ia-3d* (#230).
@@ -25,12 +15,12 @@ The scope of this project only covers reduction post-data collection.
 Future development may incorporate live data reduction or analysis, but that is not the focus in this effort.
 
 Scope of covered instruments
-- TOPAZ
-- MANDI
-- CORELLI
-- DEMAND
-- WAND2
-- SNAP
+  * TOPAZ
+  * MANDI
+  * CORELLI
+  * DEMAND
+  * WAND2
+  * SNAP
 
 The garnet tool will allow users to select single crystal diffraction data from one (minimally white beam) or more (minimally monochromatic beam) orientations, and transform it into a meaningful form.
 There exists essential steps of a single crystal data reduction.
@@ -40,4 +30,18 @@ These include:
 - Reciprocal space reconstruction for visualization and analysis
 - Order parameter tracking and event filtering analysis
 
-Data processing will be based on Mantid and use PyQt for the application.
+Data processing will be based on `Mantid <https://www.mantidproject.org/>`_ and `PyQt <https://wiki.python.org/moin/PyQt>`_ for the application.
+
+
+.. note::
+
+   This project is under active development.
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 1
+
+   getting_started
+   reference

@@ -6,7 +6,13 @@ from garnet.home.view import HomeView
 
 
 class HomePresenter:
-    """Home presenter"""
+    """Home presenter
+
+    :param view: The view for this presenter
+    :type view: HomeView
+    :param model: The model for this presenter
+    :type model: HomeModel
+    """
 
     def __init__(self: Any, view: HomeView, model: HomeModel) -> None:
         """Initialize the home presenter"""
