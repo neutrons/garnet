@@ -30,7 +30,7 @@ These include:
 - Reciprocal space reconstruction for visualization and analysis
 - Order parameter tracking and event filtering analysis
 
-Data processing will be based on `Mantid <https://www.mantidproject.org/>`_ and use `PyQt5 <https://pypi.org/project/PyQt5>`_ for the application.
+Data processing will be based on `Mantid <https://www.mantidproject.org/>`_ and `PyQt <https://wiki.python.org/moin/PyQt>`_ for the application.
 
 
 .. note::

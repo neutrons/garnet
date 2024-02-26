@@ -7,7 +7,7 @@ from qtpy.QtWidgets import QHBoxLayout, QLabel, QWidget
 class HomeView(QWidget):
     """Home widget
 
-    :param QWidget: optional, the main widget
+    :param QWidget: The main widget
     :type QWidget: QWidget
     """
 
