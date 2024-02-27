@@ -41,3 +41,14 @@ These include:
 - Order parameter tracking and event filtering analysis
 
 Data processing will be based on Mantid and use PyQt for the application.
+
+
+## Code Documentation
+
+https://garnet-neutrons.readthedocs.io/en/latest
+
+---
+
+[![CI](https://github.com/neutrons/garnet/actions/workflows/actions.yml/badge.svg?branch=next)](https://github.com/neutrons/garnet/actions/workflows/actions.yml)
+[![codecov](https://codecov.io/gh/neutrons/garnet/branch/next/graph/badge.svg?token=J1ZNHXF6Ml)](https://codecov.io/gh/neutrons/garnet)
+[![Documentation Status](https://readthedocs.org/projects/garnet-neutrons/badge/?version=latest)](https://garnet-neutrons.readthedocs.io/en/latest/?badge=latest)
