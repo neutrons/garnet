@@ -152,6 +152,13 @@ the user to update the failing values before proceeding.
 
     Algorithm input validation will occur after the button has been enabled and pressed.
 
+.. figure:: images/algo-fail-validation.png
+    :align: center
+    :alt: Algorithm Input Validation
+
+    If an field fails validation after the button has been invoked, a popup will appear to notify
+    user and the field will be marked.
+
 .. figure:: images/red-until-after.png
     :align: center
     :alt: Algorithm Input Validation
@@ -190,4 +197,4 @@ functionality and facilitating efficient issue resolution.
     :align: center
     :alt: Error Handling
 
-    Error handling with status message and popups.
+    Error handling with popup explaining the error.
