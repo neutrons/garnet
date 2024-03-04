@@ -136,10 +136,10 @@ predefined criteria.
     Field validation with red border and status bar message for two invalid fields.
 
 
-Algorithm Input Validation
+Data Input Validation
 ++++++++++++++++++++++++++
 
-Algorithm input validation occurs after enabling and pressing the button.
+Data input validation occurs after enabling and pressing the button.
 This type of validation requires more complexity and can include things such as checking
 symmetry operations, valid file paths, and workspace existence. These inputs
 may include multiple criteria and require more than a cursory check to ensure they meet the
@@ -148,27 +148,27 @@ the user to update the failing values before proceeding.
 
 .. figure:: images/novalidation.png
     :align: center
-    :alt: Algorithm Input Validation
+    :alt: Data Input Validation
 
-    Algorithm input validation will occur after the button has been enabled and pressed.
+    Data input validation will occur after the button has been enabled and pressed.
 
 .. figure:: images/algo-fail-validation.png
     :align: center
-    :alt: Algorithm Input Validation
+    :alt: Data Input Validation
 
-    If an field fails validation after the button has been invoked, a popup will appear to notify
+    If a field fails validation after the button has been invoked, a popup will appear to notify
     user and the field will be marked.
 
 .. figure:: images/red-until-after.png
     :align: center
-    :alt: Algorithm Input Validation
+    :alt: Data Input Validation
 
     After failing validation, button remains enabled and the fields that failed validation
     will be marked until the button is pressed again.
 
 .. figure:: images/all-valid.png
     :align: center
-    :alt: Algorithm Input Validation
+    :alt: Data Input Validation
 
     After pressing the button, the field will be revalidated and if valid, the field
     will be marked as valid and the algorith will run.

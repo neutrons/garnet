@@ -21,3 +21,12 @@ Home
 
 .. automodule:: garnet.home.model
     :members:
+
+
+Base Qt Objects
+---------------
+.. automodule:: garnet.base.base_lineedit
+    :members:
+
+.. automodule:: garnet.base.base_statusbar
+    :members:
