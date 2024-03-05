@@ -12,6 +12,7 @@ dependencies:
   - boa
   - conda-build
   - conda-verify
+  - configobj
   - python-build
   - versioningit
   - libmambapy=1.4.2  # auto-selected libarchive=3.6.2 depends on this version
