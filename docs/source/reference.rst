@@ -22,9 +22,15 @@ Home
 .. automodule:: garnet.home.model
     :members:
 
+Base Qt Objects
+---------------
+.. automodule:: garnet.helpers.ui_elements.base_lineedit
+    :members:
+
+.. automodule:: garnet.helpers.ui_elements.base_statusbar
+
 Logging
 --------
-
 .. module:: Logging
 .. automodule:: garnet.logging.logging
     :members:
