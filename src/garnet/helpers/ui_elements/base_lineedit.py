@@ -75,7 +75,7 @@ class BaseLineEdit(QLineEdit):
 
     def reset_style(self: Any) -> None:
         """Reset the style to its default."""
-        if self.required:
+        if self.required and self.default_value is None:
             self.set_required_style()
         else:
             self.set_empty_style()
