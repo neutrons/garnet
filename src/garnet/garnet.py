@@ -10,17 +10,13 @@ from qtpy.QtWidgets import QApplication, QMainWindow
 set_matplotlib_backend()
 
 # make sure the algorithms have been loaded so they are available to the AlgorithmManager
-import mantid.simpleapi  # noqa: F401, E402
 
+import mantid.simpleapi  # noqa: F401, E402
+from mantid.kernel import logger
+
+from garnet.logging.logging import init_logging
 from garnet.mainwindow import MainWindow  # noqa: E402
 from garnet.version import __version__  # noqa: E402
-
-from mantid.kernel import logger
-from garnet.logging.logging import init_logging
-
-
-import os
-
 
 init_logging()
 
@@ -45,7 +41,7 @@ class Garnet(QMainWindow):
         super().__init__(parent)
 
         logger.information(f"GARNET version: {__version__}")
-        
+
         self.setWindowTitle(f"GARNET - {__version__}")
         self.main_window = MainWindow(self)
         self.setCentralWidget(self.main_window)
