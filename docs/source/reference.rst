@@ -25,8 +25,8 @@ Home
 
 Base Qt Objects
 ---------------
-.. automodule:: garnet.base.base_lineedit
+.. automodule:: garnet.helpers.ui_elements.base_lineedit
     :members:
 
-.. automodule:: garnet.base.base_statusbar
+.. automodule:: garnet.helpers.ui_elements.base_statusbar
     :members:
