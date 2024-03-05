@@ -46,3 +46,4 @@ Contents
    getting_started
    reference
    GUI_standards
+   MVP_guidelines
