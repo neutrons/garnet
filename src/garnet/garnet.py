@@ -12,9 +12,9 @@ set_matplotlib_backend()
 # make sure the algorithms have been loaded so they are available to the AlgorithmManager
 
 import mantid.simpleapi  # noqa: F401, E402
-from mantid.kernel import logger
+from mantid.kernel import logger  # noqa: E402
 
-from garnet.logging.logging import init_logging
+from garnet.logging.logging import init_logging  # noqa: E402
 from garnet.mainwindow import MainWindow  # noqa: E402
 from garnet.version import __version__  # noqa: E402
 
