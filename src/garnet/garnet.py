@@ -3,7 +3,6 @@
 import sys
 from typing import Any
 
-from mantid.kernel import Logger
 from mantidqt.gui_helper import set_matplotlib_backend
 from qtpy.QtWidgets import QApplication, QMainWindow
 
@@ -16,7 +15,14 @@ import mantid.simpleapi  # noqa: F401, E402
 from garnet.mainwindow import MainWindow  # noqa: E402
 from garnet.version import __version__  # noqa: E402
 
-logger = Logger("PACKAGENAME")
+from mantid.kernel import logger
+from garnet.logging.logging import init_logging
+
+
+import os
+
+
+init_logging()
 
 
 class Garnet(QMainWindow):
@@ -37,8 +43,9 @@ class Garnet(QMainWindow):
     def __init__(self: Any, parent: QMainWindow = None) -> None:
         """Initialize the main window"""
         super().__init__(parent)
-        logger.information(f"GARNET version: {__version__}")
 
+        logger.information(f"GARNET version: {__version__}")
+        
         self.setWindowTitle(f"GARNET - {__version__}")
         self.main_window = MainWindow(self)
         self.setCentralWidget(self.main_window)
