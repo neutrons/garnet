@@ -21,3 +21,10 @@ Home
 
 .. automodule:: garnet.home.model
     :members:
+
+Logging
+--------
+
+.. module:: Logging
+.. automodule:: garnet.logging.logging
+    :members:
