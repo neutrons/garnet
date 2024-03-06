@@ -53,6 +53,29 @@ Similar to a class docstring, this should be directly below the definition and i
         """
 ```
 
+
+### Adding New Documents
+Documents are [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) documents located in `docs/source/`. If you create a new documentation file, you must also add it to the `index.rst` toctree or it will not be included in the build.
+
+Design or workflow diagrams can be added to your documents with the use of [mermaid](https://mermaid.js.org/intro/). Below is a basic example of including a diagram in a reStructuredText document:
+
+```bash
+.. mermaid:
+
+    graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 ## Updating Documentation
 
 When adding new views, presenters and methods, please navigate to docs/source/reference.rst. Add the new feature under the appropriate section following the given template:
