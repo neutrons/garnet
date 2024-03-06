@@ -54,6 +54,16 @@ Similar to a class docstring, this should be directly below the definition and i
 ```
 
 
+## Updating Documentation
+
+### Adding New Code References
+When adding new views, presenters and methods, please navigate to docs/source/reference.rst. Add the new feature under the appropriate section following the given template:
+
+```bash
+.. automodule:: path.to.new.module
+   :members:
+```
+
 ### Adding New Documents
 Documents are [reStructuredText](https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html) documents located in `docs/source/`. If you create a new documentation file, you must also add it to the `index.rst` toctree or it will not be included in the build.
 
@@ -76,16 +86,9 @@ graph TD;
     C-->D;
 ```
 
-## Updating Documentation
+### Rebuild the Documentation
 
-When adding new views, presenters and methods, please navigate to docs/source/reference.rst. Add the new feature under the appropriate section following the given template:
-
-```bash
-.. automodule:: path.to.new.module
-   :members:
-```
-
-Once complete, rebuild the documentation:
+Once complete, rebuild the documentation to see your changes:
 ```bash
     cd docs/
     make clean
