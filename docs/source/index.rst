@@ -46,3 +46,4 @@ Contents
    getting_started
    reference
    logging
+   GUI_standards

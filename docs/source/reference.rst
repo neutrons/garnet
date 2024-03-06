@@ -29,6 +29,7 @@ Base Qt Objects
 
 .. automodule:: garnet.helpers.ui_elements.base_statusbar
 
+
 Logging
 --------
 .. module:: Logging

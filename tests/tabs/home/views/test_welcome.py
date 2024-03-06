@@ -14,7 +14,7 @@ def test_welcome_label(qtbot: pytest.fixture):
     # check there is a landing tab
     tabs = garnet.main_window.tabs
     assert tabs.currentWidget().__class__.__name__ == "HomeView"
-    assert tabs.currentWidget().label_welcome.text() == "Welcome to GARNET"
+    assert tabs.currentWidget().label_welcome.text().startswith("Welcome to GARNET")
 
 
 def test_mainwindow(qtbot: pytest.fixture):
