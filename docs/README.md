@@ -2,7 +2,7 @@
 
 ## Documenting Code
 
-Every module, class, and method should be documented with a docstring. Below is a few examples of docstrings. Full documentation can be found [here](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
+Every module, class, and method should be documented with a docstring. Below is a few examples of how docstrings can be added to code. Full documentation on the use of docstrings can be found [here](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
 
 ### Documenting a module
 
