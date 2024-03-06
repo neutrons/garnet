@@ -59,7 +59,8 @@ Coding Standards
 
 A few notes on coding standards:
 
-* Variable and function names should be descriptive and follow the ``lower_case_with_underscores`` convention.
+* Variable and function names should be descriptive and follow the ``lower_case_with_underscores`` convention (commonly referred to as ``snake_case``).
+* Filenames should be lowercase and use underscores to separate words.
 * All code will be checked and formatted using `ruff <https://docs.astral.sh/ruff/rules/>`_.
 * Docstrings should be used to document all functions, classes, and Modules.
 * Pre-commit hooks are configured to run for every PR, and can be run locally on every commit.
