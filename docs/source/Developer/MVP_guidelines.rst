@@ -1,9 +1,9 @@
 
 .. _MVP_Guidelines:
 
-==========================
-Model-View-Presenter (MVP)
-==========================
+=====================================
+Model-View-Presenter (MVP) Guidelines
+=====================================
 
 Overview
 ========
@@ -94,15 +94,3 @@ Advantages
    The clear separation of responsibilities makes the codebase more maintainable.
    Changes in one component, such as the View or Model, do not directly impact the
    others.
-
-Usage
-======
-
-MVP is commonly used in GUI-based applications where a clear separation between
-the user interface and business logic is crucial for maintainability and
-testability.
-
-.. note::
-
-   MVP is an evolution of the Model-View-Controller (MVC) pattern, addressing some of its limitations,
-   especially in terms of testing and code organization.
