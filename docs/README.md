@@ -94,7 +94,7 @@ Once complete, rebuild the documentation to see your changes:
     make clean
     make html
 ```
-If you encounter any errors or warnings please fix them when building the docs be sure to fix them.
+If you encounter any errors or warnings when building the docs, please be sure to fix them.
 
 
 
