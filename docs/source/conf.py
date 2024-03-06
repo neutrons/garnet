@@ -31,7 +31,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.viewcode",
     "sphinx.ext.coverage",
-    "sphinx.ext.graphviz",
+    "sphinxcontrib.mermaid",
 ]
 
 autodoc_mock_imports = [

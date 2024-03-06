@@ -20,6 +20,7 @@ dependencies:
   - pytest-cov
   - sphinx
   - sphinx-rtd-theme
+  - sphinxcontrib-mermaid
   - pyoncat
   - gtk3
   - libstdcxx-ng

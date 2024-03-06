@@ -44,36 +44,21 @@ Communication Flow
    communicates changes back to the View.
 4. The View reflects the changes made by the Presenter.
 
-.. graphviz::
+.. mermaid::
 
-    digraph mvp_flow {
-    rankdir=LR;
+    graph LR
+    User((User))
+    View(View)
+    Presenter(Presenter)
+    Model(Model)
 
-    // Nodes
-    node [shape=box];
-    User [label="User" shape=circle width=.15];
-    View [label="View"];
-    Presenter [label="Presenter"];
-    Model [label="Model"];
+    User -->|User Interaction| View
+    View -->|User Input Events| Presenter
+    Presenter -->|Update Model| Model
+    Model -->|Notify Changes| Presenter
+    Presenter -->|Update View| View
+    View -->|View Updates| User
 
-    // User to View
-    User -> View [label="User Interaction" arrowhead="open"];
-
-    // View to Presenter
-    View -> Presenter [label="User Input Events"];
-
-    // Presenter to Model
-    Presenter -> Model [label="Update Model"];
-
-    // Model to Presenter
-    Model -> Presenter [label="Notify Changes"];
-
-    // Presenter to View
-    Presenter -> View [label="Update View"];
-
-    // View to User
-    View -> User [label="View Updates" arrowhead="open"];
-    }
 
 
 
