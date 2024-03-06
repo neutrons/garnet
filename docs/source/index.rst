@@ -45,3 +45,4 @@ Contents
 
    getting_started
    reference
+   logging
