@@ -1,4 +1,4 @@
-name: garnet
+name: garnet-developer
 channels:
   - conda-forge
   - mantid/label/nightly
