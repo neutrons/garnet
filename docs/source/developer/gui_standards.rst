@@ -100,6 +100,8 @@ fields and clear labels.
 Field Validation
 ################
 
+.. _field_validation:
+
 Implementing field validation with a red border for invalid entries is a visual cue
 that enhances user feedback in interfaces. This approach communicates validation errors
 immediately, aiding users in identifying and correcting input issues efficiently. The red

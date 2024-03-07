@@ -78,7 +78,7 @@ View
 1. The View should be passive and not contain any application logic.
 2. The View should delegate user interactions to the Presenter.
 3. The View should be responsible for displaying data to the user and receiving user input.
-4. The View should not contain any logic or data manipulation.
+4. The View should not contain any logic or data manipulation other than :ref:`field validation <field_validation>` and event triggering.
 5. The View should never directly access the Model.
 6. The View should **Never** contain a mantid workspace.
 

@@ -46,4 +46,4 @@ Contents
 
    getting_started
    reference
-   Developer/index
+   developer/index

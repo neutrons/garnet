@@ -15,7 +15,7 @@ Contents
 .. toctree::
    :maxdepth: 1
 
-   Coding_standards
-   Testing_standards
-   GUI_standards
-   MVP_guidelines
+   coding_standards
+   testing_standards
+   gui_standards
+   mvp_guidelines
