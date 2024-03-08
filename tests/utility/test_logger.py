@@ -12,7 +12,7 @@ class TestLogger(unittest.TestCase):
 
     @patch("garnet.helpers.logger.set_log_level")
     @patch("garnet.helpers.logger.get_debug_enabled")
-    @patch("garnet.helpers.logger.lg.debug")
+    @patch("garnet.helpers.logger.MantidLogger.debug")
     def test_debug_enabled_debug(
         self: Any, mock_debug: mock.patch, mock_get_debug_enabled: mock.patch, mock_set_log_level: mock.patch
     ):
@@ -25,7 +25,7 @@ class TestLogger(unittest.TestCase):
 
     @patch("garnet.helpers.logger.set_log_level")
     @patch("garnet.helpers.logger.get_debug_enabled")
-    @patch("garnet.helpers.logger.lg.debug")
+    @patch("garnet.helpers.logger.MantidLogger.debug")
     def test_debug_disabled_debug(
         self: Any, mock_debug: mock.patch, mock_get_debug_enabled: mock.patch, mock_set_log_level: mock.patch
     ):
@@ -38,7 +38,7 @@ class TestLogger(unittest.TestCase):
 
     @patch("garnet.helpers.logger.set_log_level")
     @patch("garnet.helpers.logger.get_debug_enabled")
-    @patch("garnet.helpers.logger.lg.information")
+    @patch("garnet.helpers.logger.MantidLogger.information")
     def test_debug_enabled_information(
         self: Any, mock_information: mock.patch, mock_get_debug_enabled: mock.patch, mock_set_log_level: mock.patch
     ):
@@ -51,7 +51,7 @@ class TestLogger(unittest.TestCase):
 
     @patch("garnet.helpers.logger.set_log_level")
     @patch("garnet.helpers.logger.get_debug_enabled")
-    @patch("garnet.helpers.logger.lg.information")
+    @patch("garnet.helpers.logger.MantidLogger.information")
     def test_debug_disabled_information(
         self: Any, mock_information: mock.patch, mock_get_debug_enabled: mock.patch, mock_set_log_level: mock.patch
     ):
