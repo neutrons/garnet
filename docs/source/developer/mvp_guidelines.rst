@@ -23,10 +23,10 @@ Components
    Presenter.
 
 2. **View:**
-   The View is responsible for presenting the data to the user and receiving
-   user input. It remains passive and delegates user interactions to the Presenter.
-   The View does not contain any application logic and is only concerned with
-   displaying information to the user. Each View is associated with a single Presenter.
+   The primary role of the View to present the data to the user and receive
+   user input. It avoids complex logic, handling only basic field validation
+   and ensuring proper data is passed to the Presenter. Each View is associated
+   with a single Presenter.
 
 3. **Presenter:**
    The Presenter acts as an intermediary between the Model and the View. It

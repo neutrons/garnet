@@ -69,11 +69,7 @@ If the hash for the garnet-data repository has changed and you want to update th
         git commit -m "Update garnet-data to latest commit"
         git push
 
-More information on git-lfs can be found here:
-
-.. code-block:: sh
-
-    https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data
+More information on git-lfs can be found in the Neutrons Confluence `Git-lfs page <https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/19103745/Using+git-lfs+for+test+data>`_.
 
 
 Checkout out our guide for :ref:`developers <dev_guidelines>` to learn more

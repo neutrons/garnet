@@ -105,16 +105,117 @@ Documentation Guidelines
 
 .. _documentation:
 
-Updating the Documentation
---------------------------
 This project uses `Sphinx <https://www.sphinx-doc.org/en/master/>`_ to generate documentation and is updated with every pull request.
 The documentation is a combination of pages written in `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_ and
 docstrings pulled from the code.
-A simple guide to updating documentation in Garnet can be found `here <https://github.com/neutrons/garnet/blob/next/docs/README.md>`_.
+
+Documenting Code
+----------------
+Every module, class, and method should be documented with a docstring. Below is a few examples of docstrings.
+Full documentation can be found in the `sphinx documentation here <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_.
+
+Documenting a module
+++++++++++++++++++++
+
+This docstring should be at the top of the file and give a detailed description of the module and its purpose.
+
+.. code-block:: python
+
+    """ Summary of the module
+    This module is used to do things that people find useful
+    """
+
+Documenting a class
++++++++++++++++++++
+
+Docstring should be located directly under the class definition and should contain information about the functionality, input parameters, returns, and exceptions.
+
+.. code-block:: python
+
+    class GarnetClass(object):
+        """ This is an example Garnet Class to do Garnet things
+
+        :param some_param: str, some param for doing things
+        :param other_param: class:`garnetClass`, some other param
+        """
+
+        def __init__(self, some_param: str, other_param: "GarnetClass"):
+            """Initializes the GarnetClass"""
+            self.some_param = some_param
+            self.other_param = other_param
+
+
+Documenting a function
+++++++++++++++++++++++
+
+Similar to a class docstring, this should be directly below the definition and include any useful information for the method. If possible it should also describe algorithms or equations used.
+
+.. code-block:: python
+
+    def garnet_method(self, input_a: float, input_b: float):
+        """Returns a the result of some useful equation on the inputs a and b
+
+        :param input_a: float, first input
+        :param input_b: float, second input
+
+        Uses the equation:
+
+        .. math::
+            \sum_{input\_a=1}^{\\infty} x_{input\_b}
+
+        :return: result of equation
+        :rtype: float
+        """
+
+
+Updating the Documentation
+--------------------------
+
+When adding new views, presenters and methods, please navigate to docs/source/reference.rst. Add the new feature under the appropriate section following the given template:
+
+.. sourcecode:: RST
+
+    .. automodule:: path.to.module
+        :members:
+
+Adding New Documents
+--------------------
+Documents are `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_ documents located in ``docs/source/``. If you create a
+new documentation file, you must also add it to the ``index.rst`` toctree or it will not be included in the build.
+
+.. note::
+
+    If you are creating a new pages or sections, please update the toctree in the appropriate index files. This will ensure that the new pages are included in the documentation build.
+
+Adding Diagrams
+---------------
+Design or workflow diagrams can be added to your documents with the use of [mermaid](https://mermaid.js.org/intro/). Below is a basic example of including a diagram in a reStructuredText document:
+
+.. code-block:: bash
+
+    .. mermaid::
+
+        graph TD;
+        A-->B;
+        A-->C;
+        B-->D;
+        C-->D;
+
+This will render the following diagram in the documentation:
+
+.. mermaid::
+
+    graph TD;
+        A-->B;
+        A-->C;
+        B-->D;
+        C-->D;
+
 
 Building the Documentation
 --------------------------
 To build the documentation locally, run the following commands from the root of the repository:
+If you encounter any errors or warnings please fix them when building the docs be sure to fix them.
 
 .. code-block:: sh
 
@@ -123,3 +224,14 @@ To build the documentation locally, run the following commands from the root of 
     make html
 
 The documentation will be built in the ``docs/_build/html`` directory.
+
+Helpful Links
+-------------
+| `Sphinx Documentation <https://www.sphinx-doc.org/en/master/usage/domains/python.html>`_
+| `Sphinx Docsting Example <https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html>`_
+| `Getting started with Sphinx <https://docs.readthedocs.io/en/stable/intro/getting-started-with-sphinx.html>`_
+| `Documenting Code with Sphinx <https://pythonhosted.org/an_example_pypi_project/sphinx.html>`_
+| `Docstring Example <https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html>`_
+| `Sphinx.autodoc <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>`_
+| `reStructuredText Primer <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
+| `Mermaid <https://mermaid.js.org/intro/>`_
