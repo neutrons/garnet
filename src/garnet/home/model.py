@@ -3,7 +3,7 @@
 
 from typing import Any
 
-from mantid.kernel import Logger
+from garnet.helpers.logger import Logger
 
 logger = Logger("GARNET")
 

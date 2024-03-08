@@ -2,10 +2,13 @@
 from contextlib import suppress
 from typing import Any, Dict, Optional
 
+from garnet.helpers.logger import Logger
 from garnet.helpers.ui_elements.base_lineedit import BaseLineEdit
 from garnet.helpers.ui_elements.base_statusbar import BaseStatusBar
 from qtpy.QtGui import QDoubleValidator
 from qtpy.QtWidgets import QFormLayout, QLabel, QPushButton, QWidget
+
+logger = Logger("GARNET.HomeView")
 
 
 class HomeView(QWidget):
@@ -56,6 +59,7 @@ class HomeView(QWidget):
         layout.addRow(self.status_bar)
 
         self.setLayout(layout)
+        logger.debug("Home view initialized")
 
     def update_plan_name(self: Any):
         """Update the plan name field.

@@ -1,5 +1,6 @@
 """Main Qt application"""
 
+import argparse
 import sys
 from typing import Any
 
@@ -13,6 +14,7 @@ set_matplotlib_backend()
 # make sure the algorithms have been loaded so they are available to the AlgorithmManager
 import mantid.simpleapi  # noqa: F401, E402
 
+from garnet.helpers.settings import init_debug, update_debug_enabled  # noqa: E402
 from garnet.mainwindow import MainWindow  # noqa: E402
 from garnet.version import __version__  # noqa: E402
 
@@ -46,12 +48,15 @@ class Garnet(QMainWindow):
 
 def gui():
     """Open main entry point for Qt application"""
-    input_flags = sys.argv[1::]
-    if "--v" in input_flags or "--version" in input_flags:
-        print(__version__)  # noqa: T201
-        sys.exit()
-    else:
-        app = QApplication(sys.argv)
-        window = Garnet()
-        window.show()
-        sys.exit(app.exec_())
+    parser = argparse.ArgumentParser(prog="GARNET", description="Single Crystal Diffraction")
+    parser.add_argument("-v", "--version", action="version", version=__version__)
+    parser.add_argument("--debug", action="store_true", help="enable debug logging for GARNET ONLY")
+    options, _ = parser.parse_known_args(sys.argv)
+    init_debug()
+    if options.debug:
+        update_debug_enabled(True)
+
+    app = QApplication(sys.argv)
+    window = Garnet()
+    window.show()
+    sys.exit(app.exec_())
