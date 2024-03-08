@@ -1,5 +1,6 @@
+=============
 GUI Standards
-**************
+=============
 
 .. contents:: Table of Contents
    :local:
@@ -9,7 +10,7 @@ GUI Standards
 
 
 Validation Strategy
-===================
+*******************
 
 GUI validation is a process aimed at ensuring the accuracy, functionality, and consistency of
 the graphical elements within a software application's user interface. It involves systematically
@@ -31,7 +32,7 @@ code structure. We plan to create and implement these helper functions to optimi
 process in our software development practices.
 
 Validation Items
-================
+****************
 
 Fields
 ######
@@ -42,7 +43,7 @@ example value can be added in fields the describe complex ideas (e.g. x,y,z). Th
 will guide the users seamlessly through the data input process while ensuring clarity and
 adherence to form submission requirements.
 
-.. figure:: images/optional.png
+.. figure:: ../images/optional.png
     :align: center
     :alt: Optional Fields
 
@@ -57,13 +58,13 @@ with no default values (text fields) will feature a light yellow background, ser
 adopted convention to visually cue users. This combination of visual indication, through both
 asterisks and background color enhances user experience.
 
-.. figure:: images/required.png
+.. figure:: ../images/required.png
     :align: center
     :alt: Required Fields
 
     Required Field with asterisk and light yellow background.
 
-.. figure:: images/req-w-default.png
+.. figure:: ../images/req-w-default.png
     :align: center
     :alt: Required Field with default value
 
@@ -84,13 +85,13 @@ generic names like “Load”. If multiple buttons exist in the View, it should 
 use which input/output fields correspond to each button. This can be achieved through grouping
 fields and clear labels.
 
-.. figure:: images/button-disabled.png
+.. figure:: ../images/button-disabled.png
     :align: center
     :alt: Button invalid
 
     Button with meaningful name and disabled state.
 
-.. figure:: images/button-enabled.png
+.. figure:: ../images/button-enabled.png
     :align: center
     :alt: Button valid
 
@@ -98,6 +99,8 @@ fields and clear labels.
 
 Field Validation
 ################
+
+.. _field_validation:
 
 Implementing field validation with a red border for invalid entries is a visual cue
 that enhances user feedback in interfaces. This approach communicates validation errors
@@ -123,13 +126,13 @@ adherence to specific ranges, ensures data integrity in user input. This validat
 runs as data is entered and enables buttons to become active only when the entered data meets
 predefined criteria.
 
-.. figure:: images/1invalid.png
+.. figure:: ../images/1invalid.png
     :align: center
     :alt: Field Validation
 
     Field validation with red border and status bar message for one invalid field.
 
-.. figure:: images/2invalid.png
+.. figure:: ../images/2invalid.png
     :align: center
     :alt: Field Validation
 
@@ -146,27 +149,27 @@ may include multiple criteria and require more than a cursory check to ensure th
 underlying algorithm's requirements. If validation fails, the execution halts, prompting
 the user to update the failing values before proceeding.
 
-.. figure:: images/novalidation.png
+.. figure:: ../images/novalidation.png
     :align: center
     :alt: Data Input Validation
 
     Data input validation will occur after the button has been enabled and pressed.
 
-.. figure:: images/algo-fail-validation.png
+.. figure:: ../images/algo-fail-validation.png
     :align: center
     :alt: Data Input Validation
 
     If a field fails validation after the button has been invoked, a popup will appear to notify
     user and the field will be marked.
 
-.. figure:: images/red-until-after.png
+.. figure:: ../images/red-until-after.png
     :align: center
     :alt: Data Input Validation
 
     After failing validation, button remains enabled and the fields that failed validation
     will be marked until the button is pressed again.
 
-.. figure:: images/all-valid.png
+.. figure:: ../images/all-valid.png
     :align: center
     :alt: Data Input Validation
 
@@ -193,7 +196,7 @@ with an error status, guiding users on how to proceed or address the issue. This
 approach ensures a comprehensive error management system, promoting smoother application
 functionality and facilitating efficient issue resolution.
 
-.. figure:: images/error-popup.png
+.. figure:: ../images/error-popup.png
     :align: center
     :alt: Error Handling
 

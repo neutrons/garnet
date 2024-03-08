@@ -1,75 +1,23 @@
 # Documentation
 
-## Documenting Code
+A full guide to documenting code in Garnet can be found in the [developer docs](https://garnet-neutrons.readthedocs.io/en/latest/developer/coding_standards.html#documentation-guidelines)
 
-Every module, class, and method should be documented with a docstring. Below is a few examples of docstrings. Full documentation can be found [here](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
+### Documenting Code
 
-### Documenting a module
-
-This docstring should be at the top of the file and give a detailed description of the module and its purpose.
-
-```python
-""" Summary of the module
-This module is used to do things that people find useful
-"""
-```
-
-### Documenting a class
-
-Docstring should be located directly under the class definition and should contain information about the functionality, input parameters, returns, and exceptions.
-
-```python
-class GarnetClass(object):
-    """ This is an example Garnet Class to do Garnet things
-
-    :param some_param: str, some param for doing things
-    :param other_param: class:`garnetClass`, some other param
-    """
-
-    def __init__(self, some_param: str, other_param: "GarnetClass"):
-        """Initializes the GarnetClass"""
-        self.some_param = some_param
-        self.other_param = other_param
-```
+Every module, class, and method should be documented with a docstring. Full documentation on the use of docstrings can be found in the sphinx [docstring page](https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html)
 
 
-### Documenting a method
-Similar to a class docstring, this should be directly below the definition and include any useful information for the method. If possible it should also describe algorithms or equations used.
+### Build the Documentation Locally
 
-```python
-    def garnet_method(self, input_a: float, input_b: float):
-        """Returns a the result of some useful equation on the inputs a and b
+To build the documentation locally and view your changes:
 
-        :param input_a: float, first input
-        :param input_b: float, second input
-
-        Uses the equation:
-
-        .. math::
-            \sum_{input\_a=1}^{\\infty} x_{input\_b}
-
-        :return: result of equation
-        :rtype: float
-        """
-```
-
-## Updating Documentation
-
-When adding new views, presenters and methods, please navigate to docs/source/reference.rst. Add the new feature under the appropriate section following the given template:
-
-```bash
-.. automodule:: path.to.new.module
-   :members:
-```
-
-Once complete, rebuild the documentation:
 ```bash
     cd docs/
     make clean
     make html
 ```
-If you encounter any errors or warnings please fix them when building the docs be sure to fix them.
 
+If you encounter any errors or warnings when building the docs, please be sure to fix them.
 
 
 ## Documentation Location
