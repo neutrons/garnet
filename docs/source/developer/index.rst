@@ -19,3 +19,4 @@ Contents
    testing_standards
    gui_standards
    mvp_guidelines
+   logging_guidelines
