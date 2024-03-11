@@ -188,7 +188,7 @@ and update validation rules consistently throughout the software application.
 Error Handling
 ##############
 
-Error handling involves utilizing :ref:`log messages <log-levels-guide>` exclusively within the model layer, while
+Error handling involves utilizing :ref:`log messages <log_levels_guide>` exclusively within the model layer, while
 the view/presenter layer employs error messages, visual cues, and status messages. Log
 messages are employed to provide users and developers with detailed information about
 errors, warnings, and other relevant details for effective debugging within the model.

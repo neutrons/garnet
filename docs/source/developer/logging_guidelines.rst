@@ -1,5 +1,4 @@
-rst
-.. _log-levels-guide:
+.. _log_levels_guide:
 
 =============
 Logging Guide
