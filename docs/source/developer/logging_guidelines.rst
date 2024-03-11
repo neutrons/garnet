@@ -22,9 +22,12 @@ amount of debug and information messages that are not relevant to the developmen
 Log Levels and Best Practices
 +++++++++++++++++++++++++++++
 
-Logging is a crucial aspect of software development for tracking and troubleshooting issues.
 Different log levels provide a hierarchy of severity to help developers identify and address problems effectively.
 Below are common log levels and guidelines on when to use them:
+
+.. note::
+
+    Logging should only be used in the model. The view and presenter should not contain any logging statements.
 
 Fatal
 -----
