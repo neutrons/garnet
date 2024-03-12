@@ -66,20 +66,31 @@ Debug
 Using the Logger
 ++++++++++++++++
 
-The `garnet.helpers.logger` module provides a simple mechanism to log messages at different levels.
+
+The `garnet.logger` module provides a simple mechanism to log messages at different levels.
 
 .. code-block:: python
 
+    from garnet.logger import Logger
+    logging = Logger("garnet")
+
     # Log a debug message
-    logging.debug('This is a debug message')
+    logging.debug('This is a garnet debug message')
 
     # Log an informational message
-    logging.information('This is an informational message')
+    logging.information('This is a garnet informational message')
 
     # Log a warning message
-    logging.warning('This is a warning message')
+    logging.warning('This is a garnet warning message')
 
     # Log an error message
-    logging.error('This is an error message')
+    logging.error('This is a garnet error message')
 
 The log messages will be filtered based on the log level set in the user's Mantid preferences.
+
+To log a message to the garnet logger, use the following code:
+
+.. code-block:: python
+
+    log = logging.get('garnet')
+    log.info('This is an informational message from garnet')

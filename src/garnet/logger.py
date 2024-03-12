@@ -1,6 +1,5 @@
 """Logger for GARNET"""
 
-from typing import Any
 
 from mantid.kernel import Logger as MantidLogger
 
@@ -12,6 +11,6 @@ class Logger(MantidLogger):
     get the garnet logger in a simple way.
     """
 
-    def get(self: Any, name: str = "garnet"):
+    def get(self: MantidLogger, name: str = "garnet"):
         """Get the logger with the given name."""
         super().get(name)
