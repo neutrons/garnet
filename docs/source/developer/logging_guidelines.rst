@@ -7,16 +7,8 @@ Logging Guide
 Logging is a crucial aspect of software development for tracking and troubleshooting issues.
 This guide provides an overview of logging and best practices for using different log levels.
 
-The `garnet.helpers.logger` module provides a simple and consistent interface for logging messages at different levels.
-It is a thin wrapper around the `mantid.kernel.Logger <https://developer.mantidproject.org/Logging.html#configuring-the-log-level>`_.
-
-The only difference is that the `garnet.helpers.logger` module provides a mechanism to log Garnet ``debug`` and ``information`` messages
-without changing the log level of the Mantid logger. This allows the user to log debug and information messages without the log getting
-cluttered with debug and information messages from Mantid. If a user wants to see debug and information messages from Mantid, they can
-change the log level in the Mantid preferences. The purpose of this is to facilitate the development and debugging of Garnet without getting
-flooded with debug and information messages from Mantid. When the mantid log level is set to information or debug, Mantid will produce an overwhelming
-amount of debug and information messages that are not relevant to the development of Garnet.
-
+Garnet uses the `mantid.kernel.Logger <https://developer.mantidproject.org/Logging.html#configuring-the-log-level>`_ to log information and data
+related to the execution of Garnet Algorithms.
 
 Log Levels and Best Practices
 +++++++++++++++++++++++++++++
@@ -78,10 +70,6 @@ The `garnet.helpers.logger` module provides a simple mechanism to log messages a
 
 .. code-block:: python
 
-    from garnet.helpers.logger import Logger
-
-    logger = Logger("FUNCTION_NAME")
-
     # Log a debug message
     logging.debug('This is a debug message')
 
@@ -95,12 +83,3 @@ The `garnet.helpers.logger` module provides a simple mechanism to log messages a
     logging.error('This is an error message')
 
 The log messages will be filtered based on the log level set in the user's Mantid preferences.
-The `garnet.helpers.logger` module provides a mechanism to log Garnet ``debug`` and ``information`` messages
-without changing the log level of the Mantid logger. To enable this, we would need to run garnet with the following command:
-
-.. code-block:: bash
-
-    garnet --debug
-
-This will enable the Garnet logger to log debug and information messages only within the Garnet codebase.
-All mantid log messages will be handled and filtered by the user's Mantid preferences.
