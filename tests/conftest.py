@@ -1,4 +1,5 @@
 """pytest config"""
+
 import os
 
 import pytest

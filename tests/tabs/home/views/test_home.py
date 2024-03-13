@@ -1,4 +1,5 @@
 """Test the home view"""
+
 import pytest
 from garnet.home.view import HomeView
 from qtpy import QtCore
