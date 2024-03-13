@@ -188,13 +188,15 @@ and update validation rules consistently throughout the software application.
 Error Handling
 ##############
 
-Error handling involves utilizing both log messages and popups to enhance the debugging
-process and user experience. Log messages provide users and developers with detailed
-information about errors, warnings, and information for effective debugging. Popups
-offer users clear and concise error notifications when a process ends prematurely or
-with an error status, guiding users on how to proceed or address the issue. This dual
-approach ensures a comprehensive error management system, promoting smoother application
-functionality and facilitating efficient issue resolution.
+Error handling involves utilizing :ref:`log messages <log_levels_guide>` exclusively within the model layer, while
+the view/presenter layer employs error messages, visual cues, and status messages. Log
+messages are employed to provide users and developers with detailed information about
+errors, warnings, and other relevant details for effective debugging within the model.
+On the other hand, the view/presenter layer uses popups to deliver clear and concise error
+notifications when a process concludes prematurely or with an error status. These popups
+guide users on how to proceed or address the issue, ensuring a comprehensive error management
+system. This dual approach promotes smoother application functionality and facilitates
+efficient issue resolution by combining detailed log information with user-friendly notifications.
 
 .. figure:: ../images/error-popup.png
     :align: center
