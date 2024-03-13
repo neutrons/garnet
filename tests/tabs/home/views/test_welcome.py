@@ -1,4 +1,5 @@
 """Test the welcome tab"""
+
 import pytest
 from garnet import Garnet, __version__
 

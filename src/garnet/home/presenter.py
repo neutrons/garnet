@@ -1,4 +1,5 @@
 """Presenter for the Home tab"""
+
 from typing import Any
 
 from garnet.home.model import HomeModel

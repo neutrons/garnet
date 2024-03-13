@@ -1,6 +1,5 @@
 """Model for the Home tab"""
 
-
 from typing import Any
 
 from mantid.kernel import Logger

@@ -1,4 +1,5 @@
 """PyQt widget for the home tab"""
+
 from contextlib import suppress
 from typing import Any, Dict, Optional
 
