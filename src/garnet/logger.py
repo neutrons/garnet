@@ -1,6 +1,5 @@
 """Logger for GARNET"""
 
-
 from mantid.kernel import Logger as MantidLogger
 
 
