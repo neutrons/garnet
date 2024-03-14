@@ -4,23 +4,19 @@ channels:
   - mantid/label/nightly
   - oncat
 dependencies:
-  - python=3.10
-  - setuptools
-  - mantidworkbench
-  - pre-commit
-  - check-wheel-contents
   - boa
+  - check-wheel-contents
   - conda-build
   - conda-verify
+  - mantidworkbench
+  - pre-commit
   - python-build
-  - versioningit
-  - libmambapy=1.4.2  # auto-selected libarchive=3.6.2 depends on this version
+  - pyoncat
   - pytest
   - pytest-qt
   - pytest-cov
+  - setuptools
   - sphinx
   - sphinx-rtd-theme
   - sphinxcontrib-mermaid
-  - pyoncat
-  - gtk3
-  - libstdcxx-ng
+  - versioningit
