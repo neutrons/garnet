@@ -9,8 +9,8 @@ Activate garnet environment
 Install in editable mode for developlment
 `python -m pip install -e .`
 
-Run the GUI
-`python src/garnet.py`
+Run the GUI simply as:
+`garnet`
 
 # The Single Crystal *GARNET* project
 Single Crystal Graphical Advanced Reduction Neutron Event Toolkit
