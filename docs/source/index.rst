@@ -33,6 +33,7 @@ These include:
 
 Data processing will be based on `Mantid <https://www.mantidproject.org/>`_ and `PyQt <https://wiki.python.org/moin/PyQt>`_ for the application.
 
+More information about diffraction can be found on the ORNL `Single Crystal Diffraction <https://single-crystal.ornl.gov/software/reduction/index.html>`_ page.
 
 .. note::
 
