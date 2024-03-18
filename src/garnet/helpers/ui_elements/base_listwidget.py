@@ -38,6 +38,8 @@ class BaseListWidget(QListWidget):
     :type required: bool, optional
     :param parent: The parent object that holds the QListWidget. Defaults to None.
     :type parent: Any, optional
+    :param *args: Additional positional arguments that will be passed to the parent class constructor.
+    :param **kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
     When creating a BaseListWidget, also pay attention to the selection mode.
     The selection mode will change the behavior of the list widget when selecting items.
@@ -58,11 +60,13 @@ class BaseListWidget(QListWidget):
 
     def __init__(
         self: Any,
+        *args: tuple[Any],
         required: Optional[bool] = False,
         parent: Optional[QWidget] = None,
+        **kwargs: dict[str, Any],
     ) -> None:
         """Initialize the BaseListWidget."""
-        super().__init__(parent)
+        super().__init__(*args, parent=parent, **kwargs)
         self.required = required
         self.reset_style()
 

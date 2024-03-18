@@ -38,16 +38,20 @@ class BaseTableWidget(QTableWidget):
     :type required: bool, optional
     :param parent: The parent object that holds the QTableWidget. Defaults to None.
     :type parent: Any, optional
+    :param *args: Additional positional arguments that will be passed to the parent class constructor.
+    :param **kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
     """
 
     def __init__(
         self: Any,
+        *args: tuple[Any],
         required: Optional[bool] = False,
         parent: Optional[QWidget] = None,
+        **kwargs: dict[str, Any],
     ) -> None:
         """Initialize the BaseTableWidget."""
-        super().__init__(parent)
+        super().__init__(*args, parent=parent, **kwargs)
         self.required = required
         self.reset_style()
 
