@@ -23,3 +23,13 @@ def test_set_empty_style():
     """Test setting the empty style."""
     base_table_widget = BaseTableWidget(required=False)
     assert base_table_widget.styleSheet() == ""
+
+
+def test_with_args():
+    """Test setting the read only style."""
+    num_rows = 12
+    num_columns = 3
+    base_table_widget = BaseTableWidget(num_rows, num_columns, required=True)
+
+    assert base_table_widget.rowCount() == num_rows
+    assert base_table_widget.columnCount() == num_columns

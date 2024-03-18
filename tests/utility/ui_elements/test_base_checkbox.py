@@ -35,3 +35,11 @@ def test_set_empty_style():
     """Test setting the empty style."""
     checkbox = BaseCheckBox(required=False)
     assert checkbox.styleSheet() == ""
+
+
+def test_with_args():
+    """Test setting the the text."""
+    checkbox = BaseCheckBox("Test", required=True)
+
+    assert not checkbox.isChecked()
+    assert checkbox.text() == "Test"

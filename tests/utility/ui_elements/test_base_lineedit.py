@@ -28,3 +28,10 @@ def test_reset_style():
 
     base_line_edit.reset_style()
     assert base_line_edit.styleSheet() == REQUIRED_QLINEEDIT
+
+
+def test_read_only():
+    """Test setting the read only style."""
+    base_line_edit = BaseLineEdit(required=True, readOnly=True)
+
+    assert base_line_edit.isReadOnly()
