@@ -82,11 +82,13 @@ Usage:
 
       base_list_widget.set_invalid_style()
 
-4. Use the `set_selection_mode()` method to set the selection mode:
+4. Use the `setSelectionMode()` method to set the `selection mode <https://doc.qt.io/archives/qt-4.8/qabstractitemview.html#SelectionMode-enum>`_:
 
    .. code-block:: python
 
-      base_list_widget.set_selection_mode(BaseListWidget.MultiSelection)
+      # Can be set by using the enum value or the integer value
+      base_list_widget.setSelectionMode(BaseListWidget.MultiSelection)
+      base_list_widget.setSelectionMode(0)
 
 
 BaseTableWidget
