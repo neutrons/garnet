@@ -30,3 +30,12 @@ Base Qt Objects
 
 .. automodule:: garnet.helpers.ui_elements.base_statusbar
     :members:
+
+.. automodule:: garnet.helpers.ui_elements.base_tablewidget
+    :members:
+
+.. automodule:: garnet.helpers.ui_elements.base_checkbox
+    :members:
+
+.. automodule:: garnet.helpers.ui_elements.base_listwidget
+    :members:
