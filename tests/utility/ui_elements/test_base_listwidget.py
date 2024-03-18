@@ -17,3 +17,20 @@ def test_invalid_style():
 
     base_list_widget.set_invalid_style()
     assert base_list_widget.styleSheet() == INVALID_QLISTWIDGET
+
+
+def test_reset_style():
+    """Test resetting the style."""
+    base_list_widget = BaseListWidget(required=True)
+
+    base_list_widget.set_invalid_style()
+    assert base_list_widget.styleSheet() == INVALID_QLISTWIDGET
+
+    base_list_widget.reset_style()
+    assert base_list_widget.styleSheet() == REQUIRED_QLISTWIDGET
+
+
+def test_set_empty_style():
+    """Test setting the empty style."""
+    base_list_widget = BaseListWidget(required=False)
+    assert base_list_widget.styleSheet() == ""

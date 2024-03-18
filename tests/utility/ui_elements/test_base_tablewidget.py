@@ -17,3 +17,9 @@ def test_invalid_style():
 
     base_table_widget.set_invalid_style()
     assert base_table_widget.styleSheet() == INVALID_QTABLEWIDGET
+
+
+def test_set_empty_style():
+    """Test setting the empty style."""
+    base_table_widget = BaseTableWidget(required=False)
+    assert base_table_widget.styleSheet() == ""

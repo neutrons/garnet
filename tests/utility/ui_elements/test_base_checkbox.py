@@ -18,3 +18,20 @@ def test_invalid_checkbox_style():
 
     checkbox.set_invalid_style()
     assert checkbox.styleSheet() == INVALID_QCHECKBOX
+
+
+def test_reset_checkbox_style():
+    """Test resetting the style."""
+    checkbox = BaseCheckBox(required=True)
+
+    checkbox.set_invalid_style()
+    assert checkbox.styleSheet() == INVALID_QCHECKBOX
+
+    checkbox.reset_style()
+    assert checkbox.styleSheet() == REQUIRED_QCHECKBOX
+
+
+def test_set_empty_style():
+    """Test setting the empty style."""
+    checkbox = BaseCheckBox(required=False)
+    assert checkbox.styleSheet() == ""
