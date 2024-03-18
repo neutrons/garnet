@@ -40,8 +40,8 @@ class BaseLineEdit(QLineEdit):
     :type default_value: Any, optional
     :param parent: The parent object that holds the QLineEdit. Defaults to None.
     :type parent: Any, optional
-    :param *args: Additional positional arguments that will be passed to the parent class constructor.
-    :param **kwargs: Additional keyword arguments that will be passed to the parent class constructor.
+    :param args: Additional positional arguments that will be passed to the parent class constructor.
+    :param kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
     """
 

@@ -25,8 +25,8 @@ class BaseStatusBar(QStatusBar):
 
         :param parent: The parent widget. Defaults to None.
         :type parent: QWidget, optional
-        :param *args: Additional positional arguments that will be passed to the parent class constructor.
-        :param **kwargs: Additional keyword arguments that will be passed to the parent class constructor.
+        :param args: Additional positional arguments that will be passed to the parent class constructor.
+        :param kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
         """
         super().__init__(parent, **kwargs)

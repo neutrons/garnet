@@ -38,8 +38,8 @@ class BaseListWidget(QListWidget):
     :type required: bool, optional
     :param parent: The parent object that holds the QListWidget. Defaults to None.
     :type parent: Any, optional
-    :param *args: Additional positional arguments that will be passed to the parent class constructor.
-    :param **kwargs: Additional keyword arguments that will be passed to the parent class constructor.
+    :param args: Additional positional arguments that will be passed to the parent class constructor.
+    :param kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
     When creating a BaseListWidget, also pay attention to the selection mode.
     The selection mode will change the behavior of the list widget when selecting items.

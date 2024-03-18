@@ -37,8 +37,8 @@ class BaseCheckBox(QCheckBox):
     :type required: bool, optional
     :param parent: The parent object that holds the QCheckBox. Defaults to None.
     :type parent: Any, optional
-    :param *args: Additional positional arguments that will be passed to the parent class constructor.
-    :param **kwargs: Additional keyword arguments that will be passed to the parent class constructor.
+    :param args: Additional positional arguments that will be passed to the parent class constructor.
+    :param kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
     """
 
