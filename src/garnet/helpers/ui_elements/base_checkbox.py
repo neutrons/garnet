@@ -7,7 +7,7 @@ QCheckBoxes used in Garnet.
 
 from typing import Any, Optional
 
-from qtpy.QtWidgets import QCheckBox, QWidget
+from qtpy.QtWidgets import QCheckBox
 
 INVALID_QCHECKBOX = """
 QCheckBox::indicator{
@@ -46,11 +46,10 @@ class BaseCheckBox(QCheckBox):
         self: Any,
         *args: tuple[Any],
         required: Optional[bool] = False,
-        parent: Optional[QWidget] = None,
         **kwargs: dict[str, Any],
     ) -> None:
         """Initialize the BaseCheckBox."""
-        super().__init__(*args, parent=parent, **kwargs)
+        super().__init__(*args, **kwargs)
         self.required = required
         self.reset_style()
 

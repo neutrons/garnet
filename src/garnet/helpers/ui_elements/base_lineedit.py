@@ -7,7 +7,7 @@ QLineEdits used in Garnet.
 
 from typing import Any, Optional
 
-from qtpy.QtWidgets import QLineEdit, QWidget
+from qtpy.QtWidgets import QLineEdit
 
 INVALID_QLINEEDIT = """
 QLineEdit {
@@ -50,11 +50,10 @@ class BaseLineEdit(QLineEdit):
         *args: tuple[Any],
         required: Optional[bool] = False,
         default_value: Optional[Any] = None,  # noqa ANN401
-        parent: Optional[QWidget] = None,
         **kwargs: dict[str, Any],
     ) -> None:
         """Initialize the BaseLineEdit."""
-        super().__init__(*args, parent=parent, **kwargs)
+        super().__init__(*args, **kwargs)
         self.required = required
         self.default_value = default_value
         if default_value is not None:

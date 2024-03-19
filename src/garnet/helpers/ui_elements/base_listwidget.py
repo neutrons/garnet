@@ -7,7 +7,7 @@ QListWidgets used in Garnet.
 
 from typing import Any, Optional
 
-from qtpy.QtWidgets import QListWidget, QWidget
+from qtpy.QtWidgets import QListWidget
 
 INVALID_QLISTWIDGET = """
 QListWidget {
@@ -62,11 +62,10 @@ class BaseListWidget(QListWidget):
         self: Any,
         *args: tuple[Any],
         required: Optional[bool] = False,
-        parent: Optional[QWidget] = None,
         **kwargs: dict[str, Any],
     ) -> None:
         """Initialize the BaseListWidget."""
-        super().__init__(*args, parent=parent, **kwargs)
+        super().__init__(*args, **kwargs)
         self.required = required
         self.reset_style()
 

@@ -7,7 +7,7 @@ QTableWidgets used in Garnet.
 
 from typing import Any, Optional
 
-from qtpy.QtWidgets import QTableWidget, QWidget
+from qtpy.QtWidgets import QTableWidget
 
 INVALID_QTABLEWIDGET = """
 QTableWidget {
@@ -47,11 +47,12 @@ class BaseTableWidget(QTableWidget):
         self: Any,
         *args: tuple[Any],
         required: Optional[bool] = False,
-        parent: Optional[QWidget] = None,
         **kwargs: dict[str, Any],
     ) -> None:
         """Initialize the BaseTableWidget."""
-        super().__init__(*args, parent=parent, **kwargs)
+        # required = kwargs.pop("required", False)
+        super().__init__(*args, **kwargs)
+
         self.required = required
         self.reset_style()
 
