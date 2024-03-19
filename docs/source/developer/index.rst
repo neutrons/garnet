@@ -20,3 +20,4 @@ Contents
    gui_standards
    mvp_guidelines
    logging_guidelines
+   base_ui_elements

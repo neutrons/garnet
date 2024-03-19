@@ -10,20 +10,24 @@ and the CWE (Caution, Warnings or Error) label with relevant information.
 
 from typing import Any, Dict, Optional
 
-from qtpy.QtWidgets import QLabel, QStatusBar, QWidget
+from qtpy.QtWidgets import QLabel, QStatusBar
 
 
 class BaseStatusBar(QStatusBar):
     """Custom status bar for displaying error messages and additional information."""
 
-    def __init__(self: Any, parent: Optional[QWidget] = None) -> None:
+    def __init__(
+        self: Any,
+        *args: tuple[Any],
+        **kwargs: dict[str, Any],
+    ) -> None:
         """Initialize the BaseStatusBar.
 
-        :param parent: The parent widget. Defaults to None.
-        :type parent: QWidget, optional
+        :param args: Additional positional arguments that will be passed to the parent class constructor.
+        :param kwargs: Additional keyword arguments that will be passed to the parent class constructor.
 
         """
-        super().__init__(parent)
+        super().__init__(*args, **kwargs)
         self.error_text: Dict[object, str] = {}
         self.setFixedWidth(600)
         self.cwe_label = QLabel("", self)
