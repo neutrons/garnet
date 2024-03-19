@@ -1,9 +1,8 @@
-Reduction Plan
-===================
+Reduction Plan Schema
+=======================
 
-The schema of the Reduction Plan is described in `Data Dictionary Reduction Plan <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_FsGEMM9tEe6kustJDRk6kQ&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ>`_.
-Every parameter below is collected during the reduction plan creation, besides ub_matrix and peaks_ws
-that are calculated during the UB Matrix/Peaks Finding step.
+The Reduction Plan is described in `Data Dictionary Reduction Plan <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_FsGEMM9tEe6kustJDRk6kQ&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ>`_.
+Every parameter below is collected during the reduction plan creation, besides ub_matrix that is calculated during the UB Matrix/Peaks Finding step.
 
 .. mermaid::
 
@@ -14,26 +13,33 @@ that are calculated during the UB Matrix/Peaks Finding step.
 
     class ReductionPlanModel{
         +String name
-        +String run_ranges
+        +InstrumentModel instrument
+        +String experiment
+        +String run_range
         +List~number~ wavelength
-        +String mask_filename
-        +String background_filename
+        +String mask_filepath
+        +String background_filepath
         +String grouping
-        +String reduction_plan_filename
+        +String reduction_plan_filepath
+        +CalibrationModel calibration
+        +NormalizationModel vanadium
         +Mantid:OrientedLattice ub_matrix
-        +Mantid:PeaksWorkspace peaks_ws
     }
     class InstrumentModel{
-        +String name
-        +(TBD) settings
+        +String facility
+        +String filesystem_name
+        +String reference_name
+        +List(1|2)~Number~ wavelength
+        +String raw_file_format
+        +String goniometer
     }
     class CalibrationModel{
-        +String detector_filename
-        +String tube_filename
+        +String detector_filepath
+        +String tube_filepath
     }
     class NormalizationModel{
-        +String flux_filename
-        +String solid_angle_filename
+        +String flux_filepath
+        +String solid_angle_filepath
     }
 
 |

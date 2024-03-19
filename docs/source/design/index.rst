@@ -16,5 +16,6 @@ Contents
    :maxdepth: 1
 
    reduction_plan
+   oncat
 
 
