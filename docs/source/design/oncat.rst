@@ -29,7 +29,7 @@ Related APIS:
         +String facility
         +String filesystem_name
         +String reference_name
-        +List(1|2)~Number~ wavelength
+        +List~Number~[1|2] wavelength
         +String raw_file_format
         +String goniometer
     }

@@ -16,7 +16,6 @@ Every parameter below is collected during the reduction plan creation, besides u
         +InstrumentModel instrument
         +String experiment
         +String run_range
-        +List~number~ wavelength
         +String mask_filepath
         +String background_filepath
         +String grouping
@@ -25,18 +24,21 @@ Every parameter below is collected during the reduction plan creation, besides u
         +NormalizationModel vanadium
         +Mantid:OrientedLattice ub_matrix
     }
+
     class InstrumentModel{
         +String facility
         +String filesystem_name
         +String reference_name
-        +List(1|2)~Number~ wavelength
+        +List~Number~[1|2] wavelength
         +String raw_file_format
         +String goniometer
     }
+
     class CalibrationModel{
         +String detector_filepath
         +String tube_filepath
     }
+
     class NormalizationModel{
         +String flux_filepath
         +String solid_angle_filepath
