@@ -18,5 +18,3 @@ Contents
    instrument
    reduction_plan
    oncat
-
-
