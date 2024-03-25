@@ -15,6 +15,7 @@ Contents
 .. toctree::
    :maxdepth: 1
 
+   instrument
    reduction_plan
    oncat
 
