@@ -13,11 +13,11 @@ Related APIS:
 .. mermaid::
 
  classDiagram
-    OnCatModel "1" --> "N" ExperimentModel
-    ExperimentModel "1" --> "N" RunModel
-    InstrumentModel "1" -->"1" ProjectionFieldModel
+    OnCatModel "1" o--"N" ExperimentModel
+    ExperimentModel "1" o--"N" RunModel
     OnCatModel "1" -->"1" InstrumentModel
-    InstrumentModel "1" -->"N" GoniometerAngle
+    InstrumentModel "1" o--"N" ProjectionFieldModel
+    InstrumentModel "1" o--"N" GoniometerAngle
 
     class OnCatModel{
         +InstrumentModel instrument
@@ -65,5 +65,3 @@ Related APIS:
         +String scale_field_name
         +List~String~ goniometer_angle_field_names
     }
-
-

@@ -7,8 +7,8 @@ Every parameter below is collected during the reduction plan creation, besides u
 .. mermaid::
 
  classDiagram
-    InstrumentModel "1" -->"1" ProjectionFieldModel
-    InstrumentModel "1" -->"N" GoniometerAngle
+    InstrumentModel "1" o--"N" ProjectionFieldModel
+    InstrumentModel "1" o--"N" GoniometerAngle
 
     class InstrumentModel{
         +String facility
@@ -34,9 +34,3 @@ Every parameter below is collected during the reduction plan creation, besides u
         +String scale_field_name
         +List~String~ goniometer_angle_field_names
     }
-
-
-
-
-
-|

@@ -8,9 +8,9 @@ Every parameter below is collected during the reduction plan creation, besides u
 
  classDiagram
     ReductionPlanModel "1" --> "1" InstrumentModel
-    ReductionPlanModel "1" --> "1" CalibrationModel
-    ReductionPlanModel "1" -->"1" NormalizationModel
-    InstrumentModel "1" -->"N" GoniometerAngle
+    ReductionPlanModel "1" *-- "1" CalibrationModel
+    ReductionPlanModel "1" *--"1" NormalizationModel
+    InstrumentModel "1" o--"N" GoniometerAngle
 
     class ReductionPlanModel{
         +String reduction_plan_name
@@ -52,5 +52,3 @@ Every parameter below is collected during the reduction plan creation, besides u
         +String flux_filepath
         +String solid_angle_filepath
     }
-
-|
