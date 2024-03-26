@@ -26,7 +26,7 @@ Related APIS:
         +InstrumentModel instrument
         -String user_session
         +List~ExperimentModel~ experiment_list
-        
+
     }
 
     class InstrumentModel{

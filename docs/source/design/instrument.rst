@@ -35,4 +35,3 @@ Every parameter below is collected during the reduction plan creation, besides u
         +String scale_field_name
         +List~GoniometerAngleModel~ goniometer_angle_field_names
     }
-
