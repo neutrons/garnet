@@ -7,10 +7,10 @@ Every parameter below is collected during the reduction plan creation, besides u
 .. mermaid::
 
  classDiagram
-    ReductionPlanModel "1" --> "1" InstrumentModel
-    ReductionPlanModel "1" *-- "1" CalibrationModel
+    ReductionPlanModel "1" -->"1" InstrumentModel
+    ReductionPlanModel "1" *--"1" CalibrationModel
     ReductionPlanModel "1" *--"1" NormalizationModel
-    InstrumentModel "1" o--"N" GoniometerAngle
+    InstrumentModel "1" o--"N" GoniometerAngleModel
 
     class ReductionPlanModel{
         +String reduction_plan_name
@@ -32,10 +32,10 @@ Every parameter below is collected during the reduction plan creation, besides u
         +String reference_name
         +List~Number~[1|2] wavelength
         +String raw_file_format
-        +List~GoniometerAngle~ goniometer_settings
+        +List~GoniometerAngleModel~ goniometer_settings
     }
 
-    class GoniometerAngle{
+    class GoniometerAngleModel{
         +String name
         +String reference_name
         +List~Number~[3] direction
