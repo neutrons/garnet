@@ -47,10 +47,11 @@ markers = [
     "datarepo: Tests that require the test-data submodule"
 ]
 
-[tool.coverage.run]
-omit = ["src/garnet/_version.py",
-        "src/garnet/__init__.py",
-        "src/garnet/version.py",]
+[tool.coverage.report]
+exclude_lines = [
+    "except ImportError:",
+    "except ModuleNotFoundError:",
+]
 
 [tool.ruff]
 line-length = 119
