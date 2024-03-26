@@ -29,7 +29,8 @@ def test_with_args():
     """Test setting the read only style."""
     num_rows = 12
     num_columns = 3
-    base_table_widget = BaseTableWidget(num_rows, num_columns, required=True)
+    # QTableWidget(12, 3, parent=None)
+    base_table_widget = BaseTableWidget(num_rows, num_columns)
 
     assert base_table_widget.rowCount() == num_rows
     assert base_table_widget.columnCount() == num_columns
