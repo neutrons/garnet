@@ -48,3 +48,4 @@ Contents
    getting_started
    reference
    developer/index
+   design/index
