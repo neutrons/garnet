@@ -29,6 +29,9 @@ jobs:
           xvfb-run --server-args="-screen 0 1920x1080x24" -a python -m pytest -m "not repodata" --cov=src --cov-report=xml --cov-report=term-missing
       - name: upload coverage to codecov
         uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
 
   conda-build:
     runs-on: ubuntu-latest

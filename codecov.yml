@@ -6,5 +6,5 @@ coverage:
     project:
       default:
         # base on last build, but allow drop of upto this percent
-        target: 90%
-        threshold: 2%
+        target: 90.0
+        threshold: 2.0
