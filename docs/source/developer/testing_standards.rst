@@ -31,8 +31,17 @@ We strongly encourage adopting a Test-Driven Development (TDD) approach througho
 features, we promote code reliability, maintainability, and faster debugging. Embrace TDD as a best practice to enhance the overall quality of our project.
 The general approach is to write tests for every function and method in the code. The tests should cover all possible input combinations and edge cases.
 
-The tests are written using the `pytest <https://docs.pytest.org/>`_ framework to allow for automated testing. The test files are named `test_*.py` and are
-placed in the corresponding directory of the code they are testing.
+The tests are implemented using the `pytest <https://docs.pytest.org/>`_ framework to enable automated testing. These tests aim to achieve an overall test
+coverage of 90% of the entire codebase. Test files follow the naming convention test\_\*.py and are organized within the relevant directory of the code they
+validate. Additionally, the project Continuous Integration (CI) process has configured `Codecov <https://docs.codecov.com/>`_ to run for every pull request (PR) to enforce the target
+test coverage. If the overall coverage is less than 90% or the coverage drops more than the configured 2% in a single PR it will cause the CI check to fail.
+The target and the threshold are both configured in the ``.codecov.yml`` file.
+
+To check test coverage locally you can run the following command:
+
+.. code-block:: sh
+
+    python -m pytest --cov=src --cov-report=term-missing
 
 Tests that use the garnet-data submodule, will need to be configured for github runners (TBD).
 Additionally, the `pytest marker <https://docs.pytest.org/en/8.0.x/reference/reference.html#custom-marks>`_ ``datarepo`` is used to skip tests that require
