@@ -10,7 +10,6 @@ Every parameter below is collected during the reduction plan creation, besides u
     ReductionPlanModel "1" -->"1" InstrumentModel
     ReductionPlanModel "1" *--"1" CalibrationModel
     ReductionPlanModel "1" *--"1" NormalizationModel
-    InstrumentModel "1" o--"N" GoniometerAngleModel
 
     class ReductionPlanModel{
         +String reduction_plan_name
@@ -27,21 +26,9 @@ Every parameter below is collected during the reduction plan creation, besides u
     }
 
     class InstrumentModel{
-        +String facility
-        +String filesystem_name
-        +String reference_name
-        +List~Number~[1|2] wavelength
-        +String raw_file_format
-        +List~GoniometerAngleModel~ goniometer_settings
+        trytoputlink
     }
 
-    class GoniometerAngleModel{
-        +String name
-        +String reference_name
-        +List~Number~[3] direction
-        +Number sense
-        +Bool used_in_goniometer_setting
-    }
 
     class CalibrationModel{
         +String detector_filepath

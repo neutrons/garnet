@@ -6,9 +6,8 @@ The Instrument model is described in `Data Dictionary Instrument Configuration <
 .. mermaid::
 
  classDiagram
-    InstrumentModel "1" o--"1" ProjectionFieldModel
-    InstrumentModel "1" o--"N" GoniometerAngleModel
-    ProjectionFieldModel "1" o--"N" GoniometerAngleModel
+    InstrumentModel "1" o--"3" InstrumentProjectionFieldModel: grouping_field,run_number_field, scale_field
+    InstrumentModel "1" o--"N<=3" InstrumentGoniometerAngleModel
 
     class InstrumentModel{
         +String facility
@@ -16,21 +15,19 @@ The Instrument model is described in `Data Dictionary Instrument Configuration <
         +String reference_name
         +List~Number~[1|2] wavelength
         +String raw_file_format
-        +List~GoniometerAngleModel~ goniometer_settings
-        +ProjectionFieldModel run_schema
+        +List~InstrumentGoniometerAngleModel~ goniometer_settings
+        +List~InstrumentProjectionFieldModel~ run_schema
 
     }
-    class GoniometerAngleModel{
+    class InstrumentGoniometerAngleModel{
         +String name
         +String reference_name
         +List~Number~[3] direction
         +Number sense
         +Bool used_in_goniometer_setting
-        get_angle_field_name()
-    }
-    class ProjectionFieldModel{
-        +String grouping_field_name
-        +String run_number_field_name
-        +String scale_field_name
-        +List~GoniometerAngleModel~ goniometer_angle_field_names
+        +get_angle_field_name()
+    }    
+    class InstrumentProjectionFieldModel{
+        +String field_name
+        +String oncat_meta_field
     }
