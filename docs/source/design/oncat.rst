@@ -1,7 +1,7 @@
-OnCat Schema
+PyOnCat Schema
 ===================
 
-The OnCat is described in `Data Dictionary OnCat <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_X6q9wNStEe6uLrx4w2K0Ew&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ>`_
+The PyOnCat is described in `Data Dictionary OnCat <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_X6q9wNStEe6uLrx4w2K0Ew&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ>`_
 
 Related APIS:
 
@@ -11,6 +11,7 @@ Related APIS:
 
 
 .. mermaid::
+ :name: pyoncat_model
 
  classDiagram
     OnCatModel "1" o--"N" ExperimentModel
@@ -22,6 +23,7 @@ Related APIS:
     class OnCatModel{
         +InstrumentModel instrument
         -Pyoncat:ONCat oncat_agent
+        +ExperimentModel selected_experiment
         +List~ExperimentModel~ experiment_list
 
     }

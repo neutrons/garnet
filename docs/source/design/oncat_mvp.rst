@@ -1,35 +1,36 @@
-OnCat Model-View-Presenter Schema
+PyOnCat Model-View-Presenter
 ========================================
 
-Related APIS:
+The data, graphical interface and functionality components related to OnCat are described here. The related code
+is organized in Model-View-Presenter pattern. 
 
-- experiment_list: oncat.Experiment.list(facility=<facility>, instrument=<instrument>)
-- experiment_info: oncat.Experiment.retrieve(experiment=<experiment>,facility=<facility>, instrument=<instrument>)
-- data_files: oncat.Datafile.list(facility=<facility>, instrument=<instrument>, experiment=<experiment>, projection=<projection>, exts=<ext>)
-
-
-
-MVP diagram
-
-Model diagram : link to OncatSchema diagram
-
-View diagram
+The Model is described in detail here: link to OncatSchema diagram
+The View is described below:
 
 .. mermaid::
 
  classDiagram
     ReductionPlanWidget "1" -->"1" RunsWidget
     ReductionPlanWidget "1" -->"1" GoniometerWavelengthWidget
+    ReductionPlanWidget "1" -->"1" DataSourceWidget
 
     class ReductionPlanWidget{
-        +QLabel:oncat_connection_status
-        +PyOnCatQButton: oncat_login_btn
         +QLabel:instrument_display
         +QComboBox:instrument
+        +DataSourceWidget:data_source
         +RunsWidget:runs
         +GoniometerWavelengthWidget:goniometer
     }
 
+    class DataSourceWidget{
+        +QLabel:oncat_connection_status
+        +PyOnCatQButton: oncat_login_btn
+        +QLabel:full_path_display
+        +QButton-QFileDialog: file_browse_btn
+        +get_user_credentials()
+        +display_oncat_connection_status()
+    }
+    
     class RunsWidget{
         +QLabel:ipts_display
         +QComboBox:ipts        
@@ -41,6 +42,8 @@ View diagram
         +display_experiments()
         +display_grouped_runs()
         +display_plot_data()
+        +get_selected_run_range()
+        +get_selected_experiment()
     }
 
 
@@ -54,74 +57,104 @@ View diagram
 
 
 
-Presenter diagram (it can just be part of the HomePresenter)
+The Presenter is described below. The presenter is connected with one model and view.
+The functionality is defined below and the M-V-P interactions are described and grouped by
+functionality below
+
 
 .. mermaid::
 
  classDiagram
-    OnCatDataPresenter "1" -->"1" ReductionPlanWidget
-    OnCatDataPresenter "1" -->"1" OnCatModel
     class OnCatDataPresenter{
-       -OnCatModel:model
-       -ReductionPlanWidget:view
-       +login(username,password)
-       +get_connection_status()
-       +set_instrument(instrument)
-       +set_selected_experiment(experiment)
-       +get_experiments()
-       +get_grouped_runs()
-       +get_plot_data(run_range)
-    }
-    class ReductionPlanWidget{
-        +QLabel:oncat_connection_status
-        +PyOnCatQButton: oncat_login_btn
-        +QLabel:instrument_display
-        +QComboBox:instrument
-        +RunsWidget:runs
-        +GoniometerWavelengthWidget:goniometer
-    }
-    class OnCatModel{
-        +InstrumentModel instrument
-        +ExperimentModel selected_experiment
-        -Pyoncat:ONCat oncat_agent
-        +List~ExperimentModel~ experiment_list
+       -model
+       -view
+        +login(username,password)
+        +handle_connection_status()
+        +set_data_source_filepath(filepath)
+        +set_instrument(instrument)
+        +show_experiments(instrument)
+        +set_experiment(experiment)
+        +show_grouped_runs(instrument,experiments)
+        +set_run_range(run_range)
+        +show_plot()
     }
 
 
-flow
+
+
+DataSource Initialization - Connect to OnCat
 
 .. mermaid::
 
-    flowchart TB
-        subgraph View        
-            display_oncat_connection_status
-            display_experiments
-            display_grouped_runs
-            display_plot_data
-            get_selected_instrument
-            get_selected_run
-        end
+    sequenceDiagram
+        participant View
+        participant Presenter 
+        participant Model
+
+        Note over View,Model: Login
+        View->>Presenter: User provides credentials
+        Presenter->>View: Get user credentials
+        Presenter->>Model: Send user credentials
+        Note right of Model: Store pyoncat agent
+        Model->>Presenter: Return pyoncat agent
+
+        Note over View,Model: Handle oncat connection status
+        Presenter->>Model: Get pyoncat agent
+        Model->>Presenter: Return pyoncat agent
+        Presenter->>View: Display oncat connection status
+
+
+DataSource Initialization - Absolute Path
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter 
+        participant Model
+
+        Note over View,Model: Set Data Source FilePath
+        View->>Presenter: User selects file folder
+        Presenter->>View: Get filepath
+        Presenter->>Model: Send filepath
+        Note right of Model: Store filepath
+
+
+DataSource Initialization - Data fect and display
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter 
+        participant Model
+
+        Note over View,Model: Set Instrument
+        View->>Presenter: User selects instrument
+        Presenter->>View: Get instrument        
+        Presenter->>Model: Send instrument
+        Note right of Model: Store instrument
         
-        subgraph Presenter
-        handle_connection_status
-            set_instrument
-            set_selected_experiment
-            get_experiments
-            get_grouped_runs
-            get_plot_data
-        end
-        subgraph Model
-            get_pyoncat_agent
-            set_experiment
-            set_instrument
-        end
-        handle_connection_status-->get_pyoncat_agent
-        handle_connection_status-->display_oncat_connection_status
+        Note over View,Model: Show Experiments
+        Presenter->>Model: Get experiments for instrument
+        Presenter->>View: Display experiments
 
+        Note over View,Model: Set Experiment
+        View->>Presenter: User selects experiment
+        Presenter->>View: Get experiment
+        Presenter->>Model: Send experiment
+        Note right of Model: Store experiment
 
+        Note over View,Model: Show Group Runs
+        Presenter->>Model: Get grouped runs for an experiment
+        Presenter->>View: Display grouped runs
 
+        Note over View,Model: Set Run Range
+        View->>Presenter: User sets run range
+        Presenter->>View: Get run range
+        Presenter->>Model: Send run range        
+        Note right of Model: Store run range  
 
-set_selected_experiment-->set_experiment
-set_selected_instrument-->set_instrument        
-set_selected_instrument-->set_selected_experiment
-get_selected_instrument-->set_instrument
+        Note over View,Model: Show Run Plot
+        Presenter->>Model: Get calculated plot data
+        Presenter->>View: Display plot

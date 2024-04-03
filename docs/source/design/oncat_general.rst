@@ -1,4 +1,4 @@
-OnCat General Model
+PyOnCat General Model
 ===================
 
 Related APIS:
@@ -20,8 +20,8 @@ Related APIS:
         +InstrumentModel instrument
         -Pyoncat:ONCat oncat_agent
         +List~ExperimentModel~ experiment_list
-        ExperimentModel selected_experiment
-        get_experiments()
+        +ExperimentModel selected_experiment
+        +get_experiments()
     }
 
     class InstrumentModel{

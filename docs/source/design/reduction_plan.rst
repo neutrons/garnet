@@ -20,6 +20,7 @@ Every parameter below is collected during the reduction plan creation, besides u
         +String background_filepath
         +String grouping
         +String reduction_plan_filepath
+        +String data_source_filepath
         +CalibrationModel calibration
         +NormalizationModel vanadium
         +Mantid:OrientedLattice ub_matrix
