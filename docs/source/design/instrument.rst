@@ -26,7 +26,7 @@ The Instrument model is described in `Data Dictionary Instrument Configuration <
         +Number sense
         +Bool used_in_goniometer_setting
         +get_angle_field_name()
-    }    
+    }
     class InstrumentProjectionFieldModel{
         +String field_name
         +String oncat_meta_field

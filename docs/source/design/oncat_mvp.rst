@@ -2,7 +2,7 @@ PyOnCat Model-View-Presenter
 ========================================
 
 The data, graphical interface and functionality components related to OnCat are described here. The related code
-is organized in Model-View-Presenter pattern. 
+is organized in Model-View-Presenter pattern.
 
 The Model is described in detail here: link to OncatSchema diagram
 The View is described below:
@@ -30,10 +30,10 @@ The View is described below:
         +get_user_credentials()
         +display_oncat_connection_status()
     }
-    
+
     class RunsWidget{
         +QLabel:ipts_display
-        +QComboBox:ipts        
+        +QComboBox:ipts
         +QButton:ipts_refresh
         +QTableWidget:grouped_runs
         +QLabel:run_range_display
@@ -88,7 +88,7 @@ DataSource Initialization - Connect to OnCat
 
     sequenceDiagram
         participant View
-        participant Presenter 
+        participant Presenter
         participant Model
 
         Note over View,Model: Login
@@ -110,7 +110,7 @@ DataSource Initialization - Absolute Path
 
     sequenceDiagram
         participant View
-        participant Presenter 
+        participant Presenter
         participant Model
 
         Note over View,Model: Set Data Source FilePath
@@ -126,15 +126,15 @@ DataSource Initialization - Data fect and display
 
     sequenceDiagram
         participant View
-        participant Presenter 
+        participant Presenter
         participant Model
 
         Note over View,Model: Set Instrument
         View->>Presenter: User selects instrument
-        Presenter->>View: Get instrument        
+        Presenter->>View: Get instrument
         Presenter->>Model: Send instrument
         Note right of Model: Store instrument
-        
+
         Note over View,Model: Show Experiments
         Presenter->>Model: Get experiments for instrument
         Presenter->>View: Display experiments
@@ -152,8 +152,8 @@ DataSource Initialization - Data fect and display
         Note over View,Model: Set Run Range
         View->>Presenter: User sets run range
         Presenter->>View: Get run range
-        Presenter->>Model: Send run range        
-        Note right of Model: Store run range  
+        Presenter->>Model: Send run range
+        Note right of Model: Store run range
 
         Note over View,Model: Show Run Plot
         Presenter->>Model: Get calculated plot data
