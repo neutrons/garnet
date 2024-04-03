@@ -1,3 +1,5 @@
+.. _instrument:
+
 Instrument Schema
 =======================
 

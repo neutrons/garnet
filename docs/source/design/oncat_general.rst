@@ -1,5 +1,9 @@
+.. _pyoncat_general:
+
 PyOnCat General Model
-===================
+=======================
+
+This is a generalization of :ref:`PyOnCatSchema <pyoncat>`, in case it can be used for other applications other than garnet that want to achieve a similar functionality.
 
 Related APIS:
 
@@ -11,14 +15,15 @@ Related APIS:
 .. mermaid::
 
  classDiagram
-    OnCatModel "1" o--"N" ExperimentModel
+    PyOnCatModel "1" o--"N" ExperimentModel
     ExperimentModel "1" o--"N" RunModel
-    OnCatModel "1" -->"1" InstrumentModel
+    PyOnCatModel "1" -->"1" InstrumentModel
     RunModel "1" o--"N<=170" ProjectionFieldKeyValueModel
 
-    class OnCatModel{
+    class PyOnCatModel{
         +InstrumentModel instrument
         -Pyoncat:ONCat oncat_agent
+        +String data_source_filepath
         +List~ExperimentModel~ experiment_list
         +ExperimentModel selected_experiment
         +get_experiments()
