@@ -32,8 +32,12 @@ requirements:
     - versioningit
 
   run:
-    - python
+    - pyoncat
     - mantidworkbench
+
+  test:
+    - imports:
+      - garnet
 
 about:
   home: {{ url }}
