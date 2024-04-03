@@ -24,7 +24,7 @@ Related APIS:
 
     class PyOnCatModel{
         +InstrumentModel instrument
-        -Pyoncat:ONCat oncat_agent
+        -PyOnCat:ONCat oncat_agent
         +String data_source_filepath
         +ExperimentModel selected_experiment
         +List~ExperimentModel~ experiment_list

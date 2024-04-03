@@ -5,6 +5,8 @@ PyOnCat General Model
 
 This is a generalization of :ref:`PyOnCatSchema <pyoncat>`, in case it can be used for other applications other than garnet that want to achieve a similar functionality.
 
+The detailed Instrument model is found here :ref:`Intrument <instrument>`.
+
 Related APIS:
 
 - experiment_list: oncat.Experiment.list(facility=<facility>, instrument=<instrument>)
@@ -22,7 +24,7 @@ Related APIS:
 
     class PyOnCatModel{
         +InstrumentModel instrument
-        -Pyoncat:ONCat oncat_agent
+        -PyOnCat:ONCat oncat_agent
         +String data_source_filepath
         +List~ExperimentModel~ experiment_list
         +ExperimentModel selected_experiment
@@ -30,7 +32,7 @@ Related APIS:
     }
 
     class InstrumentModel{
-        TBD
+        <>
     }
 
 
