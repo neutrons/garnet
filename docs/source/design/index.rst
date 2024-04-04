@@ -18,3 +18,5 @@ Contents
    instrument
    reduction_plan
    oncat
+   oncat_general
+   oncat_mvp
