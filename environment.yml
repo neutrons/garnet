@@ -4,6 +4,7 @@ channels:
   - mantid/label/nightly
   - oncat
 dependencies:
+  - anaconda-client
   - boa
   - check-wheel-contents
   - conda-build
