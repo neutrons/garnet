@@ -11,7 +11,7 @@
 
 package:
   name: garnet
-  version: {{ version_number }}
+  version: {{ version }}
 
 source:
   path: ..
