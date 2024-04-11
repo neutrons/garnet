@@ -20,7 +20,7 @@ Related APIS:
     PyOnCatModel "1" o--"N" ExperimentModel
     ExperimentModel "1" o--"N" RunModel
     PyOnCatModel "1" -->"1" InstrumentModel
-    RunModel "1" o--"N<=170" ProjectionFieldKeyValueModel
+    RunModel "1" *--"N<=170" ProjectionFieldKeyValueModel
 
     class PyOnCatModel{
         +InstrumentModel instrument

@@ -70,14 +70,12 @@ The Presenter is described below. It is connected with one model and view.
        -model
        -view
         +login(username,password)
-        +handle_connection_status()
-        +set_data_source_filepath(filepath)
-        +set_instrument(instrument)
-        +show_experiments(instrument)
-        +set_experiment(experiment)
-        +show_grouped_runs(instrument,experiments)
-        +set_run_range(run_range)
-        +show_plot()
+        +handle_oncat_connection()
+        +handle_datasource_filepath(filepath)
+        +handle_instrument_selection(instrument)
+        +handle_experiment_selection(experiment)
+        +update_grouped_runs(experiment, use_cached_runs=True)
+        +handle_run_selection(run_range)
     }
 
 
@@ -92,6 +90,7 @@ DataSource Initialization - Connect to OnCat
         participant Presenter
         participant Model
 
+        Note over View,Model: Handle OnCat Connection
         Note over View,Model: Login
         View->>Presenter: User provides credentials
         Presenter->>View: Get user credentials
@@ -99,7 +98,7 @@ DataSource Initialization - Connect to OnCat
         Note right of Model: Store pyoncat agent
         Model->>Presenter: Return pyoncat agent
 
-        Note over View,Model: Handle oncat connection status
+        Note over View,Model: Get connection status
         Presenter->>Model: Get pyoncat agent
         Model->>Presenter: Return pyoncat agent
         Presenter->>View: Display oncat connection status
@@ -114,12 +113,17 @@ DataSource Initialization - Absolute Path
         participant Presenter
         participant Model
 
-        Note over View,Model: Set Data Source FilePath
+        Note over View,Model: Handle Datasource Filepath
         View->>Presenter: User selects file folder
         Presenter->>View: Get filepath
         Presenter->>Model: Send filepath
         Note right of Model: Store filepath
-
+        Note right of Model: Generate and Store instrument
+        Note right of Model: Generate and Store experiment
+        Model->>Presenter: Return instrument and experiment
+        Presenter->>View: Display instrument
+        Presenter->>View: Display experiment
+        Note over View,Model: Show grouped runs (see below)
 
 Data fetch and display
 
@@ -130,7 +134,7 @@ Data fetch and display
         participant Presenter
         participant Model
 
-        Note over View,Model: Set Instrument
+        Note over View,Model: Handle Instrument Selection
         View->>Presenter: User selects instrument
         Presenter->>View: Get instrument
         Presenter->>Model: Send instrument
@@ -138,28 +142,46 @@ Data fetch and display
 
         Note over View,Model: Show experiments
         Presenter->>Model: Get experiments for instrument
+        Note right of Model: Get experiment from OnCat, if it does not exist
         Presenter->>View: Display experiments
 
-        Note over View,Model: Set experiment
+        Note over View,Model: Handle Experiment Selection
         View->>Presenter: User selects experiment
         Presenter->>View: Get experiment
         Presenter->>Model: Send experiment
         Note right of Model: Store experiment
+        Note right of Model: Generate and Store data source filepath
+        Model->>Presenter: Return data source filepath
+        Presenter->>View: Display data source filepath
 
-        Note over View,Model: Show grouped runs
+        Note over View,Model: Update Grouped Runs
         Presenter->>Model: Get grouped runs for an experiment
-        Note right of Model: Get run data and group runs by group field
+        Note right of Model: Get runs from OnCat, if they do not exist
+        Note right of Model: Store run data and group runs by group field
         Model->>Presenter: Return grouped runs for an experiment
         Presenter->>View: Display grouped runs
 
-        Note over View,Model: Set run range
+        Note over View,Model: Handle Run Selection
         View->>Presenter: User sets run range
         Presenter->>View: Get run range
         Presenter->>Model: Send run range
-        Note right of Model: Store run range
-
-        Note over View,Model: Show run-plot
-        Presenter->>Model: Get calculated plot data
         Note right of Model: Calculate plot data
         Model->>Presenter: Return calculated plot data
         Presenter->>View: Display plot
+
+Refresh IPTS Runs
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Update Grouped Runs
+        View->>Presenter: User clicks the  "Refresh IPTS Runs" button
+        Presenter->>Model: Get grouped runs for an experiment
+        Note right of Model: Get runs from OnCat
+        Note right of Model: Store run data and group runs by group field
+        Model->>Presenter: Return grouped runs for an experiment
+        Presenter->>View: Display grouped runs (see above)
