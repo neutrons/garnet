@@ -7,7 +7,55 @@ The data, graphical interface and functionality components related to the first 
 -- Reduction Plan Screen -- are described here. The related code
 is organized in the Model-View-Presenter pattern.
 
-The Model is described in detail :ref:`Reduction Plan <reduction_plan>`.
+The Model is described in detail:
+
+
+.. mermaid::
+
+    classDiagram
+        ReductionPlanTabModel "1" -->"1" InstrumentListModel
+        ReductionPlanTabModel "1" -->"1" ReductionPlanListModel
+        ReductionPlanTabModel "1" -->"1" PyOnCatModel
+        InstrumentListModel "1" o--"N<=6" InstrumentModel
+        ReductionPlanListModel "1" o--"N" ReductionPlanModel
+        ReductionPlanModel "1" -->"1" InstrumentModel
+        PyOnCatModel "1" -->"1" InstrumentModel
+
+        class ReductionPlanListModel{
+            -Number:selected_plan_index
+            -List~ReductionPlanModel~ reduction_plan_list
+            +add_reduction_plan()
+            +remove_reduction_plan()
+            +get_selected_plan()
+            +set_selected_plan()
+            +get_plans()
+        }
+
+        class InstrumentListModel{
+            -List~InstrumentModel~ instrument_list
+            +add_instrument()
+            +get_instrument()
+        }
+
+
+        class ReductionPlanTabModel{
+            ReductionPlanListModel reduction_plan_list
+            InstrumentListModel instrument_list
+            PyOnCatModel pyoncat_data
+        }
+
+        class InstrumentModel{
+            <>
+        }
+
+        class ReductionPlanModel{
+            <>
+        }
+
+        class PyOnCatModel{
+            <>
+        }
+
 The View is described below:
 
 
@@ -45,6 +93,7 @@ The View is described below:
             +display_selected_reduction_plan()
             +load_reduction_plan()
             +create_reduction_plan()
+            +clear_fields()
         }
 
         class ReductionPlanListWidget{
@@ -169,18 +218,182 @@ The Presenter is described below. It is connected with one model and view.
         %%reduction plan related
         -update_reduction_plan_list()
 
-        +set_new_reduction_plan()
+        +new_reduction_plan()
         +submit_reduction_plan()
         +load_reduction_plan()
         +copy_reduction_plan_parameters()
+        +edit_reduction_plan()
         +select_reduction_plan()
         +delete_reduction_plan()
 
         %%pyoncat related
         +handle_oncat_connection()
         +handle_datasource_filepath(filepath)
-        +handle_instrument_selection(instrument)
+        +handle_instrument_selection(instrument) %%more
         +handle_experiment_selection(experiment)
         +update_grouped_runs(experiment, use_cached_runs=True)
         +handle_run_selection(run_range)
     }
+
+
+
+instrument and reduction plan relationships??
+
+
+
+View-only interactions
+paths before button activation?
+
+The M-V-P interactions are described and grouped by functionality:
+
+Create a new reduction plan button
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: New Reduction Plan
+        View->>Presenter: User clicks the "Create new Reduction Plan" button
+        Note left of View: Clear all parameters of the reduction plan screen
+        Presenter->>Model: Unselect current reduction plan
+        Note right of Model: Update selected plan index (-1)
+
+
+Create/Edit a reduction plan - Submit button
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Save Reduction Plan - (Create)
+        View->>Presenter: User clicks the "Add/Edit" button
+        Presenter->>View: Gather the reduction plan parameters
+        Presenter->>Model: Send the reduction plan parameters
+        Note right of Model: New reduction plan
+        Note right of Model: Create new reduction plan
+        Note right of Model: Add the reduction plan in the reduction plan list
+        Note right of Model: Set curent plan as selected
+        Model->>Presenter: Return reduction plan and index id
+        Presenter->>View: Update reduction plan list table
+
+        Note over View,Model: Save Reduction Plan - (Edit)
+        View->>Presenter: User clicks the "Add/Edit" button
+        Presenter->>View: Gather the reduction plan parameters
+        Presenter->>Model: Send the reduction plan parameters
+        Note right of Model: Edit selected reduction plan with parameters
+       
+
+Load a reduction plan from file
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Load a reduction plan
+        View->>Presenter: User clicks the "Load Reduction Plan" button and selects a file
+        Presenter->>View: Get the filepath
+        Presenter->>Model: Send the filepath
+        Note right of Model: Read the parameters from the file
+        Note right of Model: Validate the parameters
+        Note over View,Model: Save Reduction Plan - (Create) New reduction plan (see above)
+
+
+
+Select a reduction plan 
+Note: The order of the reduction plan on the widget is the same as the order of
+the reduction plan list on the model side
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Select reduction
+        View->>Presenter: User left-clicks on a reduction plan
+        Presenter->>View: Get the reduction plan name,index
+        Presenter->>Model: Send the reduction plan name,index
+        Note right of Model: Set curent plan as selected
+
+Copy the parameters of a reduction plan 
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Copy reduction plan parameters
+        View->>Presenter: User right-clicks on a reduction plan the "Copy" button
+        Presenter->>View: Get the reduction plan name,index
+        Presenter->>Model: Send the reduction plan name,index
+        Note right of Model: Read the parameters of the reduction plan
+        Note right of Model: Update selected plan index (-1)
+        Model->>Presenter: Return the parameters
+        Presenter->>View: Display the parameters
+
+
+Edit a reduction plan - Button
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Edit reduction plan parameters
+        View->>Presenter: User right-clicks on a reduction plan the "Edit" button
+        Presenter->>View: Get the reduction plan name,index
+        Presenter->>Model: Send the reduction plan name,index
+        Note right of Model: Read the parameters of the reduction plan
+        Note right of Model: Update selected plan index to current
+        Model->>Presenter: Return the parameters
+        Presenter->>View: Display the parameters
+
+
+Delete a reduction plan - Button
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: Delete a reduction plan
+        View->>Presenter: User right-clicks on a reduction plan the "Delete" button
+        Note left of View: Info Message <Do you wan to delete the file from the folder?>
+        Presenter->>View: Get the reduction plan name,index
+        Presenter->>Model: Send the reduction plan name,index
+        Note right of Model: Delete the reduction plan
+        Note right of Model: Remove the reduction plan from the list
+        Note right of Model: update selected plan index
+
+
+Error message flow
+
+.. mermaid::
+
+    sequenceDiagram
+        participant View
+        participant Presenter
+        participant Model
+
+        Note over View,Model: New Reduction Plan
+        View->>Presenter: User clicks the "Create new Reduction Plan" button
+        Note left of View: Clear all parameters of the reduction plan screen
+        Presenter->>Model: Unselect current reduction plan
+        Note right of Model: Update selected plan index (-1)
+

@@ -79,7 +79,7 @@ The Presenter is described below. It is connected with one model and view.
     }
 
 
-The M-V-P interactions are described and grouped by functionality:
+The M-V-P interactions are described and grouped by major functionality:
 
 DataSource Initialization - Connect to OnCat
 

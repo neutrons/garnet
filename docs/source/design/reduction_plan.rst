@@ -11,20 +11,9 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
 .. mermaid::
 
  classDiagram
-    ReductionPlanListModel "1" o--"N" ReductionPlanModel
     ReductionPlanModel "N" -->"1" InstrumentModel
     ReductionPlanModel "1" *--"1" CalibrationModel
     ReductionPlanModel "1" *--"1" NormalizationModel
-
-    class ReductionPlanListModel{
-        -Number:selected_plan_index
-        -List~ReductionPlanModel~ reduction_plan_list
-        +add_reduction_plan()
-        +remove_reduction_plan()
-        +get_selected_plan()
-        +set_selected_plan()
-        +get_plans()
-    }
 
     class ReductionPlanModel{
         +String reduction_plan_name
