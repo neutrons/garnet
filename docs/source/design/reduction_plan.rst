@@ -1,6 +1,6 @@
 .. _reduction_plan:
 
-Reduction Plan Schema
+Reduction Plan Model
 =======================
 
 The Reduction Plan is described in `Data Dictionary Reduction Plan <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_FsGEMM9tEe6kustJDRk6kQ&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ>`_.
@@ -32,7 +32,10 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +create()
         +edit()
         +delete()
-
+        //(backend validation rules)
+        +validate_mask()
+        +validate_background()
+        +validate_run_ranges()
     }
 
     class InstrumentModel{
@@ -47,6 +50,9 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +create()
         +edit()
         +delete()
+        //(backend validation rules)
+        +validate_detector()
+        +validate_tube()
     }
 
     class NormalizationModel{
@@ -56,4 +62,11 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +create()
         +edit()
         +delete()
+        //(backend validation rules)
+        +validate_flux()
+        +validate_solid_angle()
     }
+
+The above validation functions check:
+    * whether the files exist
+    * the run range files exist in the instrument/experiment filepath.
