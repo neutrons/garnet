@@ -111,7 +111,7 @@ The M-V-P interactions are described and grouped by major functionality:
 .. _handle_datasource_filepath:
 
 #. DataSource Initialization - Absolute Path: handle_datasource_filepath(filepath)
-    Note: the instrument should be selected before.
+    Note: The instrument should already be selected.
 
     #. FileBrowser
         .. mermaid::

@@ -212,7 +212,7 @@ The View is described below:
             +QLineEdit:full_path_display
             +QButton-QFileDialog: file_browse_btn
             +get_full_path()
-            +validate_file()
+            +validate_file_extension()
             +set_starting_path_for_instrument()
             +show()
             +hide()
@@ -490,7 +490,7 @@ The M-V-P interactions are described and grouped by functionality:
 
     This can happen, when the user selects a specific file. UBMatrix does not have a starting path.
 
-    .. handle_instrument_selection:
+    .. _handle_instrument_selection:
 
     .. mermaid::
 

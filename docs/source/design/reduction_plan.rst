@@ -68,5 +68,5 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
     }
 
 The above validation functions check:
-    * whether the files exist
+    * whether the files exist and have the correct extension
     * the run range files exist in the instrument/experiment filepath.
