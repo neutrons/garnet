@@ -219,7 +219,7 @@ The View is described below:
         }
 
 All validation related to invalid and required fields for the reduction plan submit (Add/Edit) button
-are added here: 
+are added here:
 
     #. required parameters
     #. unique name among the reduction plan list
@@ -227,7 +227,7 @@ are added here:
     #. datasource file path format
 
 In case the selected reduction plan is in an invalid state, the next steps buttons/tabs are deactivated.
-A reduction plan is created only and only if is in a valid state. 
+A reduction plan is created only and only if is in a valid state.
 In any other case, the user has to fix the parameters.
 
 Tab Navigation:
@@ -315,7 +315,7 @@ The M-V-P interactions are described and grouped by functionality:
             Model->>Presenter: Return reduction plan
             Presenter->>View: Update reduction plan list table
             Note left of View: Display selected plan label
-            
+
             Note over View,Model: b. Save Reduction Plan - (Edit)
             View->>Presenter: User clicks the "Add/Edit" button
             Note left of View: Info Message <Do you want to update the file, too?>
@@ -327,7 +327,7 @@ The M-V-P interactions are described and grouped by functionality:
             Model->>Presenter: Return reduction plan
             Presenter->>View: Update reduction plan list table, if name changed
             Note left of View: Display selected plan label, if name changed
-        
+
 
 #. Load a reduction plan from file: handle_load_reduction_plan(reduction_plan_file)
     #. Valid case
@@ -353,7 +353,7 @@ The M-V-P interactions are described and grouped by functionality:
             Note left of View: Display parameters
             Note left of View: Display selected plan label
 
-    #. Invalid case - Invalid parameter values 
+    #. Invalid case - Invalid parameter values
 
         .. mermaid::
 
@@ -376,7 +376,7 @@ The M-V-P interactions are described and grouped by functionality:
                 Note left of View: Display parameter validation
                 Note over View,Model: Create reduction plan flow
 
-    #. Invalid case - Missing parameter fields (keys) 
+    #. Invalid case - Missing parameter fields (keys)
 
         .. mermaid::
 
@@ -484,10 +484,10 @@ The M-V-P interactions are described and grouped by functionality:
 
 #. Select Instrument: handle_instrument_selection(instrument)
     Besides the above flow that happens when the user selects an instrument, the starting path of the filebrowser dialogs are updated as following:
-    
+
         * for calibration section: /<facility>/<instrument>/shared/calibration
         * for vanadium section: /<facility>/<instrument>/shared/Vanadium
-    
+
     This can happen, when the user selects a specific file. UBMatrix does not have a starting path.
 
     .. handle_instrument_selection:
@@ -505,21 +505,21 @@ The M-V-P interactions are described and grouped by functionality:
             Presenter->>Model: Send instrument
             Note right of Model: Create new instrument, if it does not exist
             Note right of Model: Add new instrument in instrument_list, if it does not exist
-            Note right of Model: Store instrument in PyOnCat 
+            Note right of Model: Store instrument in PyOnCat
             Note right of Model: Get goniometer data from instrument's configuration
-            Note right of Model: Get wavelength data from instrument's configuration  
+            Note right of Model: Get wavelength data from instrument's configuration
             Note right of Model: Get grouping choices from instrument's configuration
             Note right of Model: Get calibration detector and tube data from instrument's configuration
             Note over View,Model: Show data
             Model->>Presenter: Return experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>Model: Get experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>View: Display data for instrument
-            Note left of View: Clear instrument-related fields: runs, plot,calibration and vanadium data 
+            Note left of View: Clear instrument-related fields: runs, plot,calibration and vanadium data
             Note left of View: Show experiments
             Note left of View: Show grouping
             Note left of View: Update Goniometer table and Wavelength data
             Note left of View: Display/Hide calibration detector and tube fields
-            
+
 #. Select Experiment: handle_experiment_selection(experiment). See :ref:`handle_experiment_selection <handle_experiment_selection>` .
 
 #. Select Run Range: handle_run_selection(run_range) See :ref:`handle_run_selection <handle_run_selection>` .
@@ -540,4 +540,3 @@ The M-V-P interactions are described and grouped by functionality:
             Model->>Presenter: Send error message
             Presenter->>View: Send error message
             Note left of View: Show error message
-
