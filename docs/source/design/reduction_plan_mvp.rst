@@ -301,7 +301,7 @@ The M-V-P interactions are described and grouped by functionality:
             Note left of View: Status Success Message <Create a new reduction plan.> (timeout=5sec)
 
     When the user first lands in the page, the Tab with be in this mode, too.
-    The success message is displayed in the status bar to indicate that the user is in the "Create mode" state. 
+    The success message is displayed in the status bar to indicate that the user is in the "Create mode" state.
     Success messages will disappear after 5 seconds.
 
 #. Create/Edit a reduction plan - Submit button: handle_submit_reduction_plan(reduction_plan_parameters)
