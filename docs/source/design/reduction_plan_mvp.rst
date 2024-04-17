@@ -20,7 +20,7 @@ The Model is described in detail:
         ReductionPlanTabModel "1" -->"1" PyOnCatModel
         ReductionPlanTabModel "1" o--"N<=6" InstrumentModel
         ReductionPlanListModel "1" o--"N" ReductionPlanModel
-        ReductionPlanModel "1" -->"1" InstrumentModel
+        ReductionPlanModel "N" -->"1" InstrumentModel
         PyOnCatModel "1" -->"1" InstrumentModel
 
         class ReductionPlanListModel{
@@ -63,7 +63,7 @@ Finally the runs of experiments with their fields based on the selected instrume
 information are stored (PyOnCatModel), too.
 The selected plan (ReductionPlanModel) is passed for the next step.
 
-There are a lot fo dependencies on the selected instrument. We might have to consider a way to encorfe user to select instrument,
+There are a lot fo dependencies on the selected instrument. We might have to consider a way to enforce user to select instrument,
 before they continue with any other parameter.
 
 ReductionPlanTab
@@ -83,6 +83,7 @@ The View is described below:
         ReductionPlanWidget "1" -->"1" NormalizationWidget
         ReductionPlanWidget "1" -->"1" CalibrationWidget
         ReductionPlanWidget "1" -->"1" BaseButton
+        ReductionPlanWidget "1" -->"1" BtnFileWidget
         DataSourceWidget"1" -->"1" PyOnCatBtnFileWidget
         PyOnCatBtnFileWidget"1" --|>"1" BtnFileWidget
         CalibrationWidget "1" o--"2" BtnFileWidget
@@ -131,8 +132,7 @@ The View is described below:
             +RunsWidget:runs
             +GoniometerWavelengthWidget:goniometer
             +CalibrationWidget:calibration
-            +QLabel:UB
-            +BtnFileWidget:ubfile
+            +BtnFileWidget: ub
             +QLabel:grouping_display
             +QComboBox:grouping
             +VanadiumWidget:vanadium
@@ -208,15 +208,21 @@ The View is described below:
         }
 
         class BtnFileWidget{
-            +QLabel: filename
-            +QLineEdit:full_path_display
+            -String: starting_path
+            -String: starts_with
+            -String: extension
+            +QLabel: filename_display
+            +QLineEdit:full_path
             +QButton-QFileDialog: file_browse_btn
             +get_full_path()
+            +sync_full_path()
             +validate_file_extension()
-            +set_starting_path_for_instrument()
+            +set_starting_path()
             +show()
             +hide()
         }
+
+The wireframe for the above class diagram is here: `Garnet Wireframe <https://balsamiq.cloud/sd2jtfw/prbeb2l/r2278>`_.
 
 All validation related to invalid and required fields for the reduction plan submit (Add/Edit) button
 are added here:
@@ -291,7 +297,12 @@ The M-V-P interactions are described and grouped by functionality:
             Presenter->>Model: Unselect current reduction plan
             Note right of Model: Update selected plan name ("")
             Model->>Presenter: Return status
+            Presenter->>View: Return status
+            Note left of View: Status Success Message <Create a new reduction plan.> (timeout=5sec)
 
+    When the user first lands in the page, the Tab with be in this mode, too.
+    The success message is displayed in the status bar to indicate that the user is in the "Create mode" state. 
+    Success messages will disappear after 5 seconds.
 
 #. Create/Edit a reduction plan - Submit button: handle_submit_reduction_plan(reduction_plan_parameters)
 
@@ -304,7 +315,8 @@ The M-V-P interactions are described and grouped by functionality:
 
             Note over View,Model: a. Save Reduction Plan - (Create)
             View->>Presenter: User clicks the "Add/Edit" button
-            Note left of View: Filebrowser Message <Select filepath to save the reduction plan> (unique)
+            Note left of View: Filebrowser Message set starting path
+            Note left of View: Filebrowser Message <Select filepath to save the reduction plan> (unique! do not override files!)
             Presenter->>View: Gather the reduction plan parameters
             Presenter->>Model: Send the reduction plan parameters
             Note right of Model: Validate the parameters
@@ -318,7 +330,7 @@ The M-V-P interactions are described and grouped by functionality:
 
             Note over View,Model: b. Save Reduction Plan - (Edit)
             View->>Presenter: User clicks the "Add/Edit" button
-            Note left of View: Info Message <Do you want to update the file, too?>
+            Note left of View: Info Message <Do you want to update the file, too? (1st vs nth time)>
             Presenter->>View: Gather the reduction plan parameters
             Presenter->>Model: Send the reduction plan parameters
             Note right of Model: Validate the parameters
@@ -328,6 +340,8 @@ The M-V-P interactions are described and grouped by functionality:
             Presenter->>View: Update reduction plan list table, if name changed
             Note left of View: Display selected plan label, if name changed
 
+(Need to verify) The starting path for saving a new reducion plan is: /<facility>/<instrument>/shared/<ipts>/garnet. Garnet folder
+needs to be created, if it does not exist.
 
 #. Load a reduction plan from file: handle_load_reduction_plan(reduction_plan_file)
     #. Valid case
@@ -414,6 +428,7 @@ The M-V-P interactions are described and grouped by functionality:
             Note right of Model: Update selected plan name (selected_plan="")
             Model->>Presenter: Return the parameters
             Presenter->>View: Update the parameters
+            Note left of View: Status Success Message <Create a new reduction plan.> (timeout=5sec)
             Note over View,Model: Create reduction plan flow
 
 #. Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_name)
@@ -453,6 +468,7 @@ The M-V-P interactions are described and grouped by functionality:
             Presenter->>Model: Send the reduction plan name
             Note right of Model: Set curent plan as selected (selected_plan=<name>)
             Model->>Presenter: Return status
+            Presenter->>View: Return status
             Note left of View: Display selected plan label
 
 
@@ -487,6 +503,7 @@ The M-V-P interactions are described and grouped by functionality:
 
         * for calibration section: /<facility>/<instrument>/shared/calibration
         * for vanadium section: /<facility>/<instrument>/shared/Vanadium
+        * for background and mask: /<facility>/<instrument>/shared/background/
 
     This can happen, when the user selects a specific file. UBMatrix does not have a starting path.
 
@@ -540,3 +557,5 @@ The M-V-P interactions are described and grouped by functionality:
             Model->>Presenter: Send error message
             Presenter->>View: Send error message
             Note left of View: Show error message
+
+    Error and warning messages are pop-up messages.

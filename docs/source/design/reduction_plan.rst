@@ -70,3 +70,23 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
 The above validation functions check:
     * whether the files exist and have the correct extension
     * the run range files exist in the instrument/experiment filepath.
+
+
+Below is the expected schema for the Reduction Plan saved in a file:
+
+.. mermaid::
+
+    classDiagram
+        class ReductionPlanFile{
+            +String Instrument
+            +Number Experiment
+            +String Run_Range
+            +String Grouping
+            +String UBFile
+            +String VanadiumFile
+            +String BackgroundFile
+            +String FluxFile
+            +String MaskFile
+            +String DetectorCalibration
+            +String TubeCalibration
+        }

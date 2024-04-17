@@ -193,7 +193,7 @@ The M-V-P interactions are described and grouped by major functionality:
 
             Note over View,Model: Update Grouped Runs (update_grouped_runs(use_cached_runs=True))
             Presenter->>Model: Get grouped runs for an experiment
-            Note right of Model: Get runs from OnCat, if they do not exist
+            Note right of Model: Get runs from OnCat/filepath folder, if they do not exist
             Note right of Model: Store run data and group runs by group field
             Model->>Presenter: Return grouped runs for an experiment
             Presenter->>View: Display grouped runs
@@ -233,7 +233,7 @@ The M-V-P interactions are described and grouped by major functionality:
             Note over View,Model: Update Grouped Runs
             View->>Presenter: User clicks the  "Refresh IPTS Runs" button
             Presenter->>Model: Get grouped runs for an experiment
-            Note right of Model: Get runs from OnCat
+            Note right of Model: Get runs from OnCat/filepath folder
             Note right of Model: Store run data and group runs by group field
             Model->>Presenter: Return grouped runs for an experiment
             Presenter->>View: Display grouped runs (see above)
