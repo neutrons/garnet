@@ -112,11 +112,9 @@ The View is described below:
         class ReductionPlanListWidget{
             <<QListWidget>>
             -QMenu:menu
-            +QAction:select
             +QAction:copy
             +QAction:edit
             +QAction:delete
-            +select_reduction_plan()
             +copy_reduction_plan()
             +edit_reduction_plan()
             +delete_reduction_plan()
@@ -231,6 +229,7 @@ are added here:
     #. unique name among the reduction plan list
     #. run range format
     #. datasource file path format
+    #. file format of every file in calibration, vanadium and ub sections
 
 In case the selected reduction plan is in an invalid state, the next steps buttons/tabs are deactivated.
 A reduction plan is created only and only if is in a valid state.
@@ -258,7 +257,6 @@ The Presenter is described below. It is connected with one model and view.
         +handle_load_reduction_plan(reduction_plan_file)
         +handle_copy_reduction_plan_parameters(reduction_plan_name)
         +handle_edit_reduction_plan(reduction_plan_name)
-        +handle_select_reduction_plan(reduction_plan_name)
         +handle_delete_reduction_plan(reduction_plan_name)
 
         (pyoncat related)
@@ -431,7 +429,7 @@ needs to be created, if it does not exist.
             Note left of View: Status Success Message <Create a new reduction plan.> (timeout=5sec)
             Note over View,Model: Create reduction plan flow
 
-#. Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_name)
+#. Select/Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_name)
 
     .. mermaid::
 
@@ -441,7 +439,7 @@ needs to be created, if it does not exist.
             participant Model
 
             Note over View,Model: Edit reduction plan parameters
-            View->>Presenter: User right-clicks on a reduction plan the "Edit" button
+            View->>Presenter: User left-clicks on a reduction plan
             Presenter->>View: Get the reduction plan name
             Presenter->>Model: Send the reduction plan name
             Note right of Model: Read the parameters of the reduction plan
@@ -449,28 +447,7 @@ needs to be created, if it does not exist.
             Model->>Presenter: Return the parameters
             Presenter->>View: Update the parameters
             Note left of View: Display selected plan label
-
-#. Select a reduction plan: handle_select_reduction_plan(reduction_plan_name)
-
-    Note: The order of the reduction plan on the widget is the same as the order of
-    the reduction plan list on the model side
-
-    .. mermaid::
-
-        sequenceDiagram
-            participant View
-            participant Presenter
-            participant Model
-
-            Note over View,Model: Select reduction
-            View->>Presenter: User left-clicks on a reduction plan
-            Presenter->>View: Get the reduction plan name
-            Presenter->>Model: Send the reduction plan name
-            Note right of Model: Set curent plan as selected (selected_plan=<name>)
-            Model->>Presenter: Return status
-            Presenter->>View: Return status
-            Note left of View: Display selected plan label
-
+            Note over View,Model: Edit reduction plan flow
 
 #. Delete a reduction plan - Button: handle_delete_reduction_plan(reduction_plan_name)
 
@@ -531,7 +508,7 @@ needs to be created, if it does not exist.
             Model->>Presenter: Return experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>Model: Get experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>View: Display data for instrument
-            Note left of View: Clear instrument-related fields: runs, plot,calibration and vanadium data
+            Note left of View: Clear instrument-related fields: runs, plot, calibration and vanadium data
             Note left of View: Show experiments
             Note left of View: Show grouping
             Note left of View: Update Goniometer table and Wavelength data
