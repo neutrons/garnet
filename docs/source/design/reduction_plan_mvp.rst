@@ -484,7 +484,7 @@ The M-V-P interactions are described and grouped by functionality:
 
 #. Select/Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_id)
 
-    .. mermaid::Create/Edit a reduction plan - Submit button
+    .. mermaid::
             participant Presenter
             participant Model
 
