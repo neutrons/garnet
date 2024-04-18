@@ -236,8 +236,7 @@ are added here:
 
     #. required parameters
     #. run range format
-    #. datasource file path format
-    #. file format of every file in calibration, vanadium and ub and reduction plan file sections
+    #. file path format of every file in: datasource, calibration, vanadium and ub and reduction plan file sections
 
 In case the selected reduction plan is in an invalid state, the next steps buttons/tabs are deactivated.
 A reduction plan is created only and only if it is in a valid state.
