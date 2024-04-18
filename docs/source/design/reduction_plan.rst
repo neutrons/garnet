@@ -16,6 +16,7 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
     ReductionPlanModel "1" *--"1" NormalizationModel
 
     class ReductionPlanModel{
+        -String reduction_plan_id
         +String reduction_plan_name
         +InstrumentModel instrument
         +String experiment
@@ -36,6 +37,7 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +validate_mask()
         +validate_background()
         +validate_run_ranges()
+        +reduction_plan_filepath()
     }
 
     class InstrumentModel{
@@ -67,10 +69,13 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +validate_solid_angle()
     }
 
-The above validation functions check:
+The above validation functions check the following before the Reduction Plan creation:
     * whether the files exist and have the correct extension
     * the run range files exist in the instrument/experiment filepath.
+    * the reduction plan filepath is unique. In case of a new reduction plan with an exisiting filepath warning message is sent to the user to ask whether they want to override the existing one.
+The reduction_plan_id is created and assigned during the Reduction Plan creation. It is a unique identifier that is passed along with the reduction plan name and any other necessary parameters between View and Model.
 
+In case any of the above do not pass, an error message is sent and displayed to the user.
 
 Below is the expected schema for the Reduction Plan saved in a file:
 
@@ -90,3 +95,9 @@ Below is the expected schema for the Reduction Plan saved in a file:
             +String DetectorCalibration
             +String TubeCalibration
         }
+
+* If the data fields and values are correct, a new reduction plan object is created and its values are send and siplayed to the user.
+
+* If the data values are missing or invalid, a reduction plan object is not created. The parameters are sent and displayed to the user to fix them. A corresponding error message is displayed to promt the user to edit the parameters and then save the reduction plan.
+
+* If data keys (fields) are missing, the file is considered corrupted. No parameters are loaded andan error message is sent and displayed to the user.

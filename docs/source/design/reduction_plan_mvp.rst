@@ -31,7 +31,6 @@ The Model is described in detail:
             +get_selected_plan()
             +set_selected_plan()
             +get_plans()
-            +validate_reduction_plan_names_unique()
 
         }
 
@@ -84,6 +83,7 @@ The View is described below:
         ReductionPlanWidget "1" -->"1" CalibrationWidget
         ReductionPlanWidget "1" -->"1" BaseButton
         ReductionPlanWidget "1" -->"1" BtnFileWidget
+        ReductionPlanWidget "1" -->"1" SaveBtnFileWidget
         DataSourceWidget"1" -->"1" PyOnCatBtnFileWidget
         PyOnCatBtnFileWidget"1" --|>"1" BtnFileWidget
         CalibrationWidget "1" o--"2" BtnFileWidget
@@ -111,6 +111,8 @@ The View is described below:
 
         class ReductionPlanListWidget{
             <<QListWidget>>
+            +String:reduction_plan_name
+            -String:reduction_plan_id
             -QMenu:menu
             +QAction:copy
             +QAction:edit
@@ -122,6 +124,7 @@ The View is described below:
         }
 
         class ReductionPlanWidget{
+            -String:reduction_plan_id
             +QLabel:name_display
             +QLineEdit:name
             +QLabel:instrument_display
@@ -134,12 +137,12 @@ The View is described below:
             +QLabel:grouping_display
             +QComboBox:grouping
             +VanadiumWidget:vanadium
+            +SaveBtnFileWidget:reduction_plan_save
             +BaseButton:reduction_plan_btn
             +create_reduction_plan()
             +update_data_for_instrument()
             +display_fields_for_instrument()
             +display_grouping_choices_for_instrument()
-            +validate_reduction_plan_names_unique()
 
         }
 
@@ -205,6 +208,12 @@ The View is described below:
             +update_full_path()
         }
 
+
+        class SaveBtnFileWidget{
+            <<BtnFileWidget>>
+            +create_starting_folder()
+        }
+
         class BtnFileWidget{
             -String: starting_path
             -String: starts_with
@@ -226,13 +235,12 @@ All validation related to invalid and required fields for the reduction plan sub
 are added here:
 
     #. required parameters
-    #. unique name among the reduction plan list
     #. run range format
     #. datasource file path format
-    #. file format of every file in calibration, vanadium and ub sections
+    #. file format of every file in calibration, vanadium and ub and reduction plan file sections
 
 In case the selected reduction plan is in an invalid state, the next steps buttons/tabs are deactivated.
-A reduction plan is created only and only if is in a valid state.
+A reduction plan is created only and only if it is in a valid state.
 In any other case, the user has to fix the parameters.
 
 Tab Navigation:
@@ -254,10 +262,11 @@ The Presenter is described below. It is connected with one model and view.
         (reduction plan related)
         +handle_new_reduction_plan()
         +handle_submit_reduction_plan(reduction_plan_parameters)
+        +get_starting_path_for_reduction_plan(instrument,experiment)
         +handle_load_reduction_plan(reduction_plan_file)
-        +handle_copy_reduction_plan_parameters(reduction_plan_name)
-        +handle_edit_reduction_plan(reduction_plan_name)
-        +handle_delete_reduction_plan(reduction_plan_name)
+        +handle_copy_reduction_plan_parameters(reduction_plan_id)
+        +handle_edit_reduction_plan(reduction_plan_id)
+        +handle_delete_reduction_plan(reduction_plan_id)
 
         (pyoncat related)
         +handle_oncat_connection()
@@ -275,6 +284,20 @@ Most of them are triggered by a User's action on the View, e.g. by clicking a bu
 the related function is called, where the majority of the flow between M-V is coordinated.
 The details are presented in the next section.
 
+In the first screen various functionality and states are accomplished:
+    * List of Reduction Plans
+    * Create a Reduction Plan
+    * Edit a Reduction Plan
+    * Copy the Parameters of a Reduction Plan
+    * Delete a Reduction Plan
+    * Show the selected Reduction Plan
+The selected_reduction_plan (name) label in the View should always be in sync with the selected_plan (id) in the Model side.
+The selected_plan field stores the unique identifier (id) of the selected (current) valid ReductionPlan object that the User can see.
+
+To distinsguish between the states: Create and Edit, we check the selected_plan field in ReductionPlanListModel.
+    * If there is no selected plan, we are in Create state. Users need to provide a unique filepath in this state, else a Warning Message pop-up <File already exists. Do you want to override it?>.
+    * If there is a selected plan, we are in Edit state. Users cannot update the filepath in this state.
+
 M-V-P Interactions
 --------------------
 
@@ -288,17 +311,16 @@ The M-V-P interactions are described and grouped by functionality:
             participant View
             participant Presenter
             participant Model
-
             Note over View,Model: New Reduction Plan
             View->>Presenter: User clicks the "Create new Reduction Plan" button
             Presenter->>View: Clear all parameters of the reduction plan screen
             Presenter->>Model: Unselect current reduction plan
-            Note right of Model: Update selected plan name ("")
+            Note right of Model: Update selected plan id ("")
             Model->>Presenter: Return status
             Presenter->>View: Return status
             Note left of View: Status Success Message <Create a new reduction plan.> (timeout=5sec)
 
-    When the user first lands in the page, the Tab with be in this mode, too.
+    When the user first lands in the page, the Tab is in this mode, too.
     The success message is displayed in the status bar to indicate that the user is in the "Create mode" state.
     Success messages will disappear after 5 seconds.
 
@@ -313,36 +335,29 @@ The M-V-P interactions are described and grouped by functionality:
 
             Note over View,Model: a. Save Reduction Plan - (Create)
             View->>Presenter: User clicks the "Add/Edit" button
-            Note left of View: Filebrowser Message set starting path
-            Note left of View: Filebrowser Message <Select filepath to save the reduction plan> (unique! do not override files!)
             Presenter->>View: Gather the reduction plan parameters
             Presenter->>Model: Send the reduction plan parameters
-            Note right of Model: Validate the parameters
+            Note right of Model: Validate the parameters, unique filepath for new reduction plan
             Note right of Model: Create new reduction plan
             Note right of Model: Create new reduction plan file and store the reduction plan parameters
             Note right of Model: Add the reduction plan in the reduction plan list
-            Note right of Model: Set curent plan as selected (selected_plan=<name>)
+            Note right of Model: Set curent plan as selected (selected_plan=<id>)
             Model->>Presenter: Return reduction plan
-            Presenter->>View: Update reduction plan list table
+            Presenter->>View: Update reduction plan list table with new item(id,name)
             Note left of View: Display selected plan label
 
             Note over View,Model: b. Save Reduction Plan - (Edit)
             View->>Presenter: User clicks the "Add/Edit" button
-            Note left of View: Info Message <Do you want to update the file, too? (1st vs nth time)>
             Presenter->>View: Gather the reduction plan parameters
             Presenter->>Model: Send the reduction plan parameters
             Note right of Model: Validate the parameters
             Note right of Model: Edit selected reduction plan with parameters
             Note right of Model: Edit the reduction plan file with the reduction plan parameters
             Model->>Presenter: Return reduction plan
-            Presenter->>View: Update reduction plan list table, if name changed
+            Presenter->>View: Update reduction plan list table item, if name changed
             Note left of View: Display selected plan label, if name changed
 
-(Need to verify) The starting path for saving a new reducion plan is: /<facility>/<instrument>/shared/<ipts>/garnet. Garnet folder
-needs to be created, if it does not exist.
-
-#. Load a reduction plan from file: handle_load_reduction_plan(reduction_plan_file)
-    #. Valid case
+#. Get the starting folder path for the reduction plan: get_starting_path_for_reduction_plan(instrument,experiment)
 
     .. mermaid::
 
@@ -351,19 +366,54 @@ needs to be created, if it does not exist.
             participant Presenter
             participant Model
 
-            Note over View,Model: Load a reduction plan
-            View->>Presenter: User clicks the "Load Reduction Plan" button and selects a file
-            Presenter->>View: Get the filepath
-            Presenter->>Model: Send the filepath
-            Note right of Model: Read the parameters from the file
-            Note right of Model: Validate the parameters
-            Note right of Model: Create new reduction plan
-            Note right of Model: Add the reduction plan in the reduction plan list
-            Note right of Model: Set curent plan as selected
-            Model->>Presenter: Return reduction plan
-            Presenter->>View: Update reduction plan parameters and list table
-            Note left of View: Display parameters
-            Note left of View: Display selected plan label
+            Note over View,Model: Create Recommended Reduction Plan Folder File
+            View->>Presenter: User clicks the "Reduction Plan FilePath Select" button
+            Presenter->>View: Gather instrument and experiment
+            Presenter->>Model: Send the instrument and experiment
+            Note right of Model: Create the filepath format </<facility>/<instrument>/shared/<ipts>/garnet>, from parameters and instrument configurations
+            Note right of Model: Create the garnet folder in the filepath, if it does not exist
+            Model->>Presenter: Return the full filepath
+            Presenter->>View: Set the starting path of the FileBrowser dialog
+            Note left of View: Display the path in the filesystem to the user
+
+    If the user has selected an instrument and experiment, then the recommended starting path for saving the reduction plan file is at:
+    /<facility>/<instrument>/shared/<ipts>/garnet. The garnet folder needs to be created, if it does not exist.
+    If the user has not selected an instrument yet, a default option should appear.
+
+    The starting paths of the filebrowser dialogs for the following are updated too:
+
+        * for calibration section: /<facility>/<instrument>/shared/calibration
+        * for vanadium section: /<facility>/<instrument>/shared/Vanadium
+        * for background and mask: /<facility>/<instrument>/shared/background/
+
+    The starting paths can be set, when the user click the corresponding button and selects a specific file (same flow as above). No folder creation occurs in this case.
+
+    (UBMatrix does not have a starting path.)
+
+#. Load a reduction plan from file: handle_load_reduction_plan(reduction_plan_file)
+    #. Valid case
+
+        .. mermaid::
+
+            sequenceDiagram
+                participant View
+                participant Presenter
+                participant Model
+
+                Note over View,Model: Load a reduction plan
+                View->>Presenter: User clicks the "Load Reduction Plan" button and selects a file
+                Presenter->>View: Get the filepath
+                Presenter->>Model: Send the filepath
+                Note right of Model: Read the parameters from the file
+                Note right of Model: Validate the parameters
+                Note right of Model: Create new reduction plan
+                Note right of Model: Add the reduction plan in the reduction plan list
+                Note right of Model: Set curent plan as selected
+                Model->>Presenter: Return reduction plan
+                Presenter->>View: Update reduction plan parameters and list table
+                Note left of View: Display parameters
+                Note left of View: Display selected plan label
+                Note over View,Model: Edit reduction plan flow
 
     #. Invalid case - Invalid parameter values
 
@@ -384,7 +434,7 @@ needs to be created, if it does not exist.
                 Note right of Model: Set curent plan as selected("")
                 Model->>Presenter: Return error message
                 Presenter->>View: Show error message
-                Note left of View: Warning Message <The reduction plan was not saved. Please correct the issue and save it.>
+                Note left of View: Information Message <The reduction plan was not saved. Please correct the issue and save it.>
                 Note left of View: Display parameter validation
                 Note over View,Model: Create reduction plan flow
 
@@ -408,7 +458,7 @@ needs to be created, if it does not exist.
                 Presenter->>View: Show error message
                 Note left of View: Error Message <The reduction plan was not loaded. Corrupted file schema.>
 
-#. Copy the parameters of a reduction plan: handle_copy_reduction_plan_parameters(reduction_plan_name)
+#. Copy the parameters of a reduction plan: handle_copy_reduction_plan_parameters(reduction_plan_id)
 
     .. mermaid::
 
@@ -422,34 +472,34 @@ needs to be created, if it does not exist.
             Presenter->>View: Get the reduction plan name
             Presenter->>Model: Send the reduction plan name
             Note right of Model: Read the parameters of the reduction plan
-            Note right of Model: Modify the new reduction plan name to <name>_<number> (unique)
-            Note right of Model: Update selected plan name (selected_plan="")
+            Note right of Model: Update selected plan id (selected_plan="")
             Model->>Presenter: Return the parameters
             Presenter->>View: Update the parameters
+            Presenter->>View: Update the reduction name to <name> Clone (unique)
             Note left of View: Status Success Message <Create a new reduction plan.> (timeout=5sec)
             Note over View,Model: Create reduction plan flow
 
-#. Select/Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_name)
+    This is a "Create" state variation with initial parameters filled in from another Reduction Plan.
+    The reduction plan name and filepath need to be updated from the user to create the cloned reduction plan.
 
-    .. mermaid::
+#. Select/Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_id)
 
-        sequenceDiagram
-            participant View
+    .. mermaid::Create/Edit a reduction plan - Submit button
             participant Presenter
             participant Model
 
             Note over View,Model: Edit reduction plan parameters
             View->>Presenter: User left-clicks on a reduction plan
-            Presenter->>View: Get the reduction plan name
-            Presenter->>Model: Send the reduction plan name
+            Presenter->>View: Get the reduction plan id
+            Presenter->>Model: Send the reduction plan id
             Note right of Model: Read the parameters of the reduction plan
-            Note right of Model: Update selected plan name to current (selected_plan=<name>)
+            Note right of Model: Update selected plan id to current (selected_plan=<id>)
             Model->>Presenter: Return the parameters
             Presenter->>View: Update the parameters
             Note left of View: Display selected plan label
             Note over View,Model: Edit reduction plan flow
 
-#. Delete a reduction plan - Button: handle_delete_reduction_plan(reduction_plan_name)
+#. Delete a reduction plan - Button: handle_delete_reduction_plan(reduction_plan_id)
 
     .. mermaid::
 
@@ -461,8 +511,8 @@ needs to be created, if it does not exist.
             Note over View,Model: Delete a reduction plan
             View->>Presenter: User right-clicks on a reduction plan the "Delete" button
             Note left of View: Info Message <Do you want to delete the file from the folder?>
-            Presenter->>View: Get the reduction plan name
-            Presenter->>Model: Send the reduction plan name
+            Presenter->>View: Get the reduction plan id
+            Presenter->>Model: Send the reduction plan id
             Note right of Model: Remove the reduction plan from the list
             Note right of Model: Remove the reduction plan file, if selected yes
             Note right of Model: Update selected plan to "", if this is the current one
@@ -476,13 +526,6 @@ needs to be created, if it does not exist.
 
 
 #. Select Instrument: handle_instrument_selection(instrument)
-    Besides the above flow that happens when the user selects an instrument, the starting path of the filebrowser dialogs are updated as following:
-
-        * for calibration section: /<facility>/<instrument>/shared/calibration
-        * for vanadium section: /<facility>/<instrument>/shared/Vanadium
-        * for background and mask: /<facility>/<instrument>/shared/background/
-
-    This can happen, when the user selects a specific file. UBMatrix does not have a starting path.
 
     .. _handle_instrument_selection:
 
@@ -508,7 +551,6 @@ needs to be created, if it does not exist.
             Model->>Presenter: Return experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>Model: Get experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>View: Display data for instrument
-            Note left of View: Clear instrument-related fields: runs, plot, calibration and vanadium data
             Note left of View: Show experiments
             Note left of View: Show grouping
             Note left of View: Update Goniometer table and Wavelength data
@@ -520,7 +562,31 @@ needs to be created, if it does not exist.
 
 #. Refresh IPTS Runs: update_grouped_runs(use_cached_runs=False) See :ref:`update_grouped_runs <update_grouped_runs>` .
 
-#. Error message flow
+
+#. Warning message flow from Model
+
+    .. mermaid::
+
+        sequenceDiagram
+            participant View
+            participant Presenter
+            participant Model
+
+            Note over View,Model: Error detected during data processing
+            Note right of Model: Create Warning message
+            Model->>Presenter: Send warning message
+            Presenter->>View: Send warning message
+            Note left of View: Show warning message
+            Presenter->>View: Get user input
+            Presenter->>Model: Send user input
+            Note right of Model: Continue or Interrupt flow
+
+    A warning message pop-up appears during the normal workflow to ask the user whether they want to proceed with the worflow or interrup.
+        * If the user chooses to continue, then the warning is disregarded and the worflow continues.
+        * If the user chooses to stop, the workflow is interrupted and the users returns to the previous state.
+
+
+#. Error message flow from Model
 
     .. mermaid::
 
