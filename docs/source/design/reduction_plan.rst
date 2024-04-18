@@ -70,9 +70,11 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
     }
 
 The above validation functions check the following before the Reduction Plan creation:
+
     * whether the files exist and have the correct extension
     * the run range files exist in the instrument/experiment filepath.
     * the reduction plan filepath is unique. In case of a new reduction plan with an exisiting filepath warning message is sent to the user to ask whether they want to override the existing one.
+
 The reduction_plan_id is created and assigned during the Reduction Plan creation. It is a unique identifier that is passed along with the reduction plan name and any other necessary parameters between View and Model.
 
 In case any of the above do not pass, an error message is sent and displayed to the user.

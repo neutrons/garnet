@@ -86,6 +86,7 @@ The View is described below:
         ReductionPlanWidget "1" -->"1" SaveBtnFileWidget
         DataSourceWidget"1" -->"1" PyOnCatBtnFileWidget
         PyOnCatBtnFileWidget"1" --|>"1" BtnFileWidget
+        SaveBtnFileWidget"1" --|>"1" BtnFileWidget
         CalibrationWidget "1" o--"2" BtnFileWidget
         NormalizationWidget "1" o--"4" BtnFileWidget
 
@@ -284,12 +285,14 @@ the related function is called, where the majority of the flow between M-V is co
 The details are presented in the next section.
 
 In the first screen various functionality and states are accomplished:
+
     * List of Reduction Plans
     * Create a Reduction Plan
     * Edit a Reduction Plan
     * Copy the Parameters of a Reduction Plan
     * Delete a Reduction Plan
     * Show the selected Reduction Plan
+
 The selected_reduction_plan (name) label in the View should always be in sync with the selected_plan (id) in the Model side.
 The selected_plan field stores the unique identifier (id) of the selected (current) valid ReductionPlan object that the User can see.
 
