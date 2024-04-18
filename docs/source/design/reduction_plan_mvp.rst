@@ -56,13 +56,13 @@ The Model is described in detail:
 
 
 The ReductionPlanListModel model contains the user's reduction plans and the one selected for
-data reduction in further steps (ReductionPlanListModel). Additionally, it maintains the list
+data reduction in further steps (ReductionPlanModel). Additionally, it maintains the list
 of the instruments (InstrumentModel) generated during the reduction plan creation process per user's selections.
 Finally the runs of experiments with their fields based on the selected instrument and OnCat-related
 information are stored (PyOnCatModel), too.
 The selected plan (ReductionPlanModel) is passed for the next step.
 
-There are a lot fo dependencies on the selected instrument. We might have to consider a way to enforce user to select instrument,
+There are a lot of dependencies on the selected instrument. We might have to consider a way to enforce user to select instrument,
 before they continue with any other parameter.
 
 ReductionPlanTab
@@ -484,6 +484,9 @@ The M-V-P interactions are described and grouped by functionality:
 #. Select/Edit a reduction plan - Button: handle_edit_reduction_plan(reduction_plan_id)
 
     .. mermaid::
+
+        sequenceDiagram
+            participant View
             participant Presenter
             participant Model
 
