@@ -300,6 +300,20 @@ To distinsguish between the states: Create and Edit, we check the selected_plan 
     * If there is no selected plan, we are in Create state. Users need to provide a unique filepath in this state, else a Warning Message pop-up <File already exists. Do you want to override it?>.
     * If there is a selected plan, we are in Edit state. Users cannot update the filepath in this state.
 
+Additionally, the following functionality related to experimentdat data is accomplished through PyOnCat:
+    * OnCat connection
+    * Read the same metadata as OnCat, without connecting, by going through the files of a user-specified folder
+    * List of Experiments per instrument
+    * List of Runs per experiment
+    * Run meta data retrieval per run
+    * Group run per specific field and display them
+    * Retrieve grouped run per users trigger-button
+    * Plot creation based on the run meta data
+
+Details are described  here  :ref:`PyOnCatModelMVP <pyoncat_mvp>`.
+
+.. _reduction_mvpi:
+
 M-V-P Interactions
 --------------------
 
@@ -525,14 +539,12 @@ The M-V-P interactions are described and grouped by functionality:
             Presenter->>View: Update reduction plan list table
             Presenter->> View: Update selected plan label, if this is the current one
 
-#. Connect to OnCat: handle_oncat_connection(username, password). See :ref:`handle_oncat_connection <handle_oncat_connection>` .
+#. Connect to OnCat: handle_oncat_connection(username, password). See :ref:`handle_oncat_connection <oncat_mvpi>` .
 
-#. DataSource Absolute Path: handle_datasource_filepath(filepath). See :ref:`handle_datasource_filepath <handle_datasource_filepath>` .
+#. DataSource Absolute Path: handle_datasource_filepath(filepath). See :ref:`handle_datasource_filepath <oncat_mvpi>` .
 
 
 #. Select Instrument: handle_instrument_selection(instrument)
-
-    .. _handle_instrument_selection:
 
     .. mermaid::
 
@@ -561,11 +573,11 @@ The M-V-P interactions are described and grouped by functionality:
             Note left of View: Update Goniometer table and Wavelength data
             Note left of View: Display/Hide calibration detector and tube fields
 
-#. Select Experiment: handle_experiment_selection(experiment). See :ref:`handle_experiment_selection <handle_experiment_selection>` .
+#. Select Experiment: handle_experiment_selection(experiment). See :ref:`handle_experiment_selection <oncat_mvpi>` .
 
-#. Select Run Range: handle_run_selection(run_range) See :ref:`handle_run_selection <handle_run_selection>` .
+#. Select Run Range: handle_run_selection(run_range) See :ref:`handle_run_selection <oncat_mvpi>` .
 
-#. Refresh IPTS Runs: update_grouped_runs(use_cached_runs=False) See :ref:`update_grouped_runs <update_grouped_runs>` .
+#. Refresh IPTS Runs: update_grouped_runs(use_cached_runs=False) See :ref:`update_grouped_runs <oncat_mvpi>` .
 
 
 #. Warning message flow from Model

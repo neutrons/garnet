@@ -1,4 +1,4 @@
-.. _pyocat_mvp:
+.. _pyoncat_mvp:
 
 PyOnCat Model-View-Presenter
 ==============================
@@ -55,9 +55,6 @@ The ReductionPlanWidget contains only elements relevant to pyoncat data.
         +validate_run_ranges_format()
     }
 
-
-
-
 Presenter related to PyOnCat
 -----------------------------
 
@@ -78,13 +75,28 @@ The Presenter is described below.
         +handle_run_selection(run_range)
     }
 
+Through this component that can is part of the ReductionPlanTab, the users retrieve data about experiments and runs
+by either connecting to OnCat or navigating to a directory in their local environment (directory format). The
+following are supported and their interactions afre described in detail in the next section:
+
+    * OnCat connection/login dialog
+    * Access data with OnCat and by going through the files of a user-specified folder
+    * List of Experiments per instrument with and without OnCat connection
+    * List of Runs per experiment with and without OnCat connection
+    * Run meta data retrieval with and without OnCat connection
+    * Group run per specific field and display them
+    * Retrieve grouped run per user's trigger-button
+    * Plot creation based on the run meta data
+
+The experiments and runs are retrieved and saved on User-request based on the current instrument and experiment selection.
+
+..  _oncat_mvpi:
+
 
 M-V-P Interactions
 --------------------
 
 The M-V-P interactions are described and grouped by major functionality:
-
-..  _handle_oncat_connection:
 
 #. DataSource Initialization - Connect to OnCat: handle_oncat_connection(username, password)
 
@@ -108,7 +120,6 @@ The M-V-P interactions are described and grouped by major functionality:
             Model->>Presenter: Return pyoncat agent
             Presenter->>View: Display oncat connection status
 
-.. _handle_datasource_filepath:
 
 #. DataSource Initialization - Absolute Path: handle_datasource_filepath(filepath)
     Note: The instrument should already be selected.
@@ -152,7 +163,7 @@ The M-V-P interactions are described and grouped by major functionality:
                 Note over View,Model: Show grouped runs (see below)
 
 
-#. Data fetch - Select Instrument: handle_instrument_selection(instrument) (partial flow). See :ref:`handle_instrument_selection <handle_instrument_selection>` for the full flow
+#. Data fetch - Select Instrument: handle_instrument_selection(instrument) (partial flow). See :ref:`handle_instrument_selection <reduction_mvpi>` for the full flow
 
     .. mermaid::
 
@@ -172,7 +183,6 @@ The M-V-P interactions are described and grouped by major functionality:
             Note right of Model: Get experiment from OnCat, if it does not exist
             Presenter->>View: Display experiments
 
-.. _handle_experiment_selection:
 
 #. Data fetch - Select Experiment: handle_experiment_selection(experiment)
 
@@ -198,7 +208,6 @@ The M-V-P interactions are described and grouped by major functionality:
             Model->>Presenter: Return grouped runs for an experiment
             Presenter->>View: Display grouped runs
 
-.. _handle_run_selection:
 
 #. Data fetch - Select Run Range: handle_run_selection(run_range)
     User can retrieve runs either from OnCat or from a directory by reading each file separately. The later
@@ -219,7 +228,6 @@ The M-V-P interactions are described and grouped by major functionality:
             Model->>Presenter: Return calculated plot data
             Presenter->>View: Display plot
 
-.. _update_grouped_runs:
 
 #. Data fetch - Refresh IPTS Runs: update_grouped_runs(use_cached_runs=False)
 

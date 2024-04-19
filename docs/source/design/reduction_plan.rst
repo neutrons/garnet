@@ -98,7 +98,7 @@ Below is the expected schema for the Reduction Plan saved in a file:
             +String TubeCalibration
         }
 
-* If the data fields and values are correct, a new reduction plan object is created and its values are send and siplayed to the user.
+* If the data fields and values are correct, a new reduction plan object is created and its values are send and displayed to the user.
 
 * If the data values are missing or invalid, a reduction plan object is not created. The parameters are sent and displayed to the user to fix them. A corresponding error message is displayed to promt the user to edit the parameters and then save the reduction plan.
 
