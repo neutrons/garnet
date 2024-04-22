@@ -34,3 +34,5 @@ The Instrument model is described in `Data Dictionary Instrument Configuration <
         +String field_name
         +String oncat_meta_field
     }
+
+The Instrument is created from the InstrumentConfiguration Settings.

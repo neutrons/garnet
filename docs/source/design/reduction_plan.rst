@@ -21,6 +21,7 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +InstrumentModel instrument
         +String experiment
         +String run_range
+        +List~Number~ wavelength
         +String mask_filepath
         +String background_filepath
         +String grouping
@@ -86,8 +87,9 @@ Below is the expected schema for the Reduction Plan saved in a file:
     classDiagram
         class ReductionPlanFile{
             +String Instrument
+            +List~Number~ Wavelength
             +Number Experiment
-            +String Run_Range
+            +String RunRange
             +String Grouping
             +String UBFile
             +String VanadiumFile
@@ -96,10 +98,15 @@ Below is the expected schema for the Reduction Plan saved in a file:
             +String MaskFile
             +String DetectorCalibration
             +String TubeCalibration
+            +String SolidAngle
         }
 
-* If the data fields and values are correct, a new reduction plan object is created and its values are send and displayed to the user.
+The datapath of the files are saved in the reduction plan file. The Instrument contains the name of the instrument. When the reduction plan file is loaded in Garnet, the instrument name is used to create the new Instrument (if it does not exist).
 
-* If the data values are missing or invalid, a reduction plan object is not created. The parameters are sent and displayed to the user to fix them. A corresponding error message is displayed to promt the user to edit the parameters and then save the reduction plan.
+Reduction pla file validation rules:
 
-* If data keys (fields) are missing, the file is considered corrupted. No parameters are loaded andan error message is sent and displayed to the user.
+    * If the data fields and values are correct, a new reduction plan object is created and its values are send and displayed to the user.
+
+    * If the data values are missing or invalid, a reduction plan object is not created. The parameters are sent and displayed to the user to fix them. A corresponding error message is displayed to promt the user to edit the parameters and then save the reduction plan.
+
+    * If data keys (fields) are missing, the file is considered corrupted. No parameters are loaded andan error message is sent and displayed to the user.

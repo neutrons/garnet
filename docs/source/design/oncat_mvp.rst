@@ -86,9 +86,10 @@ following are supported and their interactions afre described in detail in the n
     * Run meta data retrieval with and without OnCat connection
     * Group run per specific field and display them
     * Retrieve grouped run per user's trigger-button
-    * Plot creation based on the run meta data
+    * Plot creation based on the run meta data, when user is connected to OnCat
 
-The experiments and runs are retrieved and saved on User-request based on the current instrument and experiment selection.
+The experiments and runs are retrieved and saved on User-requested base on the current instrument and experiment selection.
+The danger here, would be that if the user, keeps selecting instrument and experiments, the data will be stored in the backed and thus increasing the application's memory usage.
 
 ..  _oncat_mvpi:
 
@@ -184,7 +185,11 @@ The M-V-P interactions are described and grouped by major functionality:
             Presenter->>View: Display experiments
 
 
-#. Data fetch - Select Experiment: handle_experiment_selection(experiment)
+#. Data fetch - Select Experiment: handle_experiment_selection(experiment) (partial flow). See :ref:`handle_experiment_selection <reduction_mvpi>` for the full flow
+
+    UserS can retrieve runs either from OnCat or from a directory by reading each file separately. The later
+    might be memory and/or cpu intensive. We will have to include some TimeoutError exception or similar to avoid having the program hanging.
+    In that case the runs table will be empty.
 
     .. mermaid::
 
@@ -210,9 +215,7 @@ The M-V-P interactions are described and grouped by major functionality:
 
 
 #. Data fetch - Select Run Range: handle_run_selection(run_range)
-    User can retrieve runs either from OnCat or from a directory by reading each file separately. The later
-    might be memory and/or cpu intensive. We will have to include some TimeoutError exception or similar to avoid havig the program hanging.
-    In that case the plot and runs table will be empty.
+    The plot is calculated and displayed only when the user is connected to OnCat, else it is left empty.
 
     .. mermaid::
 
@@ -222,6 +225,7 @@ The M-V-P interactions are described and grouped by major functionality:
             participant Model
             Note over View,Model: Handle Run Selection
             View->>Presenter: User sets run range
+            Note left of View: Validate run range
             Presenter->>View: Get run range
             Presenter->>Model: Send run range
             Note right of Model: Calculate plot data

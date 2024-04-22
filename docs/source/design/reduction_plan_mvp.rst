@@ -303,12 +303,12 @@ To distinsguish between the states: Create and Edit, we check the selected_plan 
 Additionally, the following functionality related to experimentdat data is accomplished through PyOnCat:
     * OnCat connection
     * Read the same metadata as OnCat, without connecting, by going through the files of a user-specified folder
-    * List of Experiments per instrument
-    * List of Runs per experiment
-    * Run meta data retrieval per run
-    * Group run per specific field and display them
+    * List of Experiments per Selected Instrument(s)
+    * List of Runs per Selected Experiment(s)
+    * Run meta data retrieval for every Run of the Selected Experiment(s)
+    * Group Runs per specific field and display them
     * Retrieve grouped run per users trigger-button
-    * Plot creation based on the run meta data
+    * Plot creation based on the Runs' meta data
 
 Details are described  here  :ref:`PyOnCatModelMVP <pyoncat_mvp>`.
 
@@ -395,16 +395,6 @@ The M-V-P interactions are described and grouped by functionality:
     If the user has selected an instrument and experiment, then the recommended starting path for saving the reduction plan file is at:
     /<facility>/<instrument>/shared/<ipts>/garnet. The garnet folder needs to be created, if it does not exist.
     If the user has not selected an instrument yet, a default option should appear.
-
-    The starting paths of the filebrowser dialogs for the following are updated too:
-
-        * for calibration section: /<facility>/<instrument>/shared/calibration
-        * for vanadium section: /<facility>/<instrument>/shared/Vanadium
-        * for background and mask: /<facility>/<instrument>/shared/background/
-
-    The starting paths can be set, when the user click the corresponding button and selects a specific file (same flow as above). No folder creation occurs in this case.
-
-    (UBMatrix does not have a starting path.)
 
 #. Load a reduction plan from file: handle_load_reduction_plan(reduction_plan_file)
     #. Valid case
@@ -564,16 +554,53 @@ The M-V-P interactions are described and grouped by functionality:
             Note right of Model: Get wavelength data from instrument's configuration
             Note right of Model: Get grouping choices from instrument's configuration
             Note right of Model: Get calibration detector and tube data from instrument's configuration
+            Note right of Model: Get/Create starting directory paths for calibation, vanadium, background and mask from instrument's configuration
             Note over View,Model: Show data
             Model->>Presenter: Return experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>Model: Get experiments, goniometer, wavelength and calibration data for instrument
             Presenter->>View: Display data for instrument
             Note left of View: Show experiments
             Note left of View: Show grouping
-            Note left of View: Update Goniometer table and Wavelength data
+            Note left of View: Update goniometer table and wavelength data
             Note left of View: Display/Hide calibration detector and tube fields
+            Note left of View: Set starting directory paths for calibation, vanadium, background and mask
 
-#. Select Experiment: handle_experiment_selection(experiment). See :ref:`handle_experiment_selection <oncat_mvpi>` .
+
+    The starting directory paths of the filebrowser dialogs for the following are updated:
+
+        * for calibration section: /<facility>/<instrument>/shared/calibration
+        * for vanadium and mask section: /<facility>/<instrument>/shared/Vanadium
+        * for background: /<facility>/<instrument>/shared/Background/
+
+    The starting paths for calibration, vanadium background and mask sections are retrieved from the Instrument Configuration Settings. No folder creation occurs in this case.
+
+
+#. Select Experiment: handle_experiment_selection(experiment).
+
+    .. mermaid::
+
+        sequenceDiagram
+            participant View
+            participant Presenter
+            participant Model
+            Note over View,Model: Handle Experiment Selection
+            View->>Presenter: User selects experiment
+            Presenter->>View: Get experiment
+            Presenter->>Model: Send experiment
+            Note right of Model: Store experiment
+            Note right of Model: Generate and Store data source filepath
+            Model->>Presenter: Return data source filepath
+            Presenter->>View: Display data source filepath
+            Note left of View: Create/Set starting directory paths for UB Matrix
+
+            Note over View,Model: Update Grouped Runs (update_grouped_runs(use_cached_runs=True))
+            Presenter->>Model: Get grouped runs for an experiment
+            Note right of Model: Get runs from OnCat/filepath folder, if they do not exist
+            Note right of Model: Store run data and group runs by group field
+            Model->>Presenter: Return grouped runs for an experiment
+            Presenter->>View: Display grouped runs
+
+    The starting path format for UB matrix: /<facility>/<instrument>/IPTS-<experiment>/shared
 
 #. Select Run Range: handle_run_selection(run_range) See :ref:`handle_run_selection <oncat_mvpi>` .
 
