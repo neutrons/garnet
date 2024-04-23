@@ -187,7 +187,7 @@ The M-V-P interactions are described and grouped by major functionality:
 
 #. Data fetch - Select Experiment: handle_experiment_selection(experiment) (partial flow). See :ref:`handle_experiment_selection <reduction_mvpi>` for the full flow
 
-    UserS can retrieve runs either from OnCat or from a directory by reading each file separately. The later
+    Users can retrieve runs either from OnCat or from a directory by reading each file separately. The later
     might be memory and/or cpu intensive. We will have to include some TimeoutError exception or similar to avoid having the program hanging.
     In that case the runs table will be empty.
 

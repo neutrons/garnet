@@ -237,6 +237,7 @@ are added here:
 
     #. required parameters
     #. run range format
+    #. wavelength format
     #. file path format of every file in: datasource, calibration, vanadium and ub and reduction plan file sections
 
 In case the selected reduction plan is in an invalid state, the next steps buttons/tabs are deactivated.
@@ -444,7 +445,7 @@ The M-V-P interactions are described and grouped by functionality:
                 Note left of View: Display parameter validation
                 Note over View,Model: Create reduction plan flow
 
-    #. Invalid case - Missing parameter fields (keys)
+    #. Invalid case - Missing parameter fields (keys) or file is already loaded
 
         .. mermaid::
 
