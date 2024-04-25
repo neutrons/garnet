@@ -11,18 +11,18 @@ Normalization Algorithm
         NormalizationInput --> NormalizationAlgorithm
         %%SaveData-->NormalizationOutputs
         NormalizationAlgorithm-->NormalizationOutputs
-        ReductionPlan-->NormalizationUserInputs
 
         state NormalizationInput{
+            Prerequisite-->NormalizationUserInputs
+            Prerequisite-->AdditionalInstrumentInputs?
             state Prerequisite {
                 ReductionPlan
-            
                 note left of ReductionPlan
                     required fields for Normalization:
                     UBMatrix, Background, Vanadium and Flux for every instrument and 
                     Mask, Tube and Detector only for SNAP, CORELLI, TOPAZ and MANDI (Laue).
-                end note
-            }
+                end note            
+            }  
             state NormalizationUserInputs {
                 Projections 
                 Extents
@@ -30,13 +30,13 @@ Normalization Algorithm
                 Symmetry
                 Directory?                       
             }
-
             state AdditionalInstrumentInputs?{
                 Elastic
                 Offset
                 RawFilePath
             }
         }
+        
         state NormalizationAlgorithm {
             
             CheckInstrumentType-->Laue
@@ -54,7 +54,7 @@ Normalization Algorithm
                 l_hkl:NormalizeToHKL
                 l_compl:CompleteRuns
 
-                %%CheckInstrumentType --> l_load
+                [*] --> l_load
                 l_load --> l_apply
                 l_apply-->l_crop
                 l_crop-->l_ub
@@ -71,7 +71,7 @@ Normalization Algorithm
                 w_background:LoadBackground
                 w_hkl:NormalizeToHKL    
 
-                %%CheckInstrumentType-->LoadData
+                [*]-->LoadData
                 LoadData-->w_ub
                 w_ub-->w_background
                 w_background-->w_hkl
@@ -85,7 +85,7 @@ Normalization Algorithm
                 d_hkl:NormalizeToHKL  
                 d_compl:CompleteRuns
                 
-                %%CheckInstrumentType-->d_load
+                [*]-->d_load
                 d_load-->d_ub
                 d_ub-->d_background
                 d_background-->d_hkl
