@@ -28,11 +28,8 @@ Normalization Algorithm
                 Extents
                 Bins
                 Symmetry
-                Directory?                       
             }
             state AdditionalInstrumentInputs?{
-                Elastic
-                Offset
                 RawFilePath
             }
         }
@@ -109,5 +106,6 @@ Normalization Algorithm
             BkgNormHistogram
         }
 
-The Algorithm is executed in the Model side. This is wrapped as a MantidAlgorithm in Garnet.
+The Algorithm is executed in the Model side. In case of SNAP, CORELLI, TOPAZ, MANDI and DEMAND the runs can be calculated
+in parallel.
 The script is described in detail here: `Normalization Script <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_gl6-gMwZEe6kustJDRk6kQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ>`_.
