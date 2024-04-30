@@ -18,12 +18,12 @@ Related APIS:
  classDiagram
     PyOnCatModel "1" o--"N" ExperimentModel
     ExperimentModel "1" o--"N" RunModel
-    PyOnCatModel "1" -->"1" InstrumentModel
+    PyOnCatModel "1" -->"1" InstrumentInfoModel
     RunModel "1" *--"N<=3" GoniometerAngleKeyValueModel
     RunModel "1" *--"3" ProjectionFieldKeyValueModel
 
     class PyOnCatModel{
-        +InstrumentModel instrument
+        +InstrumentInfoModel instrument
         -PyOnCat:ONCat oncat_agent
         +String data_source_filepath
         +Number selected_experiment_index
@@ -34,7 +34,7 @@ Related APIS:
         +select_experiment()
         +add_datasource_filepath()
     }
-    class InstrumentModel{
+    class InstrumentInfoModel{
         <>
     }
 
