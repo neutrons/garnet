@@ -77,7 +77,7 @@ The View is described below:
         ReductionPlanTab "1" -->"1" ReductionPlanWidget
         ReductionPlanTasksWidget "1" -->"1" ReductionPlanListWidget
         ReductionPlanWidget "1" -->"1" RunsWidget
-        ReductionPlanWidget "1" -->"1" GoniometerWavelengthWidget
+        ReductionPlanWidget "1" -->"1" InstrumentDataWidget
         ReductionPlanWidget "1" -->"1" DataSourceWidget
         ReductionPlanWidget "1" -->"1" NormalizationWidget
         ReductionPlanWidget "1" -->"1" CalibrationWidget
@@ -132,7 +132,7 @@ The View is described below:
             +QComboBox:instrument
             +DataSourceWidget:data_source
             +RunsWidget:runs
-            +GoniometerWavelengthWidget:goniometer
+            +InstrumentDataWidget:instrument
             +CalibrationWidget:calibration
             +BtnFileWidget: ub
             +QLabel:grouping_display
@@ -181,7 +181,11 @@ The View is described below:
         }
 
 
-        class GoniometerWavelengthWidget{
+        class InstrumentDataWidget{
+            +QLabel:elastic_display
+            +QLineEdit:elastic
+            +QLabel:offset_display
+            +QCheckBox:offset
             +QLabel:goniometer_table_display
             +QTableWidget:goniometer_table
             +QLabel:wavelength_display
@@ -235,10 +239,21 @@ The wireframe for the above class diagram is here: `Garnet Wireframe <https://ba
 All validation related to invalid and required fields for the reduction plan submit (Add/Edit) button
 are added here:
 
-    #. required parameters
+    #. required parameters; all fields marked with * in the wireframe are required for the reduction plan creation: name, instrument (InstrumentInfoModel), experiment, run_ranges, wavelength, grouping, reduction_plan_file and ipts_experiment_number only for DEMAND
     #. run range format
     #. wavelength format
     #. file path format of every file in: datasource, calibration, vanadium and ub and reduction plan file sections
+
+Instrument-specific fields:
+
+    There are certain fields that are hidden/displayed for specific instruments. Their visibility is handled at the time of the Instrument selection.
+    These are the following:
+        #. detector_filepath displayed for SNAP, CORELLI, TOPAZ and MANDI.
+        #. tube_filepath displayed only for CORELLI.
+        #. elastic displayed only for CORELLI.
+        #. offset displayed only for CORELLI.
+        #. ipts_experiment_number displayed only for DEMAND.
+        #. wavelength (band) 2nd field displayed only for SNAP, CORELLI, TOPAZ, MANDI.
 
 In case the selected reduction plan is in an invalid state, the next steps buttons/tabs are deactivated.
 A reduction plan is created only and only if it is in a valid state.

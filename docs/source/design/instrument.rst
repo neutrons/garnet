@@ -8,20 +8,29 @@ The Instrument model is described in `Data Dictionary Instrument Configuration <
 .. mermaid::
 
  classDiagram
-    InstrumentModel "1" *--"3" InstrumentProjectionFieldModel: grouping_field,run_number_field, scale_field
-    InstrumentModel "1" *--"N<=3" InstrumentGoniometerAngleModel
+    BaseInstrumentModel <|-- InstrumentInfoModel
+    InstrumentInfoModel "1" *--"1" InstrumentProjectionRunSchema
+    InstrumentInfoModel "1" *--"N<=3" InstrumentGoniometerAngleModel
 
-    class InstrumentModel{
+    class BaseInstrumentModel{
+        <<Abstract>>
         +String facility
         +String filesystem_name
         +String reference_name
-        +List~Number~[1|2] wavelength
-        +String raw_file_format
-        +List~InstrumentGoniometerAngleModel~ goniometer_settings
-        +List~InstrumentProjectionFieldModel~ run_schema
         +create()
 
     }
+
+    class InstrumentInfoModel{
+        +String state_info
+        +List~Number~[1|2] wavelength
+        +String raw_file_format
+        +List~InstrumentGoniometerAngleModel~ goniometer_settings
+        +InstrumentProjectionRunSchema run_schema
+        +create()
+
+    }
+
     class InstrumentGoniometerAngleModel{
         +String name
         +String reference_name
@@ -30,9 +39,52 @@ The Instrument model is described in `Data Dictionary Instrument Configuration <
         +Bool used_in_goniometer_setting
         +get_angle_field_name()
     }
-    class InstrumentProjectionFieldModel{
-        +String field_name
-        +String oncat_meta_field
+    class InstrumentProjectionRunSchema{
+        +grouping_field
+        +run_number_field
+        +scale_field
     }
 
-The Instrument is created from the InstrumentConfiguration Settings.
+The InstrumentInfo is created from the InstrumentConfiguration Settings. Based on the information, we can create the following instruments:
+    * SNAP
+    * CORELLI
+    * TOPAZ
+    * MANDI
+    * WAND2
+    * DEMAND
+
+The InstrumentInfoModel model captures the changes in the configuration parameters for a specific instrument, e.g. DEMAND can have two InstrumentObjects
+with different parameters. The state_info includes the description of the change/upgrade for that instrument.
+
+.. mermaid::
+
+    classDiagram
+        InstrumentInfoModel <|-- SNAPInstrumentObject
+        InstrumentInfoModel <|-- CORELLIInstrumentObject
+        InstrumentInfoModel <|-- TOPAZInstrumentObject
+        InstrumentInfoModel <|-- MANDIInstrumentObject
+        InstrumentInfoModel <|-- WAND2InstrumentObject
+        InstrumentInfoModel <|-- DEMANDInstrumentObject
+
+        class InstrumentInfoModel{
+            <>
+        }
+
+        class SNAPInstrumentObject{
+            <>
+        }
+        class CORELLIInstrumentObject{
+            <>
+        }
+        class TOPAZInstrumentObject{
+            <>
+        }
+        class MANDIInstrumentObject{
+            <>
+        }
+        class WAND2InstrumentObject{
+            <>
+        }
+        class DEMANDInstrumentObject{
+            <>
+        }
