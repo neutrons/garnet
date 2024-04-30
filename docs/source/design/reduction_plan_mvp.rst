@@ -248,6 +248,7 @@ Instrument-specific fields:
 
     There are certain fields that are hidden/displayed for specific instruments. Their visibility is handled at the time of the Instrument selection.
     These are the following:
+
         #. detector_filepath displayed for SNAP, CORELLI, TOPAZ and MANDI.
         #. tube_filepath displayed only for CORELLI.
         #. elastic displayed only for CORELLI.
