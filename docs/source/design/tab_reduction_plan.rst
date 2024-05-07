@@ -1,7 +1,7 @@
 .. _tab_reduction_plan:
 
 ===============
-Reduction Plan 
+Reduction Plan
 ===============
 
 Information related to the Reduction Plan Tab.
