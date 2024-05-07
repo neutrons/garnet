@@ -8,7 +8,7 @@ Normalization Algorithm
 
 .. mermaid::
 
-    stateDiagram-v2 
+    stateDiagram-v2
         [*] --> NormalizationInput
         NormalizationInput --> NormalizationAlgorithm
         %%SaveData-->NormalizationOutputs
@@ -21,21 +21,21 @@ Normalization Algorithm
                 ReductionPlan
                 note left of ReductionPlan
                     required fields for Normalization:
-                    UBMatrix, Background, Vanadium and Flux for every instrument and 
+                    UBMatrix, Background, Vanadium and Flux for every instrument and
                     Mask, Tube and Detector only for SNAP, CORELLI, TOPAZ and MANDI (Laue).
-                end note            
-            }  
+                end note
+            }
             state NormalizationUserInputs {
-                Projections 
+                Projections
                 Extents
                 Bins
                 Symmetry
                 Directory
             }
         }
-        
+
         state NormalizationAlgorithm {
-            
+
             CheckInstrumentType-->Laue
             CheckInstrumentType-->Wand2
             CheckInstrumentType-->Demand
@@ -65,7 +65,7 @@ Normalization Algorithm
             state Wand2{
                 w_ub:LoadUB
                 w_background:LoadBackground
-                w_hkl:NormalizeToHKL    
+                w_hkl:NormalizeToHKL
 
                 [*]-->LoadData
                 LoadData-->w_ub
@@ -78,9 +78,9 @@ Normalization Algorithm
                 d_load: LoadEachDataRun
                 d_ub:LoadUB
                 d_background:LoadBackground
-                d_hkl:NormalizeToHKL  
+                d_hkl:NormalizeToHKL
                 d_compl:CompleteRuns
-                
+
                 [*]-->d_load
                 d_load-->d_ub
                 d_ub-->d_background
