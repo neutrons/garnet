@@ -1,5 +1,7 @@
 .. _normalization_algo:
 
+IN PROGRESS
+
 Normalization Algorithm
 =========================
 
@@ -28,9 +30,7 @@ Normalization Algorithm
                 Extents
                 Bins
                 Symmetry
-            }
-            state AdditionalInstrumentInputs?{
-                RawFilePath
+                Directory
             }
         }
         
@@ -39,7 +39,6 @@ Normalization Algorithm
             CheckInstrumentType-->Laue
             CheckInstrumentType-->Wand2
             CheckInstrumentType-->Demand
-
 
             state Laue{
                 l_load: LoadEachDataRun
@@ -91,7 +90,6 @@ Normalization Algorithm
                 d_compl-->SaveData
             }
             state SaveData{
-            
                 SaveUB
                 SaveDataHistogram
                 SaveNormHistogram
