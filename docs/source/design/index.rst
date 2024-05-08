@@ -13,11 +13,7 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   instrument
-   reduction_plan
-   reduction_plan_mvp
-   oncat
-   oncat_general
-   oncat_mvp
+   tab_reduction_plan
+   tab_normalization
