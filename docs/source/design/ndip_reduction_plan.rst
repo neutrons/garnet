@@ -15,10 +15,10 @@ Overall, users can:
 Fields
 --------
 
-Below are the fields for creating/editing a Reduction Plan. They are grouped into two categories: 
+Below are the fields for creating/editing a Reduction Plan. They are grouped into two categories:
    * the main fields
    * the fields that are applicable only for the related instrument
-   
+
 In the latter case, they are only displayed when the associated instrument is selected by the user.
 
 .. list-table:: Reduction Plan - Main Fields
@@ -32,24 +32,24 @@ In the latter case, they are only displayed when the associated instrument is se
      - Mandatory
    * - Reduction Plan
      - String
-     - 
+     -
      - filepath usage
      - yes
    * - Instrument
      - String
      - predefined choices from available instrument
-     - 
+     -
      - yes
    * - IPTS
      - Integer
-     - 
+     -
      - valid/existing filepath
      - yes
    * - Run Ranges
      - Comma-separated numbers and number ranges
-     - 
+     -
      - valid/existing filepath
-     - yes     
+     - yes
    * - Wavelength
      - Float
      - default value from instrument configuration
@@ -58,36 +58,36 @@ In the latter case, they are only displayed when the associated instrument is se
    * - Grouping
      - String
      - predefined choices from instrument configuration
-     - 
+     -
      - yes
    * - UB Matrix
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - yes
    * - Flux
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - no
    * - Solid Angle
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - no
    * - Mask
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - no
    * - Background
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - no
    * - Reduction Plan file
-     - String 
-     - 
+     - String
+     -
      - valid/non-existing filepath
      - yes
 
@@ -102,33 +102,33 @@ In the latter case, they are only displayed when the associated instrument is se
      - Mandatory
      - Instruments
    * - Detector Callibration
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - no
      - SNAP, CORELLI, TOPAZ, MANDI
    * - Tube Callibration
-     - String 
-     - 
+     - String
+     -
      - valid/existing filepath
      - no
      - CORELLI
    * - Experiment number in IPTS
-     - Integer 
-     - 
+     - Integer
+     -
      - valid/existing filepath
      - yes
      - DEMAND
    * - Elastic
      - Bool
      - default false
-     - 
+     -
      - yes
      - CORELLI
    * - Offset
      - Float
-     - 
-     - 
+     -
+     -
      - no
      - CORELLI
    * - Wavelength Band
@@ -144,11 +144,11 @@ Field Interactions
 -------------------
 
 * When the user selects an instrument, besides showing/hidding the above fields, data are retrieved from the instrument's configuration (example here: `Data Dictionary Instrument Configuration <https://ornlrse.clm.ibmcloud.com/rm/web#action=com.ibm.rdm.web.pages.showArtifactPage&artifactURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fresources%2FTX_gl6-gMwZEe6kustJDRk6kQ&componentURI=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Frm-projects%2F_DADVIOHJEeyU5_2AJWnXOQ%2Fcomponents%2F_DEP4oOHJEeyU5_2AJWnXOQ&vvc.configuration=https%3A%2F%2Fornlrse.clm.ibmcloud.com%2Frm%2Fcm%2Fstream%2F_DEcs8OHJEeyU5_2AJWnXOQ>`_):
-   * Wavelength/Wavelength default value 
+   * Wavelength/Wavelength default value
    * Grouping dropdown choices
    * Detector, Tube, Flux, Solid Angle, Mask and Background starting folder filepaths for the filebrowser
 
-* When the user selects (an instrument and) an experiment (ipts), then the recommended starting path for saving the reduction plan file is at: /<facility>/<instrument>/shared/<ipts>/garnet. The garnet folder needs to be created, if it does not exist. 
+* When the user selects (an instrument and) an experiment (ipts), then the recommended starting path for saving the reduction plan file is at: /<facility>/<instrument>/shared/<ipts>/garnet. The garnet folder needs to be created, if it does not exist.
 
 Note: If the user has not selected an instrument yet, a default option should appear for every fileselect field.
 
@@ -170,14 +170,14 @@ Backend validations can include:
    * accesing the filesystem, e.g. file exists
    * reduction plan exceptions
 
-Client side validation can include: 
+Client side validation can include:
    * required fields
    * field types
    * filepath format
-   * run range format 
+   * run range format
    * wavelength min < max
 
-All required fields are marked with *\** on the left and "(required)" on the right to their label (name). 
+All required fields are marked with *\** on the left and "(required)" on the right to their label (name).
 In case a field becomes invalid, it is marked with a red background border around the field box. A small error message appears below the field, too.
 Additionally, the associated functionality of the button is deactivated (form is not submitted) until all the fields are valid and the required fields are filled-in.
 
@@ -217,4 +217,3 @@ Load Reduction Plan - Browse
 
 In order to load a Reduction Plan file, the users click the associated *Browse* button. The filebrowser appears and users select a file.
 A new ReductionPlan object is created in memory, the parameters are populated in the Reduction Plan Form and the view is switched to Edit mode (Reduction Plan Edit page).
-
