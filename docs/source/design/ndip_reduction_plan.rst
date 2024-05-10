@@ -177,43 +177,58 @@ Client side validation can include:
    * run range format
    * wavelength min < max
 
-All required fields are marked with *\** on the left and "(required)" on the right to their label (name).
+All required fields are marked with *\** on the left and "(required)" on the right marked in red color to their label (name).
 In case a field becomes invalid, it is marked with a red background border around the field box. A small error message appears below the field, too.
 Additionally, the associated functionality of the button is deactivated (form is not submitted) until all the fields are valid and the required fields are filled-in.
 
-After the form is submitted, any/all error from backend validation can appear as error message pop-up.
+After the form is submitted, error from backend validation can appear as an error message pop-up.
+
+Lastly, in case of a successfull action, e.g. form submission, success status messages are displayed for n=5ms below the associated button and then they disappear.
+
+Submission
+-----------
+
+* *Save*  button: In order to save the reduction plan, the users click the *Save* button on the bottom of the form. Following the validation rules, the parameters are gathered and sent to the backend to create/edit the reduction plan.
+* *Save As* button: In order to save a copy of the reduction plan parameters in a new file, the users click the *Save As* button on the bottom of the form. Following the validation rules, the parameters are gathered and sent to the backend to create the reduction plan. An additional (backend) validation rule here, is to check whether the user selects an exisiting (reduction plan) instead of a new one. A warning appears whether they would like to continue or not. The button is visible only in the *Edit* mode.
+
 
 Create
 -------
 
 The user can land here from the menu item Reduction Plan-->Create or from the Home Page *Create Reduction Plan* button.
-In this case all fields are empty.The associated wireframe is here:
-`Garnet Wireframe Reduction Plan Create - Landing <https://share.balsamiq.com/c/ky236EHRwQatwHKMrYmGPp.png>`_.
+In this case all fields are empty. The associated wireframe is here:
+`Wireframe Reduction Plan Create - Landing <https://share.balsamiq.com/c/ky236EHRwQatwHKMrYmGPp.png>`_.
 
-As the user fills-in the form and selects the instrument other fields appear in the locations shows here: `Garnet Wireframe Reduction Plan Create - All Fields <https://share.balsamiq.com/c/k3kzkVXknAMdUExZWBGToq.png>`_.
+As the user fills-in the form and selects the instrument other fields appear as shown here: `Wireframe Reduction Plan Create - All Fields <https://share.balsamiq.com/c/k3kzkVXknAMdUExZWBGToq.png>`_.
 
-Validations occured as described above. An additional validation rule here, is to check whether the user selects an exisiting (reduction plan) instead of a new one. A warning appears whether they would like to continue or not.
-After a successfull form submission (*Save* button) a new ReductionPlan is created and the view is switched to Edit mode (Reduction Plan Edit page) for the newly-created reduction plan.
+Validations occured as described above. An additional (backend) validation rule here, is to check whether the user selects an exisiting (reduction plan) instead of a new one. A warning message appears whether they would like to continue or not.
+
+After a successfull form submission (*Save* button) a new ReductionPlan is created and the view is switched to Edit mode (Reduction Plan Edit page) for the newly-created reduction plan. A success status message appears: "*Reduction <reduction_plan> has been created sucessfully.*" below the *Save* button.
 
 Edit
 -----
 
 The user can land here from the Home Page by selecting a recent reduction plan or through the *Reduction Plan* button from Normalization and Integration Pages.
 The reduction plan parameters are shown and populated. The associated wireframe is displayed here:
-`Garnet Wireframe Reduction Plan Edit <https://share.balsamiq.com/c/b1Hyb5ohybzsMdWKMa39gf.png>`_.
+`Wireframe Reduction Plan Edit <https://share.balsamiq.com/c/b1Hyb5ohybzsMdWKMa39gf.png>`_.
 Regarding the instrument-specific fields, only the ones associated to the reduction plan's instrument are displayed with their values. The rest stay hidden.
+Also, the filepath of the Reduction Plan cannot be modified (read-only).
 
-Besides saving the plan, users can select to save a copy of an existing Reduction Plan, by selecting the "Save As" option. This button appears only in "Edit" mode.
+After a successfull form submission for *Save* button the ReductionPlan is updated and the view stays in Edit mode.  A success status message appears: "*Reduction <reduction_plan> has been updated sucessfully.*" below the *Save* button.
 
-Submission
------------
-
-* *Save* In order to save the reduction plan, the users click the *Save* button on the bottom of the form. Following the validation rules, the parameters are gathered and sent to the backend to create/edit the reduction plan.
-* *Save As* In order to save a copy of the reduction plan parameters in a new file, the users click the *Save As* button on the bottom of the form. Following the validation rules, the parameters are gathered and sent to the backend to create the reduction plan. An additional validation rule here, is to check whether the user selects an exisiting (reduction plan) instead of a new one. A warning appears whether they would like to continue or not.
-
+After a successfull form submission for *Save As* button the new ReductionPlan is created, the read-only reduction plan filepath is updated and the view stays in Edit mode.  A success status message appears: "*Reduction <reduction_plan> has been updated sucessfully.*" below the *Save As* button.
 
 Load Reduction Plan - Browse
 -------------------------------
 
-In order to load a Reduction Plan file, the users click the associated *Browse* button. The filebrowser appears and users select a file.
-A new ReductionPlan object is created in memory, the parameters are populated in the Reduction Plan Form and the view is switched to Edit mode (Reduction Plan Edit page).
+In order to load a Reduction Plan file, the users click the associated *Browse* button from the Home Page or the Reduction Plan. The filebrowser appears and users select a file from the filesystem.
+The parameters are read from the file and validated with the above validation rules.
+
+In case the validation is successfull, a new ReductionPlan object is created in memory, the parameters are populated in the Reduction Plan Form and the view is switched to Edit mode (Reduction Plan Edit page).
+In case the validation is not succefful, the reduction plan is not created for the following invalid scenarios:
+
+   * Invalid parameter values. An information message is displayed to the user: "*The reduction plan was not saved. Please correct the issue and save it.*". The parameters are populated in the form with their validation messages/colors  and the view is switched to Create mode.
+
+   * Missing parameter fields (keys). An error message is displayed to the user: "*The reduction plan was not loaded. Corrupted file schema.*" . No change occurs after that.
+
+   * Load the same file as the existing ReductionPlan's file. An error message is displayed to the user: "*The reduction plan was not loaded. File is already used in the current Reduction Plan.*" . No change occurs after that.
