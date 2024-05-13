@@ -33,7 +33,7 @@ Below are the fields for normalization
      - yes
    * - Extern (Min, Max) X3
      - (Float, Float)
-     - (-6,6)
+     - (-6,6) X3
      - Min < Max
      - yes
    * - Number of Bins X3
@@ -63,10 +63,12 @@ If the Operations Value is Space Group or Point Group, both become mandatory fie
 Field Interactions
 -------------------
 
-* When the user selects an Operations value (Space Group or Point Group), besides showing/hidding the above fields, data are retrieved for Crystal System dropdown choices depending on the operations selected value.
+* When the user selects an Operations value (Space Group or Point Group), besides showing/hidding the above fields, data are retrieved for Crystal System dropdown choices depending on the Operations selected value.
 * When the user selects a Crystal System value, data are retrieved for Group dropdown choices depending on the Crystal System selected value.
 * When the user updates the extends min[i] or extends max[i] or number of bins[i], the bins size[i] is updated following this formula:
    bins_size[i] = (max[i]- min[i])/(bins[i]-1)
+
+The bin size field is not editable by the user.
 
 Validation
 ----------
@@ -80,23 +82,34 @@ Client side validation can include here:
    * number of bins min value and collective max value
    * projection comma-separated float number format
 
-Additionally, when the user does not have a Reduction Plan, yet, and they land on this page, an error message below the submission buttons should appear.
-The buttons functionality is deactivated as the rest client side validations. The menu item on the left should be replaced to "Create Reduction Plan" and the message should say:"*Please create a Reduction Plan first*".
+Additionally, when the user does not have a Reduction Plan, yet, and they land on this page, an error message ("*Please create a Reduction Plan first*") below the submission buttons should appear.
+The buttons' functionality is deactivated as the rest client side validations. The menu item on the left should be replaced to "Create Reduction Plan".
+*Launch tool* button?
 
 Backend validation can include here:
    * projection non colinear
    * filepath/directory for normalization data
    * normalization exception
 
+Submission
+-----------
+
+* *Save & Run Normalization* button: When the user clicks the button, garnet runs the normalization process and produces results. Both ReductionPlan object and file are updated with the normalization parameters and Results filepaths. The Results block is updated with the generated files and their root directory.
+* *Save Normalization Parameters* button: When the user clicks the button, the normalization parameters (histogram parameters, symmetry and results=[]) are saved in the ReductionPlan object and corresponding file. A success message (n=5s) is displayed: "*Reduction Plan is updated with the Normalization Parameters.*" below the button. The Results block becomes empty.
+* *Launch Analysis tool* button.  When the user clicks this button, a new page appears with the analysis tool.
+
+If the user runs normalization and there is an existing directory/filenames, a warning message appears asking the user: "*The current files in the directory <directory> will be overwritten. Do you want to continue?*" (option to not show this message again). If the user selects to continue the files will be overwritten, else nothing will happen.
+
 Create Normalization Parameters
 -------------------------------
 
-The first time the user lands in the Page with a Reduction Plan created/loaded in memory and no normalization parameters exist in the plan, default parameters are displayed as shown here: `Wireframe Normalization Landing <https://share.balsamiq.com/c/4Lay4JCqNoCP3PTdrWqhYz.png>`_.
+The first time the user lands in the page with a Reduction Plan created/loaded in memory and no normalization parameters exist in the plan, default parameters are displayed as shown here: `Wireframe Normalization Landing <https://share.balsamiq.com/c/4Lay4JCqNoCP3PTdrWqhYz.png>`_.
 
 Edit Normalization Parameters
 -------------------------------
 
-If the existing Reduction Plan contains Normalization parameters, then they are shown in the web form over the default values.
+If the existing Reduction Plan contains valid Normalization parameters, then they are shown in the web form over the default values.
+They are accesed from the ReductionPlan object first and then from the Reduction Plan file.
 The Results block with the directory and files should appear, too (`Wireframe Normalization Edit <https://share.balsamiq.com/c/f4PDmyWoYfbSYPtxjxuJgt.png>`_).
 
 
@@ -104,6 +117,4 @@ If the fields are not valid:
    * Invalid parameter values. An information message is displayed to the user: "*The normalization parameters have some mistakes in the Reduction Plan. Please correct the issue and save it.*". The parameters are populated in the form with their validation messages/colors.
    * Missing parameter fields (keys). An error message is displayed to the user: "*The normalization parameters were not loaded. Please fill them in.*" . The default normalization parameters values should appear in this case.
 
-The above error messages appear below the submission buttons.
-
-If the user runs the Reduction Plan and there is an existing directory/filenames, a warning message appears asking the user: "*The current files in the directory <directory> will be overwritten. Do you want to continue?*". If the user selects to continue the files will be overwritten, else nothing will happen.
+If the Results exist, they should be populated, too.
