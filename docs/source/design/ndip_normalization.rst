@@ -8,7 +8,7 @@ In this page, users can perform Normalization, by using the current Reduction Pl
 
 Overall, users can:
    * create Normalization parameters in a Reduction Plan
-   * edit Normalization parameters of a Reduction plan
+   * edit the Normalization parameters of a Reduction plan from  the ReductionPlan object or file (memory or disk)
    * run the Normalization data reduction process
    * launch an external tool for analyzing the data further
 
@@ -28,17 +28,17 @@ Below are the fields for normalization
      - Mandatory
    * - Projection X3
      - List of 3 Float
-     - projections[]: [[1,0,0],[0,1,0],[0,0,1]]
+     - default projections[]: [[1,0,0],[0,1,0],[0,0,1]]
      - non co-linear
      - yes
    * - Extern (Min, Max) X3
      - (Float, Float)
-     - (-6,6) X3
+     - default: (-6,6) X3
      - Min < Max
      - yes
    * - Number of Bins X3
      - Integer
-     - bins[]: [201,201,201]
+     - default bins[]: [201,201,201]
      - bins[i]>=1, bins[0]+bins[1]+bins[2] <= 1000
      - yes
    * - Operations
@@ -75,7 +75,7 @@ Validation
 
 Regarding validation, same rules regarding styling, form submission, client side vs. server side validation and messages apply here, as the Reduction Plan.
 
-Client side validation can include here:
+Client side validation can include:
    * required fields
    * field types
    * extends min <max
@@ -86,7 +86,7 @@ Additionally, when the user does not have a Reduction Plan, yet, and they land o
 The buttons' functionality is deactivated as the rest client side validations. The menu item on the left should be replaced to "Create Reduction Plan".
 *Launch tool* button?
 
-Backend validation can include here:
+Backend validation can include:
    * projection non colinear
    * filepath/directory for normalization data
    * normalization exception
