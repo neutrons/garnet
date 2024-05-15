@@ -18,10 +18,9 @@ The Model is described in detail:
     classDiagram
         ReductionPlanTabModel "1" -->"1" ReductionPlanListModel
         ReductionPlanTabModel "1" -->"1" PyOnCatModel
-        ReductionPlanTabModel "1" o--"N<=6" InstrumentModel
         ReductionPlanListModel "1" o--"N" ReductionPlanModel
-        ReductionPlanModel "N" -->"1" InstrumentModel
-        PyOnCatModel "1" -->"1" InstrumentModel
+        ReductionPlanModel "N" -->"1" InstrumentInfoModel
+        PyOnCatModel "1" -->"1" InstrumentInfoModel
 
         class ReductionPlanListModel{
             -String:selected_plan
@@ -36,15 +35,11 @@ The Model is described in detail:
 
         class ReductionPlanTabModel{
             +ReductionPlanListModel reduction_plan_list
-            +List~InstrumentModel~ instrument_list
             +PyOnCatModel pyoncat_data
             +add_instrument()
             +get_instrument()
         }
 
-        class InstrumentModel{
-            <>
-        }
 
         class ReductionPlanModel{
             <>
@@ -57,7 +52,7 @@ The Model is described in detail:
 
 The ReductionPlanListModel model contains the user's reduction plans and the one selected for
 data reduction in further steps (ReductionPlanModel). Additionally, it maintains the list
-of the instruments (InstrumentModel) generated during the reduction plan creation process per user's selections.
+of the instruments (InstrumentInfoModel) generated during the reduction plan creation process per user's selections.
 Finally the runs of experiments with their fields based on the selected instrument and OnCat-related
 information are stored (PyOnCatModel), too.
 The selected plan (ReductionPlanModel) is passed for the next step.
