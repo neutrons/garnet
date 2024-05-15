@@ -178,9 +178,9 @@ The View is described below:
 
         class InstrumentDataWidget{
             +QLabel:elastic_display
-            +QLineEdit:elastic
+            +QCheckBox:elastic
             +QLabel:offset_display
-            +QCheckBox:offset
+            +QLineEdit:offset
             +QLabel:goniometer_table_display
             +QTableWidget:goniometer_table
             +QLabel:wavelength_display

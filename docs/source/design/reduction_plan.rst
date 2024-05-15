@@ -82,8 +82,8 @@ The above validation functions check the following before the Reduction Plan cre
 There are parameters available to specific instruments for the reducton plan creation:
     * detector_filepath available for SNAP, CORELLI, TOPAZ and MANDI. Not required.
     * tube_filepath available only for CORELLI. Not required.
-    * elastic available only for CORELLI. Not required.
-    * offset available only for CORELLI. Required (True or False).
+    * elastic available only for CORELLI. Required. (True or False)
+    * offset available only for CORELLI. Not Required.
     * ipts_experiment_number available only for DEMAND. Required.
     * wavelength (band) 2nd field available only for SNAP, CORELLI, TOPAZ, MANDI. Required.
 
