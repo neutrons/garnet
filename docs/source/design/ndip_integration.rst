@@ -119,7 +119,7 @@ Additionally, when the user does not have a Reduction Plan, yet, and they land o
 The buttons' functionalities (*Save All & Run Integration*, *Save Only Integration Parameters*) are deactivated as the rest client side validations. The menu item on the left should be replaced to "Create Reduction Plan".
 *Launch tool* button is visible and active anytime.
 
-Backend validation can include:
+Server side validation can include:
    * filepath/directory for integration data
    * integration exception
    * modvectors non colinear
