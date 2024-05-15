@@ -4,7 +4,8 @@
 NDIP - Reduction Plan
 ======================
 
-In this page, functionality related to the parameters of the Reduction Plan is handled. A reduction plan contains a set of parameters that are necessary to perform data reduction in the later steps/tabs. The ReductionPlan object is used to retrieve information along with any additional parameters. Thus, the ReductionPlan object is visible in every tab/step.
+In this page, functionality related to the parameters of the Reduction Plan is handled. A reduction plan contains a set of parameters that are necessary to perform data reduction in the later steps/tabs. One ReductionPlan is object is active (in memory) at a time and visible in every tab/step.
+Every user has their own ReductionPlan object and they can create multiple ones and save them on the disk.
 
 Overall, users can:
    * create a Reduction Plan
@@ -173,7 +174,7 @@ Backend validations can include:
 Client side validation can include:
    * required fields
    * field types
-   * filepath format
+   * filepath format and file extention
    * run range format
    * wavelength min < max
 
@@ -218,10 +219,10 @@ After a successfull form submission for *Save* button the ReductionPlan is updat
 
 After a successfull form submission for *Save As* button the new ReductionPlan is created, the read-only reduction plan filepath is updated and the view stays in Edit mode.  A success status message appears: "*Reduction <reduction_plan> has been updated sucessfully.*" below the *Save As* button.
 
-Load Reduction Plan - Browse
--------------------------------
+Load Reduction Plan - Browse in Neutron Data
+---------------------------------------------
 
-In order to load a Reduction Plan file, the users click the associated *Browse* button from the Home Page or the Reduction Plan. The filebrowser appears and users select a file from the filesystem.
+In order to load a Reduction Plan file, the users click the associated *Browse in Neutron Data* button from the Home Page or the *Load Reduction Plan* from the Reduction Plan page. The filebrowser appears and users select a file from the (remote) filesystem.
 The parameters are read from the file and validated with the above validation rules.
 
 In case the validation is successfull, a new ReductionPlan object is created in memory, the parameters are populated in the Reduction Plan Form and the view is switched to Edit mode (Reduction Plan Edit page).
