@@ -3,6 +3,8 @@
 PyOnCat Model-View-Presenter
 ==============================
 
+IN PROGRESS
+
 The data, graphical interface and functionality components related to OnCat are described here. The related code
 is organized in Model-View-Presenter pattern.
 

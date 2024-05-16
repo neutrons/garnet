@@ -3,6 +3,8 @@
 PyOnCat General Model
 =======================
 
+IN PROGRESS
+
 This is a generalization of :ref:`PyOnCatSchema <pyoncat>`, in case it can be used for other applications other than garnet that want to achieve a similar functionality.
 
 The detailed Instrument model is found here :ref:`Intrument <instrument>`.
