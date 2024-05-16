@@ -1,23 +1,23 @@
 .. _ndip_integration:
 
-===================
-NDIP - Integration
-===================
+========================
+NDIP - Peak Integration
+========================
 
-In this page, users can perform Integration, by using the current Reduction Plan and the additional parameters defined here.
+In this page, users can perform Peak Integration, by using the current Reduction Plan and the additional parameters defined here.
 
 Overall, users can:
-   * create Integration parameters in a Reduction Plan
-   * edit the Integration parameters of a Reduction plan from  the ReductionPlan object or file (memory or disk)
-   * run the Integration data reduction process
+   * create Peak Integration parameters in a Reduction Plan
+   * edit the Peak Integration parameters of a Reduction plan from  the ReductionPlan object or file (memory or disk)
+   * run the Peak Integration data reduction process
    * launch an external tool for analyzing the data further
 
 Fields
 --------
 
-Below are the fields for integration
+Below are the fields for peak integration
 
-.. list-table:: Integration - Fields
+.. list-table:: Peak Integration - Fields
    :widths: 20 20 20 20 20
    :header-rows: 1
 
@@ -116,38 +116,38 @@ Client side validation can include:
    * maximum order limits
 
 Additionally, when the user does not have a Reduction Plan, yet, and they land on this page, an error message ("*Please create a Reduction Plan first*") below the submission buttons should appear.
-The buttons' functionalities (*Save All & Run Integration*, *Save Only Integration Parameters*) are deactivated as the rest client side validations. The menu item on the left should be replaced to "Create Reduction Plan".
+The buttons' functionalities (*Save All & Run Peak Integration*, *Save Only Peak Integration Parameters*) are deactivated as the rest client side validations. The menu item on the left should be replaced to "Create Reduction Plan".
 *Launch tool* button is visible and active anytime.
 
 Server side validation can include:
-   * filepath/directory for integration data
-   * integration exception
+   * filepath/directory for peak integration data
+   * peak integration exception
    * modvectors non colinear
 
 Submission
 -----------
 
-* *Save All & Run Integration* button: When the user clicks the button, garnet runs the integration process and produces results. Both ReductionPlan object and file are updated with the integration parameters and Results filepaths. The Results block is updated with the generated files and their root directory. A success message (n=5s) is displayed: "*Reduction Plan is updated with the Integration Parameters and Results.*"
-* *Save Only Integration Parameters* button: When the user clicks the button, the peaks integration parameters (cell unit parameters, modulation and results=[]) are saved in the ReductionPlan object and corresponding file. A success message (n=5s) is displayed: "*Reduction Plan is updated with the Integration Parameters.*" below the button. The Results block becomes empty.
+* *Save All & Run Peak Integration* button: When the user clicks the button, garnet runs the peak integration process and produces results. Both ReductionPlan object and file are updated with the peak integration parameters and Results filepaths. The Results block is updated with the generated files and their root directory. A success message (n=5s) is displayed: "*Reduction Plan is updated with the Peak Integration Parameters and Results.*"
+* *Save Only Peak Integration Parameters* button: When the user clicks the button, the peak integration parameters (cell unit parameters, modulation and results=[]) are saved in the ReductionPlan object and corresponding file. A success message (n=5s) is displayed: "*Reduction Plan is updated with the Peak Integration Parameters.*" below the button. The Results block becomes empty.
 * *Launch Analysis tool* button.  When the user clicks this button, a new page appears with the analysis tool. This is a new tool. Requirement for this: TBD.
 
-If the user runs integration and there is an existing directory/filenames, a warning message appears asking the user: "*The current files in the directory <directory> will be overwritten. Do you want to continue?*" (option to not show this message again). If the user selects to continue the files will be overwritten, else nothing will happen.
+If the user runs peak integration and there is an existing directory/filenames, a warning message appears asking the user: "*The current files in the directory <directory> will be overwritten. Do you want to continue?*" (option to not show this message again). If the user selects to continue the files will be overwritten, else nothing will happen.
 
-Create Integration Parameters
--------------------------------
+Create Peak Integration Parameters
+-----------------------------------
 
-The first time the user lands in the page with a Reduction Plan created/loaded in memory and no integration parameters exist in the plan, default parameters are displayed as shown here: `Wireframe Integration Landing <https://share.balsamiq.com/c/2rnrpk1RrjzyriAhcSPJe6.png>`_.
+The first time the user lands in the page with a Reduction Plan created/loaded in memory and no peak integration parameters exist in the plan, default parameters are displayed as shown here: `Wireframe Peak Integration Landing <https://share.balsamiq.com/c/2rnrpk1RrjzyriAhcSPJe6.png>`_.
 
-Edit Integration Parameters
--------------------------------
+Edit Peak Integration Parameters
+---------------------------------
 
-If the existing Reduction Plan contains valid Integration parameters, then they are shown in the web form over the default values.
+If the existing Reduction Plan contains valid Peak Integration parameters, then they are shown in the web form over the default values.
 They are accesed from the ReductionPlan object first and then from the Reduction Plan file.
-The Results block with the directory and files should appear, too (`Wireframe Integration Edit <https://share.balsamiq.com/c/1VCWAsEXBR5vTkmHs722ir.png>`_).
+The Results block with the directory and files should appear, too (`Wireframe Peak Integration Edit <https://share.balsamiq.com/c/1VCWAsEXBR5vTkmHs722ir.png>`_).
 
 
 If the fields are not valid:
-   * Invalid parameter values. An information message is displayed to the user: "*The integration parameters have some mistakes in the Reduction Plan. Please correct the issue and save it.*". The parameters are populated in the form with their validation messages/colors.
-   * Missing parameter fields (keys). An error message is displayed to the user: "*The integration parameters were not loaded. Please fill them in.*" . The default integration parameters values should appear in this case.
+   * Invalid parameter values. An information message is displayed to the user: "*The peak integration parameters have some mistakes in the Reduction Plan. Please correct the issue and save it.*". The parameters are populated in the form with their validation messages/colors.
+   * Missing parameter fields (keys). An error message is displayed to the user: "*The peak integration parameters were not loaded. Please fill them in.*" . The default peak integration parameters values should appear in this case.
 
 If the Results exist, they should be populated, too.
