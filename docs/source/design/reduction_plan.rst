@@ -26,8 +26,8 @@ The detailed Instrument model is found here :ref:`Intrument <instrument>`.
         +String mask_filepath
         +String background_filepath
         +String grouping
-        +Number elastic
-        +Bool offset
+        +Number offset
+        +Bool elastic
         +String reduction_plan_filepath
         +String data_source_filepath
         +CalibrationModel calibration
