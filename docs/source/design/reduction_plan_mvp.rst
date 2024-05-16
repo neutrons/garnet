@@ -3,6 +3,8 @@
 Reduction Plan Model-View-Presenter
 ========================================
 
+IN PROGRESS
+
 The data, graphical interface and functionality components related to the first step
 -- Reduction Plan Screen -- are described here. The related code
 is organized in the Model-View-Presenter pattern.
