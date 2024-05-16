@@ -1,9 +1,8 @@
 .. _design__guidelines:
 
-===============
-Garnet Design
-===============
-IN PROGRESS
+============================
+Garnet Design - IN PROGRESS
+============================
 
 Information, diagrams and flowcharts are included about the various components of GARNET.
 Please make sure to
