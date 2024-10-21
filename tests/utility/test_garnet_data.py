@@ -6,7 +6,7 @@ import os
 import pytest
 
 
-@pytest.mark.datarepo()
+@pytest.mark.datarepo
 def test_data_repo(has_datarepo: bool, datarepo_dir: str):
     """Test for garnet-data"""
     if not has_datarepo:

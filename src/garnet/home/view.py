@@ -3,10 +3,11 @@
 from contextlib import suppress
 from typing import Any, Dict, Optional
 
-from garnet.helpers.ui_elements.base_lineedit import BaseLineEdit
-from garnet.helpers.ui_elements.base_statusbar import BaseStatusBar
 from qtpy.QtGui import QDoubleValidator
 from qtpy.QtWidgets import QFormLayout, QLabel, QPushButton, QWidget
+
+from garnet.helpers.ui_elements.base_lineedit import BaseLineEdit
+from garnet.helpers.ui_elements.base_statusbar import BaseStatusBar
 
 
 class HomeView(QWidget):
