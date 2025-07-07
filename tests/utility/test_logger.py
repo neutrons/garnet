@@ -1,8 +1,7 @@
 """Tests for the Logger class in garnet/logger.py."""
 
-from mantid.kernel import Logger as mantid_logger  # noqa: N813
-
 from garnet.helpers.logger import Logger
+from mantid.kernel import Logger as mantid_logger  # noqa: N813
 
 
 def test_get_logger():

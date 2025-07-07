@@ -8,7 +8,6 @@ from unittest import mock
 from unittest.mock import patch
 
 import pytest
-
 from garnet.garnet import gui
 
 
