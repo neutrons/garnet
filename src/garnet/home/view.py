@@ -3,10 +3,11 @@
 from contextlib import suppress
 from typing import Any, Dict, Optional
 
-from garnet.helpers.ui_elements.base_lineedit import BaseLineEdit
-from garnet.helpers.ui_elements.base_statusbar import BaseStatusBar
 from qtpy.QtGui import QDoubleValidator
 from qtpy.QtWidgets import QFormLayout, QLabel, QPushButton, QWidget
+
+from garnet.helpers.ui_elements.base_lineedit import BaseLineEdit
+from garnet.helpers.ui_elements.base_statusbar import BaseStatusBar
 
 
 class HomeView(QWidget):
@@ -22,14 +23,13 @@ class HomeView(QWidget):
 
         self.label_welcome = QLabel(self)
         self.label_welcome.setText(
-            "Welcome to GARNET\n\nThis is still under active development and currently" "provides no functionality."
+            "Welcome to GARNET\n\nThis is still under active development and currentlyprovides no functionality."
         )
 
         self.plan_name = BaseLineEdit(required=True, parent=self)
         self.wavelength = BaseLineEdit(required=True, default_value=1.486, parent=self)
         self.plan_name.setToolTip(
-            "Enter the name of a reduction plan.\n"
-            "If the name already exists, the existing plan will be overwritten."
+            "Enter the name of a reduction plan.\nIf the name already exists, the existing plan will be overwritten."
         )
         self.wavelength.setToolTip("Set the wavelength (in Å)")
 
