@@ -8,6 +8,7 @@ from unittest import mock
 from unittest.mock import patch
 
 import pytest
+
 from garnet.garnet import gui
 
 
@@ -23,11 +24,11 @@ def test_gui_version():
 
 @patch("garnet.garnet.QApplication")
 @patch("garnet.garnet.Garnet")
-def test_gui(mock_garnet: mock, mock_qtapp: mock):
+def test_gui(mock_garnet: mock.Mock, mock_qtapp: mock.Mock):
     """Test the GUI entry point."""
     with pytest.raises(SystemExit) as excinfo:
         gui()
 
-    assert excinfo.type == SystemExit
+    assert excinfo.type is SystemExit
     assert mock_garnet.called
     assert mock_qtapp.called

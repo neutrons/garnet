@@ -1,22 +1,17 @@
 """Main Qt application"""
 
 import sys
-from typing import Any
-
-from mantid.kernel import Logger
-from mantidqt.gui_helper import set_matplotlib_backend
-from qtpy.QtWidgets import QApplication, QMainWindow
-
-# make sure matplotlib is correctly set before we import shiver
-set_matplotlib_backend()
+from typing import Any, Optional
 
 # make sure the algorithms have been loaded so they are available to the AlgorithmManager
 import mantid.simpleapi  # noqa: F401, E402
+from mantid.kernel import Logger
+from qtpy.QtWidgets import QApplication, QMainWindow
 
+from garnet import __version__  # noqa: E402
 from garnet.mainwindow import MainWindow  # noqa: E402
-from garnet.version import __version__  # noqa: E402
 
-logger = Logger("PACKAGENAME")
+logger = Logger("GARNET")
 
 
 class Garnet(QMainWindow):
@@ -34,7 +29,7 @@ class Garnet(QMainWindow):
             Garnet.__instance = QMainWindow.__new__(cls)
         return Garnet.__instance
 
-    def __init__(self: Any, parent: QMainWindow = None) -> None:
+    def __init__(self: Any, parent: Optional[QMainWindow] = None) -> None:
         """Initialize the main window"""
         super().__init__(parent)
         logger.information(f"GARNET version: {__version__}")
@@ -55,3 +50,6 @@ def gui():
         window = Garnet()
         window.show()
         sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    gui()

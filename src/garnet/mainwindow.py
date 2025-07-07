@@ -1,6 +1,6 @@
 """Main Qt window for the application"""
 
-from typing import Any
+from typing import Any, Optional
 
 from qtpy.QtWidgets import QTabWidget, QVBoxLayout, QWidget
 
@@ -12,7 +12,7 @@ from garnet.home.view import HomeView
 class MainWindow(QWidget):
     """Main widget"""
 
-    def __init__(self: Any, parent: QWidget = None) -> None:
+    def __init__(self: Any, parent: Optional[QWidget] = None) -> None:
         """Initialize the main window"""
         super().__init__(parent)
 
