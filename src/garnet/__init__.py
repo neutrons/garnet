@@ -5,6 +5,9 @@ try:
 except ImportError:
     __version__ = "unknown"
 
-from garnet.garnet import Garnet
 
-__all__ = ["Garnet"]
+def Garnet():  # noqa: N802
+    """Needed for backward compatibility because mantid workbench does "from garnet import Garnet" to import"""
+    from .mainwindow import MainWindow  # noqa: PLC0415
+
+    return MainWindow()
