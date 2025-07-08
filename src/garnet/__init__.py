@@ -8,6 +8,6 @@ except ImportError:
 
 def Garnet():  # noqa: N802
     """Needed for backward compatibility because mantid workbench does "from garnet import Garnet" to import"""
-    from .garnet import Garnet as garnet  # noqa: N813
+    from .mainwindow import MainWindow  # noqa: PLC0415
 
-    return garnet()
+    return MainWindow()

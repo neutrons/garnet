@@ -1,8 +1,9 @@
 """Test the home view"""
 
 import pytest
-from garnet.home.view import HomeView
 from qtpy import QtCore
+
+from garnet.home.view import HomeView
 
 
 def test_plan_name(qtbot: pytest.fixture):

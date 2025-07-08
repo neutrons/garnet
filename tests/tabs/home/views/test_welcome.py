@@ -1,27 +1,28 @@
 """Test the welcome tab"""
 
 import pytest
-from garnet import Garnet, __version__
+
+from garnet import __version__
+from garnet.mainwindow import MainWindow
 
 
-def test_welcome_label(qtbot: pytest.fixture):
-    """Test starting the app"""
-    # initialization
-    garnet = Garnet()
-    garnet.show()
-    qtbot.addWidget(garnet)
-    qtbot.waitUntil(garnet.show, timeout=5000)
+class TestGarnetGUI:
+    """Test the GARNET GUI"""
 
-    # check there is a landing tab
-    tabs = garnet.main_window.tabs
-    assert tabs.currentWidget().__class__.__name__ == "HomeView"
-    assert tabs.currentWidget().label_welcome.text().startswith("Welcome to GARNET")
+    @pytest.fixture(autouse=True)
+    def setup(self, qtbot: pytest.fixture):
+        """Set up the test environment"""
+        self.main_window = MainWindow()
+        qtbot.addWidget(self.main_window)
 
+    def test_welcome_label(self):
+        """Test the welcome label on the home tab"""
+        tabs = self.main_window.tabs
+        assert tabs.currentWidget().__class__.__name__ == "HomeView"
+        assert tabs.currentWidget().label_welcome.text().startswith("Welcome to GARNET")
 
-def test_mainwindow(qtbot: pytest.fixture):
-    """Test that the application starts successfully"""
-    garnet = Garnet()
-    qtbot.addWidget(garnet)
-    garnet.show()
-    assert garnet.isVisible()
-    assert garnet.windowTitle() == f"GARNET - {__version__}"
+    def test_mainwindow(self):
+        """Test that the main window is visible and has the correct title"""
+        self.main_window.show()
+        assert self.main_window.isVisible()
+        assert self.main_window.windowTitle() == f"GARNET - {__version__}"
