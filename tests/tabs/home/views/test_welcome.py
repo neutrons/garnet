@@ -14,12 +14,6 @@ class TestGarnetGUI:
         """Set up the test environment"""
         self.main_window = MainWindow()
         qtbot.addWidget(self.main_window)
-        # self.garnet = Garnet()
-        # qtbot.addWidget(self.garnet)
-        # self.garnet.show()
-        # qtbot.waitUntil(self.garnet.show, timeout=5000)
-        # yield
-        # self.garnet.close()
 
     def test_welcome_label(self):
         """Test the welcome label on the home tab"""
