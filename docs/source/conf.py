@@ -32,6 +32,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.coverage",
     "sphinxcontrib.mermaid",
+    "sphinx_qt_documentation",
 ]
 
 autodoc_mock_imports = [
@@ -57,7 +58,9 @@ master_doc = "index"
 source_suffix = [".rst", ".md"]
 
 intersphinx_mapping = {
+    "mantid": ("http://docs.mantidproject.org/", None),
     "python": ("https://docs.python.org/3/", None),
+    "PyQt5": ("http://pyqt.sourceforge.net/Docs/PyQt5/", None),
     "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
 }
 intersphinx_disabled_domains = ["std"]
