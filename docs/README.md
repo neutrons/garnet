@@ -12,9 +12,8 @@ Every module, class, and method should be documented with a docstring. Full docu
 To build the documentation locally and view your changes:
 
 ```bash
-    cd docs/
-    make clean
-    make html
+    cd garnet
+    pixi run build-docs
 ```
 
 If you encounter any errors or warnings when building the docs, please be sure to fix them.

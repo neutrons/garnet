@@ -8,35 +8,27 @@ Getting Started
 Instructions for GARNET installation and setup.
 -----------------------------------------------
 
-Conda Configuration
-```````````````````
-Create and activate conda environment for ``GARNET``
+Create and activate pixi environment for ``GARNET``:
 
 .. code-block:: sh
 
-    conda env create --file environment.yml
-    # or
-    mamba env create --file environment.yml
+    cd /.../garnet
+    pixi install
+    pixi shell
 
-    conda activate garnet
-
-If it has been a while, one can update their conda environment using
+This also installs ``garnet`` in editable mode with pip, so it can be run immediately:
 
 .. code-block:: sh
-
-    conda activate garnet
-    conda env update --file environment.yml --prune
-
-
-Install GARNET
-``````````````
-Install ``GARNET`` (in `editable mode <https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-e>`_) and start application
-
-.. code-block:: sh
-
-    python -m pip install -e .
 
     garnet
+
+If it has been a while and there have been changes to garnet's ``pyproject.toml``,
+the environment can be updated by pulling the latest changes and simply reinstalling:
+
+.. code-block:: sh
+
+    git pull
+    pixi install
 
 
 Setup the garnet-data submodule

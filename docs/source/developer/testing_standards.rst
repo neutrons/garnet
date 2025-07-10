@@ -49,33 +49,32 @@ garnet-data submodule to be present.
 
 Running Tests
 `````````````
-The tests can be run using the `pytest <https://docs.pytest.org/>`_ framework. The tests can be run in the garnet conda environment.
-The following instructions assume that the current working directory is the root of the garnet repository and that the garnet conda environment is activated.
+The tests can be run using the `pytest <https://docs.pytest.org/>`_ framework. The tests can be run in the garnet pixi environment.
+The following instructions assume that the current working directory is the root of the garnet repository and that the garnet pixi environment is activated.
 
 To run all tests:
 
 .. code-block:: sh
 
-    python -m pytest
+    pytest
 
 To run a specific test:
 
 .. code-block:: sh
 
-    python -m pytest path/to/test_file.py
+    pytest path/to/test_file.py
 
 To run a specific test function:
 
 .. code-block:: sh
 
-    python -m pytest path/to/test_file.py::test_function
+    pytest path/to/test_file.py::test_function
 
 To run tests that require the garnet-data submodule:
 
 .. code-block:: sh
 
-    python -m pytest -m datarepo
-
+    pytest -m datarepo
 
 =====================
 Testing a specific PR
@@ -85,27 +84,27 @@ Checkout to the PR by following the Pull-Request instructions:
 
 .. code-block:: sh
 
-    conda activate <garnet_environment>
-    cd /path/to/my/local/garnet/repo/
+    cd /.../garnet
+    pixi install
     git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
     git switch pr<PULL_REQUEST_NUMBER>
     #run tests
-    python -m pytest <item_to_test>
+    pixi run test <item_to_test>
     #and/or start garnet
-    garnet
+    pixi run garnet
 
 To test a specific Mantid build and/or version in another conda environment, garnet can be installed in that environment:
 
 .. code-block:: sh
 
     conda activate <mantid_environment>
-    #in case of a mantid build, else skip
+    # in case of a mantid build, else skip
     ./bin/AddPythonPath.py
     cd /path/to/my/local/garnet/repo/
     git fetch origin pull/<PULL_REQUEST_NUMBER>/head:pr<PULL_REQUEST_NUMBER>
     git switch pr<PULL_REQUEST_NUMBER>
     python -m pip install -e .
-    #run tests
+    # run tests
     python -m pytest <item_to_test>
-    #and/or start garnet
+    # and/or start garnet
     garnet

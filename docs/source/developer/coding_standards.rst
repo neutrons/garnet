@@ -219,9 +219,8 @@ If you encounter any errors or warnings please fix them when building the docs b
 
 .. code-block:: sh
 
-    cd docs
-    make clean
-    make html
+    cd garnet
+    pixi run build-docs
 
 The documentation will be built in the ``docs/_build/html`` directory.
 
