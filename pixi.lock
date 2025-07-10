@@ -1666,7 +1666,7 @@ packages:
   timestamp: 1738926525117
 - pypi: ./
   name: garnet
-  version: 0.1.0.dev5
+  version: 0.1.0.dev15
   sha256: 24f3bdab65777daa436c530f55fe682078d501a419e4374c095d37c5d73404b6
   requires_python: '>=3.10'
   editable: true

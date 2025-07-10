@@ -27,8 +27,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          pixi shell
-          xvfb-run --server-args="-screen 0 1920x1080x24" -a python -m pytest -m "not repodata" --cov=src --cov-report=xml --cov-report=term-missing
+          pixi run test -m "not repodata" --cov=src --cov-report=xml --cov-report=term-missing
 
       - name: Upload coverage to codecov
         uses: codecov/codecov-action@v5
