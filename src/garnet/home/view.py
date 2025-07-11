@@ -23,7 +23,7 @@ class HomeView(QWidget):
 
         self.label_welcome = QLabel(self)
         self.label_welcome.setText(
-            "Welcome to GARNET\n\nThis is still under active development and currentlyprovides no functionality."
+            "Welcome to GARNET\n\nThis is still under active development and currently provides no functionality."
         )
 
         self.plan_name = BaseLineEdit(required=True, parent=self)

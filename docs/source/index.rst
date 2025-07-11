@@ -3,6 +3,21 @@
 
 The Single Crystal **GARNET** project documentation
 ===================================================
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 1
+
+   getting_started
+   reference
+   developer/index
+   design/index
+
+Overview
+--------
+
 Single Crystal Graphical Advanced Reduction Neutron Event Toolkit
 
 Garnets are a group of minerals with high symmetry cubic crystal system with space group *Ia-3d* (#230).
@@ -38,14 +53,3 @@ More information about diffraction can be found on the ORNL `Single Crystal Diff
 .. note::
 
    This project is under active development.
-
-Contents
---------
-
-.. toctree::
-   :maxdepth: 1
-
-   getting_started
-   reference
-   developer/index
-   design/index
