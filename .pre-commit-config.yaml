@@ -6,7 +6,7 @@ exclude: "(tests/data/garnet-data|scripts)/.*"
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
@@ -17,7 +17,7 @@ repos:
         args: [--allow-multiple-documents]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1
+    rev: v0.15.20
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
